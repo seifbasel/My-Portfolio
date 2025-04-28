@@ -1,7 +1,6 @@
 import { FloatingNav } from "@/components/ui/floating-nav-bar";
 import { HomeIcon } from "lucide-react";
 import { CiCircleInfo } from "react-icons/ci";
-import { FaTasks } from "react-icons/fa";
 import { FaLaptopCode } from "react-icons/fa6";
 import { CiMail } from "react-icons/ci";
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";

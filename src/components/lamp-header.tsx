@@ -7,7 +7,7 @@ type HeaderProps = {
   header?: string;
   subheader?: string;
 };
-const LampHeader = ({ header, subheader }: HeaderProps) => {
+const LampHeader = ({ header }: HeaderProps) => {
   return (
     <LampContainer>
       <motion.h1
