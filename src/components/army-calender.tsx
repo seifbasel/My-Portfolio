@@ -51,6 +51,19 @@ const getNextSaturday = (date: Date): Date => {
   return result;
 };
 
+// Helper to find the next Friday
+const getNextFriday = (date: Date): Date => {
+  const result = new Date(date);
+  const dayOfWeek = result.getDay();
+  // If not Friday (5), add days until we reach Friday
+  if (dayOfWeek !== 5) {
+    result.setDate(
+      result.getDate() + (5 - dayOfWeek + (dayOfWeek > 5 ? 7 : 0))
+    );
+  }
+  return result;
+};
+
 const MilitaryServiceCalendar = ({
   serviceStartDate,
   serviceEndDate,
@@ -375,10 +388,7 @@ const MilitaryServiceCalendar = ({
             </h4>
             <div className="grid grid-cols-7 gap-1">
               {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
-                <div
-                  key={i}
-                  className="text-center text-xs text-black dark:text-white"
-                >
+                <div key={i} className="text-center text-xs text-black dark:text-white">
                   {d}
                 </div>
               ))}

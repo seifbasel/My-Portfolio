@@ -7,17 +7,15 @@ import { CanvasRevealEffect } from "./canvas-reveal-effect";
 export const CardSpotlight = ({
   children,
   radius = 350,
-  color = "rgba(138, 180, 248, 0.1)",
   className,
   ...props
 }: {
   radius?: number;
-  color?: string;
   children: React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
+
   function handleMouseMove(e: ReactMouseEvent<HTMLDivElement>) {
     const { left, top } = e.currentTarget.getBoundingClientRect();
     mouseX.set(e.clientX - left);
@@ -49,7 +47,7 @@ export const CardSpotlight = ({
           `,
         }}
       />
-      
+
       {isHovering && (
         <CanvasRevealEffect
           animationSpeed={3}
@@ -61,10 +59,8 @@ export const CardSpotlight = ({
           dotSize={2}
         />
       )}
-      
-      <div className="relative z-10 h-full">
-        {children}
-      </div>
+
+      <div className="relative z-10 h-full">{children}</div>
     </div>
   );
 };
