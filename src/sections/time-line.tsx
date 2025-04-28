@@ -64,7 +64,7 @@ export function TimeLine() {
       content: (
         <div>
           <p className="text-text md:text-2xl max-w-2xl mb-8 py-5">
-            Completed Meta’s "Introduction to Back-End Development" course on
+            Completed Meta&apos;s &quot;Introduction to Back-End Development&quot; course on
             Coursera, gaining practical knowledge in server-side programming
             concepts.
           </p>
@@ -85,8 +85,8 @@ export function TimeLine() {
       content: (
         <div>
           <p className="text-text md:text-2xl max-w-2xl mb-8 py-5">
-            Advanced my web development skills through Meta's "Django Web
-            Framework" course on Coursera, focusing on scalable Python-based
+            Advanced my web development skills through Meta&apos;s &quot;Django Web
+            Framework&quot; course on Coursera, focusing on scalable Python-based
             applications.
           </p>
 
@@ -107,7 +107,7 @@ export function TimeLine() {
       content: (
         <div>
           <p className="text-text md:text-2xl max-w-2xl mb-8 py-5">
-            Earned a Bachelor's degree in Computer Science and Artificial
+            Earned a Bachelor&apos;s degree in Computer Science and Artificial
             Intelligence from Damietta University.
           </p>
           <p className="text-text text-xs md:text-base font-normal mb-2">
@@ -119,7 +119,7 @@ export function TimeLine() {
             honors.
           </p>
 
-          <div className="flex flex-col md:flex-row items-center  gap-5">
+          <div className="flex flex-col md:flex-row items-center gap-5">
             <Image
               src="/images/graduation.jpg"
               alt="Graduation Certificate"
@@ -179,7 +179,7 @@ export function TimeLine() {
       content: (
         <div>
           <p className="text-text md:text-2xl max-w-2xl mb-8 py-5">
-            Completed Meta’s “APIs” course on Coursera, focusing on building
+            Completed Meta&apos;s &quot;APIs&quot; course on Coursera, focusing on building
             robust and scalable web service interfaces.
           </p>
 
