@@ -40,14 +40,14 @@ export function TechStack() {
       <div className="px-8">
         <motion.h4
           variants={itemVariants}
-          className="text-4xl md:text-7xl text-lighttext dark:text-darktext font-bold lg:leading-tight mx-auto text-center tracking-tight"
+          className="text-4xl md:text-7xl text-text font-rubik lg:leading-tight mx-auto text-center tracking-tight"
         >
           Technology Stack
         </motion.h4>
 
         <motion.p
           variants={itemVariants}
-          className="text-sm md:text-xl lg:text-base max-w-2xl my-4 mx-auto text-center font-normal text-secondary"
+          className="text-sm md:text-xl lg:text-base max-w-2xl my-4 mx-auto text-center text-secondary"
         >
           Here is a list of technologies that we use to build our product
           including both frontend and backend technologies.
@@ -55,7 +55,7 @@ export function TechStack() {
       </div>
 
       <motion.div variants={itemVariants} className="relative mx-auto">
-        <div className="grid grid-cols-1 justify-center items-center gap-10 rounded-md">
+        <div className="grid grid-cols-1 justify-center items-center gap-10">
           <GridStack />
         </div>
       </motion.div>

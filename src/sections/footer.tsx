@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { BackgroundBeamsWithCollision } from "@/components/background-beams-with-collision";
 import { TypewriterEffectSmooth } from "@/components/typewriter-effect";
@@ -8,30 +7,30 @@ export function Footer() {
   const words = [
     {
       text: "Build",
-      className: "text-lighttext dark:text-darktext",
+      className: "text-text",
     },
     {
       text: "awesome",
-      className: "text-lighttext dark:text-darktext",
+      className: "text-text",
     },
     {
       text: "websites",
-      className: "text-lighttext dark:text-darktext",
+      className: "text-text",
     },
     {
       text: "with",
-      className: "text-lighttext dark:text-darktext",
+      className: "text-text",
     },
     {
       text: "me",
-      className: "text-subtext dark:text-primary",
+      className: "text-subtext",
     },
   ];
 
   return (
     <BackgroundBeamsWithCollision>
       <div className="flex flex-col items-center justify-center h-[40rem]">
-        <p className="text-lighttext dark:text-darktext text-md md:text-2xl">
+        <p className="text-text text-md md:text-2xl">
           Turn your ideas into reality
         </p>
         <TypewriterEffectSmooth words={words} />
@@ -41,8 +40,8 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <button className=" no-underline group cursor-pointer relative shadow-2xl shadow-darkbackground dark:bg-background rounded-full p-1 text-default md:text-4xl leading-5  text-lighttext dark:text-darktext inline-block">
-              <div className="relative flex space-x-2 items-center  rounded-full bg-background dark:bg-darkBackground py-0.5 px-4 ring-1 ring-white/10 ">
+            <button className=" no-underline group cursor-pointer relative shadow-xl shadow-primary  rounded-full md:text-4xl  text-text inline-block">
+              <div className="relative flex space-x-2 items-center  rounded-full bg-background py-0.5 px-4 ring-1 ring-white/10 ">
                 <span>Contact us</span>
                 <svg
                   fill="none"

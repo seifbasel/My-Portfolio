@@ -1,8 +1,9 @@
 "use client";
-
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
+
+// tech stack grid component
 
 const RowWrapper = ({
   children,
@@ -89,7 +90,7 @@ export const GridStack = () => {
             variants={imageVariants}
             key={`image-${rowIndex}-${idx}`}
             style={{
-              rotate: rotations[rowIndex]?.[idx] || 0, // Use the precomputed rotation
+              rotate: rotations[rowIndex]?.[idx] || 0,
             }}
             whileHover="whileHover"
             whileTap="whileTap"
@@ -108,7 +109,6 @@ export const GridStack = () => {
     </RowWrapper>
   );
 
-  // If rotations aren't generated yet, don't render (avoid mismatch)
   if (rotations.length === 0) return null;
 
   return (

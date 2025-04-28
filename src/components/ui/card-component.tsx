@@ -1,5 +1,6 @@
+"use client";
 import { CardSpotlight } from "@/components/card-spotlight";
-import Image from "next/image";
+import { motion } from "framer-motion";
 import React from "react";
 
 export function CardSpotlightDemo({
@@ -18,55 +19,80 @@ export function CardSpotlightDemo({
   style?: React.CSSProperties;
 }) {
   return (
-    <CardSpotlight className={`h-auto w-auto rounded-2xl ${className}`} style={style}>
-      {icon && (
-        <div className="relative z-20 w-12 h-12 mb-4">
-          <Image src={icon} alt={`${title} icon`} width={48} height={48} className="object-contain" />
+    <CardSpotlight 
+      className={`h-full ${className}`} 
+      style={style}
+    >
+      <div className="relative h-full p-8 flex flex-col">
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/[0.01] rounded-xl" />
+        
+        {/* Shimmer effect */}
+        <div className="absolute inset-0 overflow-hidden rounded-xl">
+          <div className="absolute -inset-24 bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff0a_0%,#ffffff00_50%,#ffffff0a_100%)] opacity-20 animate-shimmer" />
         </div>
-      )}
-      <p className="text-xl font-bold relative z-20 mt-2 text-text">{title}</p>
 
-      <div className="text-text mt-4 relative z-20">
-        <ul className="list-none mt-2">
-          {steps.map((step, index) => (
-            <Step key={index} title={step} />
-          ))}
-        </ul>
+        {/* Content */}
+        <div className="relative z-10 flex-1 flex flex-col">
+          {icon && (
+            <div className="w-14 h-14 mb-6 rounded-lg bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+              <img src={icon} alt={`${title} icon`} className="w-8 h-8" />
+            </div>
+          )}
+          
+          <h3 className="text-2xl bg-gradient-to-r from-text to-secondary bg-clip-text text-transparent">
+            {title}
+          </h3>
+          
+          <ul className="mt-6 space-y-3 flex-1">
+            {steps.map((step, index) => (
+              <Step key={index} title={step} index={index} />
+            ))}
+          </ul>
+          
+          <p className="mt-6 text-sm text-text leading-relaxed">
+            {description}
+          </p>
+        </div>
       </div>
-
-      <p className="text-secondary mt-4 relative z-20 text-sm">{description}</p>
     </CardSpotlight>
   );
 }
 
-
-// Step Component
-const Step = ({ title }: { title: string }) => {
+const Step = ({ title, index }: { title: string; index: number }) => {
   return (
-    <li className="flex gap-2 items-start">
-      <CheckIcon />
-      <p className="text-lighttext dark:text-darktext text-sm">{title}</p>
-    </li>
-  );
-};
-
-// Check Icon Component
-const CheckIcon = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className="h-4 w-4 text-blue-500 mt-1 flex-shrink-0"
+    <motion.li
+      initial={{ opacity: 0, x: -10 }}
+      animate={{ 
+        opacity: 1, 
+        x: 0,
+        transition: { delay: index * 0.05 + 0.3 }
+      }}
+      className="flex items-start gap-3 "
     >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path
-        d="M12 2c-.218 0-.432.002-.642.005l-.616.017-.299.013-.579.034-.553.046c-4.785.464-6.732 2.411-7.196 7.196l-.046.553-.034.579c-.005.098-.01.198-.013.299l-.017.616-.004.318-.001.324c0 .218.002.432.005.642l.017.616.013.299.034.579.046.553c.464 4.785 2.411 6.732 7.196 7.196l.553.046.579.034c.098.005.198.01.299.013l.616.017.642.005.642-.005.616-.017.299-.013.579-.034.553-.046c4.785-.464 6.732-2.411 7.196-7.196l.046-.553.034-.579c.005-.098.01-.198.013-.299l.017-.616.005-.642-.005-.642-.017-.616-.013-.299-.034-.579-.046-.553c-.464-4.785-2.411-6.732-7.196-7.196l-.553-.046-.579-.034a28.058 28.058 0 0 0-.299-.013l-.616-.017-.318-.004-.324-.001zm2.293 7.293a1 1 0 0 1 1.497 1.32l-.083.094-4 4a1 1 0 0 1-1.32.083l-.094-.083-2-2a1 1 0 0 1 1.32-1.497l.094.083 1.293 1.292 3.293-3.292z"
-        fill="currentColor"
-        strokeWidth="0"
-      />
-    </svg>
+      <div className="flex-shrink-0 mt-0.5">
+        <CheckIcon />
+      </div>
+      <span className="text-text text-sm leading-snug">{title}</span>
+    </motion.li>
   );
 };
+
+const CheckIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="text-primary"
+  >
+    <path
+      d="M13.3333 4L6 11.3333L2.66667 8"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

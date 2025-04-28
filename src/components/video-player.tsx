@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
@@ -73,7 +72,7 @@ export default function ReelsVideos({ videos }: ReelsVideosProps) {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-3 h-3 rounded-full ${
-              index === currentIndex ? "bg-white" : "bg-gray-500"
+              index === currentIndex ? "bg-text" : "bg-gray-500"
             }`}
           />
         ))}

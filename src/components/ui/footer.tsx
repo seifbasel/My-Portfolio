@@ -1,4 +1,4 @@
-import { FaInstagram, FaTiktok , FaLinkedin, FaGithub  } from "react-icons/fa";
+import { FaInstagram, FaTiktok, FaLinkedin, FaGithub } from "react-icons/fa";
 
 const Footer2 = () => {
   return (
@@ -18,7 +18,7 @@ const Footer2 = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaGithub  className="w-10 h-10 text-text hover:text-secondary  transition-colors" />
+            <FaGithub className="w-10 h-10 text-text hover:text-secondary  transition-colors" />
           </a>
           <a
             href="https://linkedin.com/in/seif-basel-1a09191b9"

@@ -31,6 +31,10 @@
     }
   };
   
+  @keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
   --keyframes-fadeIn: {
     from {
       opacity: 0;
@@ -48,7 +52,6 @@
   :root {
     --color-background: var(--color-darkBackground);
     --color-foreground: var(--color-background);
-
     --font-rubik: "Rubik", sans-serif;
     --font-rubik-italic: "Rubik Italic", sans-serif;
   }
