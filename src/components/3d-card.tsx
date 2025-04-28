@@ -95,7 +95,6 @@ export const CardBody = ({
 };
 
 type CardItemProps = {
-  as?: React.ElementType;
   children: React.ReactNode;
   className?: string;
   translateX?: number | string;
@@ -107,7 +106,6 @@ type CardItemProps = {
 } & React.HTMLAttributes<HTMLElement>;
 
 export const CardItem = ({
-  as = "div",
   children,
   className,
   translateX = 0,
