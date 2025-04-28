@@ -1,6 +1,7 @@
 "use client";
 import { CardSpotlight } from "@/components/card-spotlight";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import React from "react";
 
 export function CardSpotlightDemo({
@@ -36,7 +37,7 @@ export function CardSpotlightDemo({
         <div className="relative z-10 flex-1 flex flex-col">
           {icon && (
             <div className="w-14 h-14 mb-6 rounded-lg bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-              <img src={icon} alt={`${title} icon`} className="w-8 h-8" />
+              <Image src={icon} alt={`${title} icon`} className="w-8 h-8" />
             </div>
           )}
           
