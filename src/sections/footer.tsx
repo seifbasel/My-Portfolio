@@ -23,7 +23,7 @@ export function Footer() {
     },
     {
       text: "me",
-      className: "text-subtext",
+      className: "text-primary",
     },
   ];
 

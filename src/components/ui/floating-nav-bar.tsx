@@ -67,7 +67,7 @@ export const FloatingNav = ({
           <Link
             key={`link=${idx}`}
             href={navItem.link}
-            className="relative flex items-center space-x-1 text-text hover:text-secondary transition-colors duration-200"
+            className="relative flex items-center space-x-1 text-text hover:text-primary transition-colors duration-200"
           >
             <span className="block sm:hidden">{navItem.icon}</span>
             <span className="hidden sm:block text-sm">{navItem.name}</span>
@@ -76,7 +76,7 @@ export const FloatingNav = ({
         {/* Dark Mode Toggle Button */}
         <button
           onClick={toggleDarkMode}
-          className="border text-sm font-medium relative border-secondary text-text px-4 py-2 rounded-full"
+          className="border text-sm font-medium relative border-primary text-text px-4 py-2 rounded-full"
           aria-label="Toggle Dark Mode"
           aria-pressed={isDarkMode ? "true" : "false"}
         >

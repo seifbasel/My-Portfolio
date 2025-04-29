@@ -37,7 +37,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 , delay: 0.2 }}
-          className="text-4xl md:text-7xl mb-4 font-bold text-text font-rubik"
+          className="text-4xl md:text-7xl mb-4 font-semibold text-text text-center"
         >
           My journey
         </motion.h2>
@@ -45,7 +45,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-secondary text-sm md:text-xl font-rubik"
+          className=" text-subtext md:text-xl py-10"
         >
           I&apos;m Seif Basel a full-stack developer and I&apos;ve been working
           as a software engineer for the past 2 years. Here&apos;s a timeline of

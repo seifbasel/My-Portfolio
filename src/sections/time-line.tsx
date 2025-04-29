@@ -10,7 +10,7 @@ export function TimeLine() {
       title: "2020",
       content: (
         <div>
-          <p className="text-text md:text-2xl max-w-2xl mb-8 py-5">
+          <p className="text-text md:text-2xl max-w-2xl mb-8 md:py-5">
             Enrolled in the Faculty of Computer and Artificial Intelligence at
             Damietta University, starting my academic journey in tech.
           </p>
@@ -42,7 +42,7 @@ export function TimeLine() {
       title: "2023 September",
       content: (
         <div>
-          <p className="text-text md:text-2xl max-w-2xl mb-8 py-5">
+          <p className="text-text md:text-2xl max-w-2xl mb-8 md:py-5">
             Successfully completed a 150-hour Web Development course using
             Python, offered by the Information Technology Institute (ITI).
           </p>
@@ -63,10 +63,10 @@ export function TimeLine() {
       title: "2024 March",
       content: (
         <div>
-          <p className="text-text md:text-2xl max-w-2xl mb-8 py-5">
-            Completed Meta&apos;s &quot;Introduction to Back-End Development&quot; course on
-            Coursera, gaining practical knowledge in server-side programming
-            concepts.
+          <p className="text-text md:text-2xl max-w-2xl mb-8 md:py-5">
+            Completed Meta&apos;s &quot;Introduction to Back-End
+            Development&quot; course on Coursera, gaining practical knowledge in
+            server-side programming concepts.
           </p>
           <div className="flex flex-col md:flex-row justify-start items-center">
             <Image
@@ -84,10 +84,10 @@ export function TimeLine() {
       title: "2024 April",
       content: (
         <div>
-          <p className="text-text md:text-2xl max-w-2xl mb-8 py-5">
-            Advanced my web development skills through Meta&apos;s &quot;Django Web
-            Framework&quot; course on Coursera, focusing on scalable Python-based
-            applications.
+          <p className="text-text md:text-2xl max-w-2xl mb-8 md:py-5">
+            Advanced my web development skills through Meta&apos;s &quot;Django
+            Web Framework&quot; course on Coursera, focusing on scalable
+            Python-based applications.
           </p>
 
           <div className="flex flex-col md:flex-row justify-start items-center">
@@ -106,11 +106,11 @@ export function TimeLine() {
       title: "2024 June",
       content: (
         <div>
-          <p className="text-text md:text-2xl max-w-2xl mb-8 py-5">
+          <p className="text-text md:text-2xl max-w-2xl mb-8 md:py-5">
             Earned a Bachelor&apos;s degree in Computer Science and Artificial
             Intelligence from Damietta University.
           </p>
-          <p className="text-text text-xs md:text-base font-normal mb-2">
+          <p className="text-text text-xs md:text-base font-normal md:mb-2">
             <GraduationCapIcon className="inline-block mr-2" /> Ranked 16th in
             the Computer Science Department.
           </p>
@@ -142,7 +142,7 @@ export function TimeLine() {
       title: "2024 July",
       content: (
         <div>
-          <p className="text-text md:text-2xl max-w-2xl mb-8 py-5">
+          <p className="text-text md:text-2xl max-w-2xl mb-8 md:py-5">
             Joined Transfective as a full-time Software Developer, contributing
             to cutting-edge translation and localization technologies.
           </p>
@@ -178,9 +178,9 @@ export function TimeLine() {
       title: "2024 September",
       content: (
         <div>
-          <p className="text-text md:text-2xl max-w-2xl mb-8 py-5">
-            Completed Meta&apos;s &quot;APIs&quot; course on Coursera, focusing on building
-            robust and scalable web service interfaces.
+          <p className="text-text md:text-2xl max-w-2xl mb-8 md:py-5">
+            Completed Meta&apos;s &quot;APIs&quot; course on Coursera, focusing
+            on building robust and scalable web service interfaces.
           </p>
 
           <div className="flex flex-col md:flex-row justify-start items-center">
@@ -199,7 +199,7 @@ export function TimeLine() {
       title: "2025 January",
       content: (
         <div>
-          <p className="text-text md:text-2xl max-w-2xl mb-8 py-5">
+          <p className="text-text md:text-2xl max-w-2xl mb-8 md:py-5">
             Began mandatory military service in the Egyptian Armed Forces,
             serving as an IT specialist supporting digital operations.
           </p>
@@ -211,6 +211,7 @@ export function TimeLine() {
               rel="noreferrer"
               className="text-pretty hover:text-pretty hover:underline"
             >
+              
               <Image
                 src="/images/armedforces.png"
                 alt="Egyptian Armed Forces logo"

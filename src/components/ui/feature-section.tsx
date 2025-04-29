@@ -101,7 +101,7 @@ export const GridStack = () => {
               alt="tech stack image"
               width={500}
               height={500}
-              className="rounded-lg h-20 w-20 md:h-36 md:w-36 object-contain flex-shrink-0"
+              className="rounded-lg h-18 w-18 md:h-40 md:w-40 object-contain flex-shrink-0"
             />
           </motion.div>
         ))}

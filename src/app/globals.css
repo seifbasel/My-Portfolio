@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-
-  --color-background: #EDEDED;
-  --color-primary: #737373;
-  --color-secondary: #737373;
-  --color-dark: #020617;
-  --color-subtext: #06B6D4;
-  --color-text: #020617;
-  --color-darkBackground: #020617;
-  --color-lighttext: #EDEDED;
   
+  --color-background: #ededed;
+  --color-text: #020617;
+  --color-primary: #737373;
+  --color-secondary: #06b6d4;
+  --color-subtext: #737373;
+  --color-lighttext: #ededed;
+  --color-darktext: #020617;
+  --color-card: #ffffff;
+
   /* Fonts */
   --font-rubik: "Rubik", sans-serif;
   --font-rubik-italic: "Rubik Italic", sans-serif;
-  
+
   /* Animation */
   --animation-shimmer: shimmer 2s linear infinite;
   --animation-fadeIn: fadeIn 0.5s ease forwards;
-  
+
   /* Keyframes */
   --keyframes-shimmer: {
     from {
@@ -27,12 +27,16 @@
     to {
       background-position: -200% 0;
     }
-  };
-  
+  }
+
   @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
   --keyframes-fadeIn: {
     from {
       opacity: 0;
@@ -42,29 +46,24 @@
       opacity: 1;
       transform: translateY(0);
     }
-  };
-}
-
-/* Dark mode styling */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--color-background);
-    --color-text: var(--color-text);
-    --font-rubik: "Rubik", sans-serif;
-    --font-rubik-italic: "Rubik Italic", sans-serif;
   }
 }
 
-.dark {
-  --color-background: var(--color-darkBackground);
-  --color-text: var(--color-lighttext);
-  --color-primary: #06B6D4;
 
+
+.dark {
+  --color-background: #020617;
+  --color-text: #ededed;
+  --color-primary: #06b6d4;
+  --color-secondary: #737373;
+  --color-subtext: #737373;
+  --color-lighttext: #ededed;
+  --color-darktext: #020617;
+  --color-card: #ffffff;
 
 }
 
 body {
-  color: var(--color-foreground);
   background: var(--color-background);
   font-family: var(--font-rubik);
 }

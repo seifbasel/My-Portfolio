@@ -65,8 +65,8 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="w-full h-full max-w-full mx-auto py-10">
-        <h2 className="text-center text-4xl sm:text-5xl text-text">Projects</h2>
+      <section id="projects" className="w-full h-full max-w-full py-10">
+        <h2 className="text-center text-4xl sm:text-5xl font-semibold text-text">Projects</h2>
         <Projects />
       </section>
 
@@ -75,7 +75,7 @@ export default function Home() {
         id="Photography"
         className=" w-full h-full max-w-full mx-auto py-20 md:py-40"
       >
-        <h2 className="text-center text-4xl sm:text-5xl  text-text mb-10">
+        <h2 className="text-center text-4xl sm:text-5xl font-semibold text-text mb-10">
           Photography
         </h2>
         <PhotoCards />
@@ -86,7 +86,7 @@ export default function Home() {
         id="videography"
         className=" w-full h-full max-w-full mx-auto p-20 md:py-40"
       >
-        <h2 className="text-center text-4xl sm:text-5xl text-text mb-10">
+        <h2 className="text-center text-4xl sm:text-5xl font-semibold text-text mb-10">
           Videography
         </h2>
         <ReelsVideosContainer />

@@ -8,7 +8,6 @@ export function CardSpotlightDemo({
   title,
   steps,
   description,
-  icon,
   className,
   style,
 }: {
@@ -32,13 +31,8 @@ export function CardSpotlightDemo({
 
         {/* Content */}
         <div className="relative z-10 flex-1 flex flex-col">
-          {icon && (
-            <div className="w-14 h-14 mb-6 rounded-lg bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-              <Image src={icon} alt={`${title} icon`} className="w-8 h-8" />
-            </div>
-          )}
-
-          <h3 className="text-2xl bg-gradient-to-r from-text to-secondary bg-clip-text text-transparent">
+        
+          <h3 className="text-2xl text-text bg-clip-text ">
             {title}
           </h3>
 

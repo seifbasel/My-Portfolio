@@ -60,7 +60,7 @@ const Projects = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 md:gap-5 ">
       {projectData.map((project, index) => (
         <ThreeDCard
           key={index}
