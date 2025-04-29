@@ -26,7 +26,6 @@ export function ThreeDCard({
           {title}
         </CardItem>
         <CardItem
-          as="p"
           translateZ="60"
           className="text-sm max-w-sm mt-2 text-secondary"
         >
@@ -45,23 +44,21 @@ export function ThreeDCard({
           {link && (
             <CardItem
               translateZ={20}
-              as={Link}
-              href={link}
-              target={link}
               className="px-4 py-2 rounded-xl text-md font-normal text-dark"
             >
-              Live Demo
+              <Link href={link} target={link}>
+                Live Demo
+              </Link>
             </CardItem>
           )}
           {info_link && (
             <CardItem
               translateZ={20}
-              as={Link}
-              href={info_link}
-              target="_blank"
-              className="px-4 py-2 rounded-xl bg-background  text-text text-xs font-bold"
+              className="px-4 py-2 rounded-xl bg-background text-text text-xs font-bold"
             >
-              More info
+              <Link href={info_link} target="_blank">
+                More info
+              </Link>
             </CardItem>
           )}
         </div>
