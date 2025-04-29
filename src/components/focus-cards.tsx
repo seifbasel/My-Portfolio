@@ -5,6 +5,12 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+// Define proper type for the Card
+type Card = {
+  title: string;
+  src: string;
+};
+
 export const Card = React.memo(
   ({
     card,
@@ -12,7 +18,7 @@ export const Card = React.memo(
     hovered,
     setHovered,
   }: {
-    card: any;
+    card: Card; // Replace 'any' with the proper Card type
     index: number;
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
@@ -46,11 +52,6 @@ export const Card = React.memo(
 );
 
 Card.displayName = "Card";
-
-type Card = {
-  title: string;
-  src: string;
-};
 
 export function FocusCards({ cards }: { cards: Card[] }) {
   const [hovered, setHovered] = useState<number | null>(null);
