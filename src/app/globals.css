@@ -51,7 +51,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--color-darkBackground);
-    --color-foreground: var(--color-background);
+    --color-text: #020617;
     --font-rubik: "Rubik", sans-serif;
     --font-rubik-italic: "Rubik Italic", sans-serif;
   }
@@ -59,9 +59,10 @@
 
 .dark {
   --color-background: var(--color-darkBackground);
-  --color-foreground: var(--color-darkforeground);    
   --color-text: var(--color-darktext);
   --color-primary: #06B6D4;
+
+
 }
 
 body {
