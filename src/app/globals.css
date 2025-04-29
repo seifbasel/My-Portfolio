@@ -1,6 +1,7 @@
 @import "tailwindcss";
-/* Light theme (default) */
-:root {
+
+@theme {
+
   --color-background: #EDEDED;
   --color-foreground: #020617;
   --color-primary: #737373;
@@ -8,71 +9,80 @@
   --color-dark: #020617;
   --color-subtext: #06B6D4;
   --color-text: #020617;
-
+  --color-darkBackground: #020617;
+  --color-darkforeground: #EDEDED;
+  --color-darktext: #EDEDED;
+  
+  /* Fonts */
   --font-rubik: "Rubik", sans-serif;
   --font-rubik-italic: "Rubik Italic", sans-serif;
-
+  
+  /* Animation */
   --animation-shimmer: shimmer 2s linear infinite;
   --animation-fadeIn: fadeIn 0.5s ease forwards;
+  
+  /* Keyframes */
+  --keyframes-shimmer: {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  };
+  
+  @keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+  --keyframes-fadeIn: {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  };
 }
 
-/* Dark theme via class toggle (manual override) */
-.dark {
-  --color-background: #020617;
-  --color-foreground: #EDEDED;
-  --color-text: #EDEDED;
-  --color-primary: #06B6D4;
-}
-
-/* Auto dark mode for users with dark system theme */
+/* Dark mode styling */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: #020617;
-    --color-foreground: #EDEDED;
-    --color-text: #EDEDED;
+    --color-background: var(--color-darkBackground);
+    --color-foreground: var(--color-background);
+    --font-rubik: "Rubik", sans-serif;
+    --font-rubik-italic: "Rubik Italic", sans-serif;
   }
 }
 
+.dark {
+  --color-background: var(--color-darkBackground);
+  --color-foreground: var(--color-darkforeground);    
+  --color-text: var(--color-darktext);
+  --color-primary: #06B6D4;
+
+
+}
+
 body {
-  background-color: var(--color-background);
   color: var(--color-foreground);
+  background: var(--color-background);
   font-family: var(--font-rubik);
 }
 
-/* Custom font utility */
 .italic-text {
   font-family: var(--font-rubik-italic);
 }
 
-/* Custom animations */
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Tailwind utility extensions */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
 
-  .fade-in-card {
-    opacity: 0;
-    animation: var(--animation-fadeIn);
-  }
+.fade-in-card {
+  opacity: 0;
+  animation: var(--animation-fadeIn);
 }
