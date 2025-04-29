@@ -181,16 +181,25 @@ type Uniforms = {
     type: string;
   };
 };
-const ShaderMaterial = ({
-  source,
-  uniforms,
-  maxFps = 60,
-}: {
+
+interface ShaderMaterialProps {
   source: string;
   hovered?: boolean;
   maxFps?: number;
   uniforms: Uniforms;
-}) => {
+}
+
+interface ExtendedShaderMaterial extends THREE.ShaderMaterial {
+  uniforms: {
+    [key: string]: { value: any };
+  };
+}
+
+const ShaderMaterial = ({
+  source,
+  uniforms,
+  maxFps = 60,
+}: ShaderMaterialProps) => {
   const { size } = useThree();
   const ref = useRef<THREE.Mesh>(null);
   let lastFrameTime = 0;
@@ -203,16 +212,16 @@ const ShaderMaterial = ({
     }
     lastFrameTime = timestamp;
 
-    const material: any = ref.current.material;
+    const material = ref.current.material as ExtendedShaderMaterial;
     const timeLocation = material.uniforms.u_time;
     timeLocation.value = timestamp;
   });
 
   const getUniforms = () => {
-    const preparedUniforms: any = {};
+    const preparedUniforms: { [key: string]: { value: any; type?: string } } = {};
 
     for (const uniformName in uniforms) {
-      const uniform: any = uniforms[uniformName];
+      const uniform = uniforms[uniformName];
 
       switch (uniform.type) {
         case "uniform1f":
@@ -220,7 +229,7 @@ const ShaderMaterial = ({
           break;
         case "uniform3f":
           preparedUniforms[uniformName] = {
-            value: new THREE.Vector3().fromArray(uniform.value),
+            value: new THREE.Vector3().fromArray(uniform.value as number[]),
             type: "3f",
           };
           break;
@@ -229,7 +238,7 @@ const ShaderMaterial = ({
           break;
         case "uniform3fv":
           preparedUniforms[uniformName] = {
-            value: uniform.value.map((v: number[]) =>
+            value: (uniform.value as number[][]).map((v: number[]) =>
               new THREE.Vector3().fromArray(v)
             ),
             type: "3fv",
@@ -237,7 +246,7 @@ const ShaderMaterial = ({
           break;
         case "uniform2f":
           preparedUniforms[uniformName] = {
-            value: new THREE.Vector2().fromArray(uniform.value),
+            value: new THREE.Vector2().fromArray(uniform.value as number[]),
             type: "2f",
           };
           break;
@@ -279,23 +288,16 @@ const ShaderMaterial = ({
     });
 
     return materialObject;
-  }, [size.width, size.height, source]);
+  }, [size.width, size.height, source, getUniforms]); // Added getUniforms to dependency array
 
   return (
-    <mesh ref={ref as any}>
+    <mesh ref={ref}>
       <planeGeometry args={[2, 2]} />
       <primitive object={material} attach="material" />
     </mesh>
   );
 };
 
-const Shader: React.FC<ShaderProps> = ({ source, uniforms, maxFps = 60 }) => {
-  return (
-    <Canvas className="absolute inset-0  h-full w-full">
-      <ShaderMaterial source={source} uniforms={uniforms} maxFps={maxFps} />
-    </Canvas>
-  );
-};
 interface ShaderProps {
   source: string;
   uniforms: {
@@ -306,3 +308,11 @@ interface ShaderProps {
   };
   maxFps?: number;
 }
+
+const Shader: React.FC<ShaderProps> = ({ source, uniforms, maxFps = 60 }) => {
+  return (
+    <Canvas className="absolute inset-0  h-full w-full">
+      <ShaderMaterial source={source} uniforms={uniforms} maxFps={maxFps} />
+    </Canvas>
+  );
+};
