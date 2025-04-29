@@ -11,14 +11,7 @@ const Projects = () => {
       link: "https://e-commerce-nike-website.vercel.app/",
       info_link: "https://github.com/seifbasel/Nike-E_Commerce-Website",
     },
-    {
-      title: "Diabetes Classification",
-      description:
-        "A web application that allows users to input their health data and provides a prediction of their likelihood of having diabetes using machine learning algorithms.",
-      thumbnail: "/images/Diabetes-Classification.png",
-      link: "https://github.com/seifbasel/Diabetes-Classification-Website/blob/main/project%20demo.mp4",
-      info_link: "https://github.com/seifbasel/Diabetes-Classification-Website",
-    },
+
     {
       title: "Prova 3D Virtual Try-On",
       description:
@@ -35,6 +28,7 @@ const Projects = () => {
       link: "https://coinat.vercel.app/",
       info_link: "https://github.com/seifbasel/Coinat-Website",
     },
+
     {
       title: "TransHub - Localization & Translation Platform",
       description:
@@ -58,20 +52,29 @@ const Projects = () => {
         "https://github.com/seifbasel/Library-Management-System-Website",
     },
     {
-      title: "COSMOS - Space Exploration Website",
-      description: "An immersive, responsive website showcasing our solar system, Features modern UI elements, smooth animations, and an engaging user experience.",
-      thumbnail: "/images/cosmo.png",
-      link: "https://seifbasel.github.io/Space-Exploration-Site/",
-      info_link:
-        "https://github.com/seifbasel/Space-Exploration-Site",
+      title: "Diabetes Classification",
+      description:
+        "A web application that allows users to input their health data and provides a prediction of their likelihood of having diabetes using machine learning algorithms.",
+      thumbnail: "/images/Diabetes-Classification.png",
+      link: "https://github.com/seifbasel/Diabetes-Classification-Website/blob/main/project%20demo.mp4",
+      info_link: "https://github.com/seifbasel/Diabetes-Classification-Website",
     },
     {
-      "title": "XO Master - Tic-Tac-Toe Game",
-      "description": "A responsive and interactive Tic-Tac-Toe game with modern UI, smooth animations, and multiplayer functionality.",
-      "thumbnail": "/images/xo.png",
-      "link": "https://seifbasel.github.io/X-O-Game-Website/",
-      "info_link": "https://github.com/seifbasel/X-O-Game-Website"
-    }
+      title: "COSMOS - Space Exploration Website",
+      description:
+        "An immersive, responsive website showcasing our solar system, Features modern UI elements, smooth animations, and an engaging user experience.",
+      thumbnail: "/images/cosmo.png",
+      link: "https://seifbasel.github.io/Space-Exploration-Site/",
+      info_link: "https://github.com/seifbasel/Space-Exploration-Site",
+    },
+    {
+      title: "XO Master - Tic-Tac-Toe Game",
+      description:
+        "A responsive and interactive Tic-Tac-Toe game with modern UI, smooth animations, and multiplayer functionality.",
+      thumbnail: "/images/xo.png",
+      link: "https://seifbasel.github.io/X-O-Game-Website/",
+      info_link: "https://github.com/seifbasel/X-O-Game-Website",
+    },
   ];
 
   return (
