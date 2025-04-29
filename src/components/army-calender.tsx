@@ -29,7 +29,7 @@ const isSameDay = (d1: Date, d2: Date) =>
 const getMonthsUntil = (end: Date): Date[] => {
   const months: Date[] = [];
   const now = new Date();
-  let current = new Date(now.getFullYear(), now.getMonth(), 1);
+  const current = new Date(now.getFullYear(), now.getMonth(), 1);
 
   while (current <= end) {
     months.push(new Date(current));
@@ -51,18 +51,7 @@ const getNextSaturday = (date: Date): Date => {
   return result;
 };
 
-// Helper to find the next Friday
-const getNextFriday = (date: Date): Date => {
-  const result = new Date(date);
-  const dayOfWeek = result.getDay();
-  // If not Friday (5), add days until we reach Friday
-  if (dayOfWeek !== 5) {
-    result.setDate(
-      result.getDate() + (5 - dayOfWeek + (dayOfWeek > 5 ? 7 : 0))
-    );
-  }
-  return result;
-};
+// Note: getNextFriday is removed as it's unused
 
 const MilitaryServiceCalendar = ({
   serviceStartDate,
@@ -360,7 +349,7 @@ const MilitaryServiceCalendar = ({
         {["1month", "3months", "6months", "fullrange"].map((range) => (
           <button
             key={range}
-            onClick={() => setSelectedRange(range as any)}
+            onClick={() => setSelectedRange(range as "1month" | "3months" | "6months" | "fullrange")}
             className={`px-4 py-2 text-sm font-medium ${
               selectedRange === range
                 ? "bg-blue-500 text-white"
