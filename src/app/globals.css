@@ -50,8 +50,8 @@
 /* Dark mode styling */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: var(--color-darkBackground);
-    --color-text: #020617;
+    --color-background: var(--color-background);
+    --color-text: var(--color-text);
     --font-rubik: "Rubik", sans-serif;
     --font-rubik-italic: "Rubik Italic", sans-serif;
   }
