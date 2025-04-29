@@ -29,7 +29,8 @@ const isSameDay = (d1: Date, d2: Date) =>
 const getMonthsUntil = (end: Date): Date[] => {
   const months: Date[] = [];
   const now = new Date();
-  const current = new Date(now.getFullYear(), now.getMonth(), 1);
+  // eslint-disable-next-line prefer-const
+  let current = new Date(now.getFullYear(), now.getMonth(), 1);
 
   while (current <= end) {
     months.push(new Date(current));
@@ -349,7 +350,11 @@ const MilitaryServiceCalendar = ({
         {["1month", "3months", "6months", "fullrange"].map((range) => (
           <button
             key={range}
-            onClick={() => setSelectedRange(range as "1month" | "3months" | "6months" | "fullrange")}
+            onClick={() =>
+              setSelectedRange(
+                range as "1month" | "3months" | "6months" | "fullrange"
+              )
+            }
             className={`px-4 py-2 text-sm font-medium ${
               selectedRange === range
                 ? "bg-blue-500 text-white"
@@ -377,7 +382,10 @@ const MilitaryServiceCalendar = ({
             </h4>
             <div className="grid grid-cols-7 gap-1">
               {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
-                <div key={i} className="text-center text-xs text-black dark:text-white">
+                <div
+                  key={i}
+                  className="text-center text-xs text-black dark:text-white"
+                >
                   {d}
                 </div>
               ))}
