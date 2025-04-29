@@ -146,11 +146,11 @@ export function TimeLine() {
             Joined Transfective as a full-time Software Developer, contributing
             to cutting-edge translation and localization technologies.
           </p>
-          <p className="text-lighttext dark:text-darktext text-xs md:text-base font-normal mb-2">
+          <p className="text-text  text-xs md:text-base font-normal mb-2">
             <CheckIcon className="inline-block mr-2" /> Enhanced translation
             infrastructure with scalable frontend solutions.
           </p>
-          <p className="text-lighttext dark:text-darktext text-xs md:text-base font-normal mb-2">
+          <p className="text-text text-xs md:text-base font-normal mb-2">
             <CheckIcon className="inline-block mr-2" /> Improved multilingual
             content delivery pipelines.
           </p>

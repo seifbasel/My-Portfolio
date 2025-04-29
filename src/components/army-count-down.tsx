@@ -141,13 +141,13 @@ const MilitaryServiceCountdown = ({
           <div className="flex flex-col md:flex-row justify-center gap-6 text-sm">
             <div className="flex items-center gap-2">
               <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-              <span className="text-lighttext text-text">
+              <span className="text-text">
                 Start Date: {startDate.toLocaleDateString()}
               </span>
             </div>
             <div className="flex items-center gap-2">
               <div className="h-3 w-3 rounded-full bg-cyan-400"></div>
-              <span className="text-lighttext text-text">
+              <span className="text-text">
                 End Date: {endDate.toLocaleDateString()}
               </span>
             </div>

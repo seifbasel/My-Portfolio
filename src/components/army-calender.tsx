@@ -306,7 +306,7 @@ const MilitaryServiceCalendar = ({
       transition={{ duration: 0.5, delay: 0.2 }}
       className="w-full mx-auto px-2 relative z-50"
     >
-      <div className="text-center mb-4 text-base font-medium text-lighttext text-text">
+      <div className="text-center mb-4 text-base font-medium text-text">
         {vacationCountdown === 0
           ? "I'm on vacation today! 🎉"
           : vacationCountdown !== null
