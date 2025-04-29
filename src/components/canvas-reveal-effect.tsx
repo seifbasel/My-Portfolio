@@ -20,12 +20,16 @@ export const CanvasRevealEffect = ({
   showGradient?: boolean;
 }) => {
   return (
-    <div className={cn("h-full relative bg-background w-full", containerClassName)}>
+    <div
+      className={cn("h-full relative bg-background w-full", containerClassName)}
+    >
       <div className="h-full w-full">
         <DotMatrix
           colors={colors ?? [[0, 255, 255]]}
           dotSize={dotSize ?? 3}
-          opacities={opacities ?? [0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1]}
+          opacities={
+            opacities ?? [0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1]
+          }
           shader={`
               float animation_speed_factor = ${animationSpeed.toFixed(1)};
               float intro_offset = distance(u_resolution / 2.0 / u_total_size, st2) * 0.01 + (random(st2) * 0.15);
@@ -107,7 +111,7 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
       },
       u_dot_size: {
         value: dotSize,
-        type: "uniform1f",
+        type: "uniform1f" as UniformType,
       },
     };
   }, [colors, opacities, totalSize, dotSize]);
@@ -170,7 +174,12 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
 };
 
 type UniformValue = number | number[] | number[][];
-type UniformType = "uniform1f" | "uniform3f" | "uniform1fv" | "uniform3fv" | "uniform2f";
+type UniformType =
+  | "uniform1f"
+  | "uniform3f"
+  | "uniform1fv"
+  | "uniform3fv"
+  | "uniform2f";
 
 interface UniformDefinition {
   value: UniformValue;
@@ -191,7 +200,11 @@ interface ExtendedShaderMaterial extends THREE.ShaderMaterial {
   };
 }
 
-const ShaderMaterial = ({ source, uniforms, maxFps = 60 }: ShaderMaterialProps) => {
+const ShaderMaterial = ({
+  source,
+  uniforms,
+  maxFps = 60,
+}: ShaderMaterialProps) => {
   const { size } = useThree();
   const ref = useRef<THREE.Mesh>(null);
   let lastFrameTime = 0;
@@ -210,7 +223,8 @@ const ShaderMaterial = ({ source, uniforms, maxFps = 60 }: ShaderMaterialProps) 
   });
 
   const getUniforms = useCallback(() => {
-    const preparedUniforms: Record<string, { value: unknown; type?: string }> = {};
+    const preparedUniforms: Record<string, { value: unknown; type?: string }> =
+      {};
 
     for (const uniformName in uniforms) {
       const uniform = uniforms[uniformName];
