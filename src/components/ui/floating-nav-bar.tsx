@@ -59,7 +59,7 @@ export const FloatingNav = ({
         animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
         transition={{ duration: 0.2 }}
         className={cn(
-          "flex max-w-fit bg-background fixed top-10 inset-x-0 mx-auto border rounded-full shadow-md z-[5000] pr-2 pl-8 py-2 items-center justify-center space-x-4",
+          "flex max-w-fit bg-background  fixed top-10 inset-x-0 mx-auto border rounded-full shadow-md z-[5000] pr-2 pl-8 py-2 items-center justify-center space-x-4",
           className
         )}
       >
@@ -67,7 +67,7 @@ export const FloatingNav = ({
           <Link
             key={`link=${idx}`}
             href={navItem.link}
-            className="relative flex items-center space-x-1 hover:text-secondary transition-colors duration-200"
+            className="relative flex items-center space-x-1 text-text hover:text-secondary transition-colors duration-200"
           >
             <span className="block sm:hidden">{navItem.icon}</span>
             <span className="hidden sm:block text-sm">{navItem.name}</span>
