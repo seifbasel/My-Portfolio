@@ -9,7 +9,7 @@
   --color-subtext: #06B6D4;
   --color-text: #020617;
   --color-darkBackground: #020617;
-  --color-darktext: #EDEDED;
+  --color-lighttext: #EDEDED;
   
   /* Fonts */
   --font-rubik: "Rubik", sans-serif;
@@ -57,7 +57,7 @@
 
 .dark {
   --color-background: var(--color-darkBackground);
-  --color-text: var(--color-darktext);
+  --color-text: var(--color-lighttext);
   --color-primary: #06B6D4;
 
 
