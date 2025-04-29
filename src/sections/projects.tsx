@@ -21,6 +21,14 @@ const Projects = () => {
       info_link: "https://github.com/seifbasel/Prova-3d-Website",
     },
     {
+      title: "LMS - Library Management System",
+      description:
+        "A system that helps manage library operations, including tracking books, managing user accounts, checking in and out books, and keeping records of overdue items.",
+      thumbnail: "/images/lms_website.png",
+      info_link:
+        "https://github.com/seifbasel/Library-Management-System-Website",
+    },
+    {
       title: "Coinat - Coin & Currency Exchange Online Store",
       description:
         "An e-commerce website dedicated to buying and selling authentic coins and currency from various cultures and time periods, making it a unique marketplace for numismatics enthusiasts.",
@@ -43,14 +51,7 @@ const Projects = () => {
       thumbnail: "/images/transfective-hr.png",
       link: "https://transfective-hr.vercel.app/",
     },
-    {
-      title: "LMS - Library Management System",
-      description:
-        "A system that helps manage library operations, including tracking books, managing user accounts, checking in and out books, and keeping records of overdue items.",
-      thumbnail: "/images/lms_website.png",
-      info_link:
-        "https://github.com/seifbasel/Library-Management-System-Website",
-    },
+
     {
       title: "Diabetes Classification",
       description:
