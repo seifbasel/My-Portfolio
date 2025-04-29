@@ -1,7 +1,8 @@
+/* Import Tailwind CSS */
 @import "tailwindcss";
 
-@theme {
-
+/* Define default theme colors */
+:root {
   --color-background: #EDEDED;
   --color-foreground: #020617;
   --color-primary: #737373;
@@ -17,72 +18,88 @@
   --font-rubik: "Rubik", sans-serif;
   --font-rubik-italic: "Rubik Italic", sans-serif;
   
-  /* Animation */
+  /* Animations */
   --animation-shimmer: shimmer 2s linear infinite;
   --animation-fadeIn: fadeIn 0.5s ease forwards;
-  
-  /* Keyframes */
-  --keyframes-shimmer: {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: -200% 0;
-    }
-  };
-  
-  @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-  --keyframes-fadeIn: {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  };
 }
 
-/* Dark mode styling */
+/* Dark mode styling using prefers-color-scheme */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--color-darkBackground);
-    --color-foreground: var(--color-background);
-    --font-rubik: "Rubik", sans-serif;
-    --font-rubik-italic: "Rubik Italic", sans-serif;
+    --color-foreground: var(--color-darkforeground);
+    --color-text: var(--color-darktext);
   }
 }
 
+/* Dark mode class styling */
 .dark {
   --color-background: var(--color-darkBackground);
   --color-foreground: var(--color-darkforeground);    
   --color-text: var(--color-darktext);
-  --color-primary: #06B6D4;
-
-
+  --color-primary: #06B6D4; /* For example, primary button color in dark mode */
 }
 
+/* Apply the theme variables */
 body {
+  background-color: var(--color-background);
   color: var(--color-foreground);
-  background: var(--color-background);
   font-family: var(--font-rubik);
 }
 
+/* Italic text utility */
 .italic-text {
   font-family: var(--font-rubik-italic);
 }
 
+/* Animations */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Utility classes for text balance */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
 
+/* Card fade-in animation */
 .fade-in-card {
   opacity: 0;
   animation: var(--animation-fadeIn);
+}
+
+/* Mobile responsiveness for iPhone and smaller screens */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    line-height: 1.5;
+  }
+
+  .container {
+    padding: 16px; /* Padding adjustment for better spacing */
+  }
+
+  img {
+    max-width: 100%; /* Ensure images fit within container */
+    height: auto;
+  }
+
+  /* Ensure proper wrapping on smaller devices */
+  .text-balance {
+    word-wrap: break-word; /* Avoid text overflow */
+  }
 }
