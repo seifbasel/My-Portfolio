@@ -57,6 +57,21 @@ const Projects = () => {
       info_link:
         "https://github.com/seifbasel/Library-Management-System-Website",
     },
+    {
+      title: "COSMOS - Space Exploration Website",
+      description: "An immersive, responsive website showcasing our solar system, Features modern UI elements, smooth animations, and an engaging user experience.",
+      thumbnail: "/images/cosmo.png",
+      link: "https://seifbasel.github.io/Space-Exploration-Site/",
+      info_link:
+        "https://github.com/seifbasel/Space-Exploration-Site",
+    },
+    {
+      "title": "XO Master - Tic-Tac-Toe Game",
+      "description": "A responsive and interactive Tic-Tac-Toe game with modern UI, smooth animations, and multiplayer functionality.",
+      "thumbnail": "/images/xo.png",
+      "link": "https://seifbasel.github.io/X-O-Game-Website/",
+      "info_link": "https://github.com/seifbasel/X-O-Game-Website"
+    }
   ];
 
   return (
