@@ -3,14 +3,12 @@
 @theme {
 
   --color-background: #EDEDED;
-  --color-foreground: #020617;
   --color-primary: #737373;
   --color-secondary: #737373;
   --color-dark: #020617;
   --color-subtext: #06B6D4;
   --color-text: #020617;
   --color-darkBackground: #020617;
-  --color-darkforeground: #EDEDED;
   --color-darktext: #EDEDED;
   
   /* Fonts */

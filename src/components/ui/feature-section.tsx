@@ -94,7 +94,7 @@ export const GridStack = () => {
             }}
             whileHover="whileHover"
             whileTap="whileTap"
-            className="rounded-xl -mr-4 mt-4 p-1 bg-gradient-to-b from-primary to-background dark:from-primary dark:to-darkBackground flex-shrink-0 overflow-hidden"
+            className="rounded-xl -mr-4 mt-4 p-1 bg-gradient-to-b from-primary to-background dark:from-primary dark:to-text flex-shrink-0 overflow-hidden"
           >
             <Image
               src={image}
