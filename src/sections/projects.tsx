@@ -4,6 +4,28 @@ import React from "react";
 const Projects = () => {
   const projectData = [
     {
+      title: "Coinat - Coin & Currency Exchange Online Store",
+      description:
+        "An e-commerce website dedicated to buying and selling authentic coins and currency from various cultures and time periods, making it a unique marketplace for numismatics enthusiasts.",
+      thumbnail: "/images/coinat-website.png",
+      link: "https://coinat.vercel.app/",
+      info_link: "https://github.com/seifbasel/Coinat-Website",
+    },
+    {
+      title: "TransHub - Localization & Translation Platform",
+      description:
+        "A comprehensive platform that automates the localization and translation process for Transfective company, It tracks project progress from initiation to delivery and payment, optimizing workflow efficiency.",
+      thumbnail: "/images/transhub.png",
+      link: "https://transhub.vercel.app/",
+    },
+    {
+      title: "Transfective HR - Internal Employee Management System",
+      description:
+        "An internal HR management system designed for handling employee tasks, leave requests, interviews, and personnel management, streamlining human resources operations within an organization.",
+      thumbnail: "/images/transfective-hr.png",
+      link: "https://transfective-hr.vercel.app/",
+    },
+    {
       title: "Nike Website Clone",
       description:
         "An e-commerce website that replicates the Nike online store, featuring product pages, and a smooth user experience for shopping shoes and clothing.",
@@ -28,30 +50,6 @@ const Projects = () => {
       info_link:
         "https://github.com/seifbasel/Library-Management-System-Website",
     },
-    {
-      title: "Coinat - Coin & Currency Exchange Online Store",
-      description:
-        "An e-commerce website dedicated to buying and selling authentic coins and currency from various cultures and time periods, making it a unique marketplace for numismatics enthusiasts.",
-      thumbnail: "/images/coinat-website.png",
-      link: "https://coinat.vercel.app/",
-      info_link: "https://github.com/seifbasel/Coinat-Website",
-    },
-
-    {
-      title: "TransHub - Localization & Translation Platform",
-      description:
-        "A comprehensive platform that automates the localization and translation process for Transfective company, It tracks project progress from initiation to delivery and payment, optimizing workflow efficiency.",
-      thumbnail: "/images/transhub.png",
-      link: "https://transhub.vercel.app/",
-    },
-    {
-      title: "Transfective HR - Internal Employee Management System",
-      description:
-        "An internal HR management system designed for handling employee tasks, leave requests, interviews, and personnel management, streamlining human resources operations within an organization.",
-      thumbnail: "/images/transfective-hr.png",
-      link: "https://transfective-hr.vercel.app/",
-    },
-
     {
       title: "Diabetes Classification",
       description:
