@@ -23,7 +23,7 @@ const DownloadCVButton = () => {
         <div className="absolute -inset-1 bg-gradient-to-r from-primary to-primary/60 rounded-lg blur-md opacity-60 group-hover:opacity-90 transition duration-300"></div>
         <div className="relative flex items-center md:text-3xl gap-5 px-20 py-5 bg-background border border-primary/30 text-text rounded-lg group-hover:shadow-lg group-hover:shadow-primary/30 transition duration-300">
           Download CV
-          <DownloadIcon className="w-5 h-5" />
+          <DownloadIcon className="w-8 h-8" />
         </div>
       </a>
     </motion.div>
