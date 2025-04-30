@@ -12,6 +12,7 @@ import Footer2 from "@/components/ui/footer";
 import { MilitaryCountdownSection } from "@/sections/count-down";
 import { ServiceScheduleSection } from "@/sections/army-calender";
 import ReelsVideosContainer from "@/sections/videos-section";
+import DownloadCVButton from "@/components/cv-button";
 
 export default function Home() {
   return (
@@ -19,8 +20,9 @@ export default function Home() {
       <NavBar />
 
       {/* Header Section */}
-      <section className="w-full max-w-full mx-auto">
+      <section className="w-full max-w-full mx-auto flex flex-col items-center justify-center">
         <Header />
+        <DownloadCVButton />
       </section>
 
       {/* Countdown Section */}
@@ -66,7 +68,9 @@ export default function Home() {
 
       {/* Projects Section */}
       <section id="projects" className="w-full h-full max-w-full py-10">
-        <h2 className="text-center text-4xl sm:text-5xl font-semibold text-text">Projects</h2>
+        <h2 className="text-center text-4xl sm:text-5xl font-semibold text-text">
+          Projects
+        </h2>
         <Projects />
       </section>
 
