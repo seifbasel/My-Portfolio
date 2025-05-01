@@ -38,6 +38,7 @@ const getMonthsUntil = (end: Date): Date[] => {
   return months;
 };
 
+
 // Helper to find the next Saturday
 const getNextSaturday = (date: Date): Date => {
   const result = new Date(date);
@@ -51,7 +52,6 @@ const getNextSaturday = (date: Date): Date => {
   return result;
 };
 
-// Note: getNextFriday is removed as it's unused
 
 const MilitaryServiceCalendar = ({
   serviceStartDate,
@@ -72,8 +72,8 @@ const MilitaryServiceCalendar = ({
 
   // Set months range
   useEffect(() => {
-    const march2026 = new Date(2026, 2, 1);
-    setVisibleMonths(getMonthsUntil(march2026));
+    const feb2026 = new Date(2026, 1, 1); // February is month 1 (zero-indexed)
+    setVisibleMonths(getMonthsUntil(feb2026));
   }, []);
 
   // Update time every minute

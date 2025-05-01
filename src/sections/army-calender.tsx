@@ -13,10 +13,10 @@ export const ServiceScheduleSection = () => {
 
   // Make sure to set the exact dates for your vacation
   const vacationPeriods: VacationPeriod[] = [
-    // {
-    //   startDate: new Date("2025-04-5"),
-    //   endDate: new Date("2025-04-11"),
-    // },
+    {
+      startDate: new Date("2026-02-21"),
+      endDate: new Date("2026-02-27"),
+    },
   ];
 
   return (
