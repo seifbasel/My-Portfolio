@@ -38,7 +38,6 @@ const getMonthsUntil = (end: Date): Date[] => {
   return months;
 };
 
-
 // Helper to find the next Saturday
 const getNextSaturday = (date: Date): Date => {
   const result = new Date(date);
@@ -51,7 +50,6 @@ const getNextSaturday = (date: Date): Date => {
   }
   return result;
 };
-
 
 const MilitaryServiceCalendar = ({
   serviceStartDate,
@@ -69,6 +67,29 @@ const MilitaryServiceCalendar = ({
     "1month" | "3months" | "6months" | "fullrange"
   >("1month");
   const [markedDays, setMarkedDays] = useState<Map<string, string>>(new Map());
+
+  const calculateRemainingDutyDays = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const end = new Date(serviceEndDate);
+    end.setHours(0, 0, 0, 0);
+
+    let count = 0;
+    const current = new Date(today);
+
+    while (current <= end) {
+      const key = formatDateKey(current);
+      const status = markedDays.get(key);
+      if (status === "duty" || status === "duty-past") {
+        count++;
+      }
+      current.setDate(current.getDate() + 1);
+    }
+
+    return count;
+  };
+
+  const dutyDaysLeft = calculateRemainingDutyDays();
 
   // Set months range
   useEffect(() => {
@@ -306,7 +327,7 @@ const MilitaryServiceCalendar = ({
       transition={{ duration: 0.5, delay: 0.2 }}
       className="w-full mx-auto px-2 relative z-50"
     >
-      <div className="text-center mb-4 text-base font-medium text-text">
+      <div className="text-center mb-4 text-xl md:text-3xl font-medium text-text">
         {vacationCountdown === 0
           ? "I'm on vacation today! 🎉"
           : vacationCountdown !== null
@@ -316,6 +337,34 @@ const MilitaryServiceCalendar = ({
           : "No vacation found in the next year"}
       </div>
 
+      {/* Duty days left section */}
+      <div className="text-center mb-4 text-xl md:text-3xl text-text font-semibold">
+        {dutyDaysLeft > 0 ? (
+          <motion.div
+            key={dutyDaysLeft}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="inline-block"
+          >
+            <span className="text-4xl md:text-6xl font-bold text-primary">
+              {dutyDaysLeft}
+            </span>{" "}
+            <span className="text-lg md:text-2xl font-medium text-muted-foreground">
+              duty day{dutyDaysLeft > 1 ? "s" : ""} remaining
+            </span>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-xl md:text-3xl text-green-600 font-bold"
+          >
+            🎉 Service completed or ending today!
+          </motion.div>
+        )}
+      </div>
       <div className="flex flex-wrap justify-center gap-2 mb-4">
         <div className="flex items-center gap-1">
           <div className="h-3 w-3 rounded-full bg-blue-500"></div>
