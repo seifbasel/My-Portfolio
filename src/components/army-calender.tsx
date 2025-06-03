@@ -375,7 +375,7 @@ const MilitaryServiceCalendar = ({
         </div>
         <div className="flex items-center gap-1">
           <div className="flex items-center justify-center h-3 w-3">
-            <span className="text-xs font-bold">X</span>
+            <span className="text-xs font-bold text-text">X</span>
           </div>
           <span className="text-sm md:text-base text-text">Past day</span>
         </div>
