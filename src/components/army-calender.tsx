@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { X } from "lucide-react";
 
 type VacationPeriod = {
@@ -15,7 +15,6 @@ type MilitaryCalendarProps = {
   vacationPeriods: VacationPeriod[];
   cycleLength?: number;
   workDays?: number;
-  title?: string;
 };
 
 // Helpers
@@ -38,7 +37,7 @@ const getMonthsUntil = (end: Date): Date[] => {
   return months;
 };
 
-// Helper to find the next Sunday (or current day if it's Sunday)
+// Helper to find the next Sunday
 const getNextSunday = (date: Date): Date => {
   const result = new Date(date);
   const dayOfWeek = result.getDay();
@@ -53,8 +52,8 @@ const MilitaryServiceCalendar = ({
   serviceStartDate,
   serviceEndDate,
   vacationPeriods,
-  cycleLength = 14, // Changed to 14 days (1 week duty + 1 week vacation)
-  workDays = 7, // Changed to 7 work days
+  cycleLength = 21,
+  workDays = 14,
 }: MilitaryCalendarProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
@@ -65,6 +64,11 @@ const MilitaryServiceCalendar = ({
     "1month" | "3months" | "6months" | "fullrange"
   >("1month");
   const [markedDays, setMarkedDays] = useState<Map<string, string>>(new Map());
+
+  // Validate dates
+  if (serviceStartDate > serviceEndDate) {
+    return <div className="text-red-500 text-center">Error: Service start date must be before end date</div>;
+  }
 
   const calculateRemainingDutyDays = () => {
     const today = new Date();
@@ -78,7 +82,12 @@ const MilitaryServiceCalendar = ({
     while (current <= end) {
       const key = formatDateKey(current);
       const status = markedDays.get(key);
-      if (status === "duty" || status === "duty-past" || status === "return-to-duty" || status === "return-to-duty-past") {
+      if (
+        status === "duty" ||
+        status === "duty-past" ||
+        status === "return-to-duty" ||
+        status === "return-to-duty-past"
+      ) {
         count++;
       }
       current.setDate(current.getDate() + 1);
@@ -89,11 +98,10 @@ const MilitaryServiceCalendar = ({
 
   const dutyDaysLeft = calculateRemainingDutyDays();
 
-  // Set months range
+  // Set months range based on serviceEndDate
   useEffect(() => {
-    const feb2026 = new Date(2026, 1, 1); // February is month 1 (zero-indexed)
-    setVisibleMonths(getMonthsUntil(feb2026));
-  }, []);
+    setVisibleMonths(getMonthsUntil(new Date(serviceEndDate)));
+  }, [serviceEndDate]);
 
   // Update time every minute
   useEffect(() => {
@@ -101,65 +109,65 @@ const MilitaryServiceCalendar = ({
     return () => clearInterval(timer);
   }, []);
 
-  // Calculate and mark days with Sunday-to-Sunday weekly alternating pattern
+  // Calculate and mark days with Sunday-to-Saturday vacation pattern, Sunday as return-to-duty
   useEffect(() => {
     if (!visibleMonths.length) return;
 
-    const startOfVisible = new Date(
-      visibleMonths[0].getFullYear(),
-      visibleMonths[0].getMonth(),
-      1
-    );
+    const startOfVisible = new Date(visibleMonths[0].getFullYear(), visibleMonths[0].getMonth(), 1);
     const endOfVisible = new Date(
       visibleMonths[visibleMonths.length - 1].getFullYear(),
       visibleMonths[visibleMonths.length - 1].getMonth() + 1,
       0
     );
     const marks = new Map<string, string>();
+    const vacationDays = cycleLength - workDays; // 7 days (Sunday to Saturday)
 
-    // Start with the service start date and find the first Sunday
+    // Start with the service start date
     let current = new Date(serviceStartDate);
-    let cycleStart = getNextSunday(current);
-    
-    // Determine if we start with duty or vacation
-    // Let's start with duty week first
-    let isDutyWeek = true;
+    let vacationStart = getNextSunday(current);
 
-    // Continue marking weeks until we reach the end date
-    while (cycleStart <= endOfVisible && cycleStart <= serviceEndDate) {
-      // Mark the current week (7 days starting from Sunday)
-      for (let i = 0; i < 7; i++) {
-        const day = new Date(cycleStart);
-        day.setDate(cycleStart.getDate() + i);
-        
-        // Stop if we've reached the service end date
-        if (day > serviceEndDate) break;
-        
-        if (day >= startOfVisible && day <= endOfVisible) {
-          if (isDutyWeek) {
-            if (i === 0) {
-              // First day of duty week (Sunday)
-              marks.set(formatDateKey(day), "return-to-duty");
-            } else {
-              marks.set(formatDateKey(day), "duty");
-            }
-          } else {
-            if (i === 0) {
-              // First day of vacation week (Sunday)
-              marks.set(formatDateKey(day), "starting-vacation");
-            } else if (i === 6) {
-              // Last day of vacation week (Saturday)
-              marks.set(formatDateKey(day), "vacation");
-            } else {
-              marks.set(formatDateKey(day), "vacation");
-            }
-          }
+    // Mark vacations and duty periods
+    while (vacationStart <= endOfVisible) {
+      // Calculate vacation end (Saturday, 6 days after Sunday start)
+      const vacationEnd = new Date(vacationStart);
+      vacationEnd.setDate(vacationStart.getDate() + vacationDays - 1); // Sunday to Saturday
+
+      // Mark return-to-duty day (Sunday after vacation end)
+      const returnToDuty = new Date(vacationEnd);
+      returnToDuty.setDate(vacationEnd.getDate() + 1); // Next Sunday
+
+      // Mark vacation period
+      const currentVacationDay = new Date(vacationStart);
+      if (currentVacationDay >= startOfVisible && currentVacationDay <= endOfVisible) {
+        marks.set(formatDateKey(currentVacationDay), "starting-vacation");
+      }
+
+      // Mark vacation days (Monday to Saturday)
+      for (let i = 1; i < vacationDays; i++) {
+        const vacDay = new Date(vacationStart);
+        vacDay.setDate(vacationStart.getDate() + i);
+        if (vacDay >= startOfVisible && vacDay <= endOfVisible) {
+          marks.set(formatDateKey(vacDay), "vacation");
         }
       }
 
-      // Move to next week and toggle between duty and vacation
-      cycleStart.setDate(cycleStart.getDate() + 7);
-      isDutyWeek = !isDutyWeek;
+      // Mark return-to-duty day (Sunday)
+      if (returnToDuty >= startOfVisible && returnToDuty <= endOfVisible) {
+        marks.set(formatDateKey(returnToDuty), "return-to-duty");
+      }
+
+      // Mark duty days (starting Monday after return-to-duty Sunday)
+      for (let i = 1; i <= workDays; i++) {
+        const dutyDay = new Date(returnToDuty);
+        dutyDay.setDate(returnToDuty.getDate() + i);
+        if (dutyDay >= startOfVisible && dutyDay <= endOfVisible) {
+          marks.set(formatDateKey(dutyDay), "duty");
+        }
+      }
+
+      // Move to next vacation period
+      vacationStart = new Date(returnToDuty);
+      vacationStart.setDate(returnToDuty.getDate() + workDays); // Move to next Sunday
     }
 
     // Override with explicitly defined vacationPeriods
@@ -198,25 +206,12 @@ const MilitaryServiceCalendar = ({
     }
 
     setMarkedDays(marks);
-  }, [
-    visibleMonths,
-    serviceStartDate,
-    serviceEndDate,
-    vacationPeriods,
-    cycleLength,
-    workDays,
-  ]);
+  }, [visibleMonths, serviceStartDate, serviceEndDate, vacationPeriods, cycleLength, workDays]);
 
   const getFilteredMonths = (): Date[] => {
-    const current = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      1
-    );
+    const current = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     const diffInMonths = (date: Date) =>
-      (date.getFullYear() - current.getFullYear()) * 12 +
-      date.getMonth() -
-      current.getMonth();
+      (date.getFullYear() - current.getFullYear()) * 12 + date.getMonth() - current.getMonth();
 
     switch (selectedRange) {
       case "1month":
@@ -237,8 +232,7 @@ const MilitaryServiceCalendar = ({
     return markedDays.get(key) ?? "";
   };
 
-  const shouldShowX = (status: string) =>
-    status.includes("-past") || status === "past";
+  const shouldShowX = (status: string) => status.includes("-past") || status === "past";
 
   const getColorClass = (status: string): string => {
     const clean = status.replace("-past", "");
@@ -285,8 +279,7 @@ const MilitaryServiceCalendar = ({
     const firstDay = new Date(year, monthIndex, 1).getDay();
 
     for (let i = 0; i < firstDay; i++) days.push(null);
-    for (let i = 1; i <= daysInMonth; i++)
-      days.push(new Date(year, monthIndex, i));
+    for (let i = 1; i <= daysInMonth; i++) days.push(new Date(year, monthIndex, i));
 
     return days.map((date, idx) => {
       const status = getDayStatus(date);
@@ -299,14 +292,15 @@ const MilitaryServiceCalendar = ({
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.2, delay: 0.01 * idx }}
-          className={`text-center text-xs h-7 w-7 flex items-center justify-center rounded-full relative ${
+          className={`text-center text-sm h-8 w-8 flex items-center justify-center rounded-full relative ${
             !date ? "opacity-0" : ""
           } ${colorClass}`}
+          aria-label={date ? `${status.replace("-past", "")} on ${formatDateKey(date)}` : ""}
         >
           {date?.getDate()}
           {showX && (
             <div className="absolute inset-0 flex items-center justify-center font-bold">
-              <X className="h-9 w-9 text-text opacity-60" />
+              <X className="h-6 w-6 text-text opacity-60" />
             </div>
           )}
         </motion.div>
@@ -326,13 +320,10 @@ const MilitaryServiceCalendar = ({
         {vacationCountdown === 0
           ? "I'm on vacation today! 🎉"
           : vacationCountdown !== null
-          ? `${vacationCountdown} day${
-              vacationCountdown > 1 ? "s" : ""
-            } until next vacation`
+          ? `${vacationCountdown} day${vacationCountdown > 1 ? "s" : ""} until next vacation`
           : "No vacation found in the next year"}
       </div>
 
-      {/* Duty days left section */}
       <div className="text-center mb-4 text-xl md:text-3xl text-text font-semibold">
         {dutyDaysLeft > 0 ? (
           <motion.div
@@ -360,32 +351,33 @@ const MilitaryServiceCalendar = ({
           </motion.div>
         )}
       </div>
+
       <div className="flex flex-wrap justify-center gap-2 mb-4">
         <div className="flex items-center gap-1">
           <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-          <span className="text-xs md:text-sm text-text">Duty</span>
+          <span className="text-sm md:text-base text-text">Duty</span>
         </div>
         <div className="flex items-center gap-1">
           <div className="h-3 w-3 rounded-full bg-green-500"></div>
-          <span className="text-xs md:text-sm text-text">Vacation</span>
+          <span className="text-sm md:text-base text-text">Vacation</span>
         </div>
         <div className="flex items-center gap-1">
           <div className="h-3 w-3 rounded-full bg-gray-500"></div>
-          <span className="text-xs md:text-sm text-text">Start vacation</span>
+          <span className="text-sm md:text-base text-text">Start vacation</span>
         </div>
         <div className="flex items-center gap-1">
           <div className="h-3 w-3 rounded-full bg-red-500"></div>
-          <span className="text-xs md:text-sm text-text">Return to duty</span>
+          <span className="text-sm md:text-base text-text">Return to duty</span>
         </div>
         <div className="flex items-center gap-1">
           <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-          <span className="text-xs md:text-sm text-text">Today</span>
+          <span className="text-sm md:text-base text-text">Today</span>
         </div>
         <div className="flex items-center gap-1">
           <div className="flex items-center justify-center h-3 w-3">
-            <span className="text-xs font-bold text-text">X</span>
+            <span className="text-xs font-bold">X</span>
           </div>
-          <span className="text-xs md:text-sm text-text">Past day</span>
+          <span className="text-sm md:text-base text-text">Past day</span>
         </div>
       </div>
 
@@ -394,38 +386,31 @@ const MilitaryServiceCalendar = ({
           <button
             key={range}
             onClick={() =>
-              setSelectedRange(
-                range as "1month" | "3months" | "6months" | "fullrange"
-              )
+              setSelectedRange(range as "1month" | "3months" | "6months" | "fullrange")
             }
+            aria-label={`Show ${range.replace("month", " month").replace("s", "")} view`}
             className={`px-4 py-2 text-sm font-medium ${
               selectedRange === range
-                ? "bg-primary text-white"
-                : "bg-white text-gray-900 hover:bg-gray-100 "
+                ? "bg-blue-500 text-white"
+                : "bg-white text-gray-900 hover:bg-gray-100"
             } ${range === "1month" ? "rounded-l-lg" : ""} ${
               range === "fullrange" ? "rounded-r-lg" : ""
-            }`}
-          >
-            {range.replace("month", " Month").replace("s", "")}
-          </button>
-        ))}
-      </div>
+      }`}
+    >
+      {range.replace("month", " Month").replace("s", "")}
+    </button>
+  ))}
+</div>
 
       <div className="flex flex-wrap justify-center gap-4">
         {filteredMonths.map((month, idx) => (
-          <div
-            key={idx}
-            className="w-full md:w-64 bg-white  text-dark  rounded-lg p-3 shadow-xl"
-          >
-            <h4 className="text-center text- font-medium mb-2">
-              {month.toLocaleDateString("en-US", {
-                month: "short",
-                year: "numeric",
-              })}
+          <div key={idx} className="w-full md:w-64 bg-white rounded-lg p-3 shadow-xl">
+            <h4 className="text-center text-base font-medium mb-2">
+              {month.toLocaleDateString("en-US", { month: "short", year: "numeric" })}
             </h4>
             <div className="grid grid-cols-7 gap-1">
               {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
-                <div key={i} className="text-center text-xs text-dark">
+                <div key={i} className="text-center text-sm text-dark">
                   {d}
                 </div>
               ))}

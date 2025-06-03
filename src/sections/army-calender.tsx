@@ -7,21 +7,16 @@ type VacationPeriod = {
 };
 
 export const ServiceScheduleSection = () => {
-  // Set your actual service dates
-  const serviceStartDate = new Date("2025-03-1"); // Start date March 15
-  const serviceEndDate = new Date("2026-02-22"); // End date March 1 next year
+  // Set service dates
+  const serviceStartDate = new Date("2025-03-08");
+  const serviceEndDate = new Date("2026-02-22");
 
-  // Optional: Define specific vacation periods that override the pattern
+  // Define specific vacation periods
   const vacationPeriods: VacationPeriod[] = [
-    // Add any special vacation periods here if needed
-    // {
-    //   startDate: new Date("2026-02-21"),
-    //   endDate: new Date("2026-02-27"),
-    // },
   ];
 
   return (
-    <div className="bg-background  w-full py-12 md:py-20 relative z-40">
+    <div className="bg-background w-full py-12 md:py-20 relative z-40">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
