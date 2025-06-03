@@ -78,7 +78,12 @@ const MilitaryServiceCalendar = ({
     while (current <= end) {
       const key = formatDateKey(current);
       const status = markedDays.get(key);
-      if (status === "duty" || status === "duty-past" || status === "return-to-duty" || status === "return-to-duty-past") {
+      if (
+        status === "duty" ||
+        status === "duty-past" ||
+        status === "return-to-duty" ||
+        status === "return-to-duty-past"
+      ) {
         count++;
       }
       current.setDate(current.getDate() + 1);
@@ -120,7 +125,7 @@ const MilitaryServiceCalendar = ({
     // Start with the service start date and find the first Sunday
     let current = new Date(serviceStartDate);
     let cycleStart = getNextSunday(current);
-    
+
     // Determine if we start with duty or vacation
     // Let's start with duty week first
     let isDutyWeek = true;
@@ -131,10 +136,10 @@ const MilitaryServiceCalendar = ({
       for (let i = 0; i < 7; i++) {
         const day = new Date(cycleStart);
         day.setDate(cycleStart.getDate() + i);
-        
+
         // Stop if we've reached the service end date
         if (day > serviceEndDate) break;
-        
+
         if (day >= startOfVisible && day <= endOfVisible) {
           if (isDutyWeek) {
             if (i === 0) {
@@ -296,16 +301,21 @@ const MilitaryServiceCalendar = ({
       return (
         <motion.div
           key={idx}
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.01, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.01, opacity: 0 }}
           transition={{ duration: 0.2, delay: 0.01 * idx }}
           className={`text-center text-xs h-7 w-7 flex items-center justify-center rounded-full relative ${
             !date ? "opacity-0" : ""
           } ${colorClass}`}
+          style={{
+            willChange: "transform, opacity",
+            transform: "translateZ(0)", // Forces GPU acceleration on Safari
+          }}
         >
           {date?.getDate()}
           {showX && (
-            <div className="absolute inset-0 flex items-center justify-center font-bold">
+            <div className="absolute inset-0 flex items-center justify-center font-bold pointer-events-none">
               <X className="h-9 w-9 text-text opacity-60" />
             </div>
           )}
