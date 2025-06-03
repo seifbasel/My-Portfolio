@@ -36,8 +36,8 @@ export const ServiceScheduleSection = () => {
             serviceStartDate={serviceStartDate}
             serviceEndDate={serviceEndDate}
             vacationPeriods={vacationPeriods}
-            cycleLength={14} // 14 day cycle (7 duty days + 7 vacation days)
-            workDays={7} // 7 work days, 7 vacation days
+            cycleLength={14}
+            workDays={7}
           />
         </div>
       </div>
