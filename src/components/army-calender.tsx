@@ -391,7 +391,7 @@ const MilitaryServiceCalendar = ({
             aria-label={`Show ${range.replace("month", " month").replace("s", "")} view`}
             className={`px-4 py-2 text-sm font-medium ${
               selectedRange === range
-                ? "bg-blue-500 text-white"
+                ? "bg-primary text-white"
                 : "bg-white text-gray-900 hover:bg-gray-100"
             } ${range === "1month" ? "rounded-l-lg" : ""} ${
               range === "fullrange" ? "rounded-r-lg" : ""
@@ -402,9 +402,9 @@ const MilitaryServiceCalendar = ({
   ))}
 </div>
 
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex flex-wrap justify-center gap-4 p-10">
         {filteredMonths.map((month, idx) => (
-          <div key={idx} className="w-full md:w-64 bg-white rounded-lg p-3 shadow-xl">
+          <div key={idx} className="w-full md:w-72 bg-white rounded-xl p-3 shadow-primary hover:shadow-xl transition-shadow duration-300">
             <h4 className="text-center text-base font-medium mb-2">
               {month.toLocaleDateString("en-US", { month: "short", year: "numeric" })}
             </h4>
