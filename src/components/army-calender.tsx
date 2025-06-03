@@ -38,15 +38,13 @@ const getMonthsUntil = (end: Date): Date[] => {
   return months;
 };
 
-// Helper to find the next Saturday
-const getNextSaturday = (date: Date): Date => {
+// Helper to find the next Sunday (or current day if it's Sunday)
+const getNextSunday = (date: Date): Date => {
   const result = new Date(date);
   const dayOfWeek = result.getDay();
-  // If not Saturday (6), add days until we reach Saturday
-  if (dayOfWeek !== 6) {
-    result.setDate(
-      result.getDate() + (6 - dayOfWeek + (dayOfWeek > 6 ? 7 : 0))
-    );
+  // If not Sunday (0), add days until we reach Sunday
+  if (dayOfWeek !== 0) {
+    result.setDate(result.getDate() + (7 - dayOfWeek));
   }
   return result;
 };
@@ -55,8 +53,8 @@ const MilitaryServiceCalendar = ({
   serviceStartDate,
   serviceEndDate,
   vacationPeriods,
-  cycleLength = 21,
-  workDays = 14,
+  cycleLength = 14, // Changed to 14 days (1 week duty + 1 week vacation)
+  workDays = 7, // Changed to 7 work days
 }: MilitaryCalendarProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
@@ -80,7 +78,7 @@ const MilitaryServiceCalendar = ({
     while (current <= end) {
       const key = formatDateKey(current);
       const status = markedDays.get(key);
-      if (status === "duty" || status === "duty-past") {
+      if (status === "duty" || status === "duty-past" || status === "return-to-duty" || status === "return-to-duty-past") {
         count++;
       }
       current.setDate(current.getDate() + 1);
@@ -103,7 +101,7 @@ const MilitaryServiceCalendar = ({
     return () => clearInterval(timer);
   }, []);
 
-  // Calculate and mark days with Saturday-to-Friday vacation pattern
+  // Calculate and mark days with Sunday-to-Sunday weekly alternating pattern
   useEffect(() => {
     if (!visibleMonths.length) return;
 
@@ -119,52 +117,49 @@ const MilitaryServiceCalendar = ({
     );
     const marks = new Map<string, string>();
 
-    // Start with the service start date
+    // Start with the service start date and find the first Sunday
     let current = new Date(serviceStartDate);
+    let cycleStart = getNextSunday(current);
+    
+    // Determine if we start with duty or vacation
+    // Let's start with duty week first
+    let isDutyWeek = true;
 
-    // Find first Saturday (vacation start)
-    let vacationStart = getNextSaturday(current);
-
-    // Continue marking vacations and duty periods until we reach the end date
-    while (vacationStart <= endOfVisible) {
-      // Calculate vacation end (next Friday after vacation start)
-      const vacationEnd = new Date(vacationStart);
-      vacationEnd.setDate(vacationStart.getDate() + 6); // 7 days vacation (Sat-Fri)
-
-      // Mark vacation period
-      const currentVacationDay = new Date(vacationStart);
-
-      // Mark starting vacation day (Saturday)
-      if (currentVacationDay >= startOfVisible) {
-        marks.set(formatDateKey(currentVacationDay), "starting-vacation");
-      }
-
-      // Mark vacation days from Sunday to Thursday
-      for (let i = 1; i < 6; i++) {
-        const vacDay = new Date(vacationStart);
-        vacDay.setDate(vacationStart.getDate() + i);
-        if (vacDay >= startOfVisible && vacDay <= endOfVisible) {
-          marks.set(formatDateKey(vacDay), "vacation");
+    // Continue marking weeks until we reach the end date
+    while (cycleStart <= endOfVisible && cycleStart <= serviceEndDate) {
+      // Mark the current week (7 days starting from Sunday)
+      for (let i = 0; i < 7; i++) {
+        const day = new Date(cycleStart);
+        day.setDate(cycleStart.getDate() + i);
+        
+        // Stop if we've reached the service end date
+        if (day > serviceEndDate) break;
+        
+        if (day >= startOfVisible && day <= endOfVisible) {
+          if (isDutyWeek) {
+            if (i === 0) {
+              // First day of duty week (Sunday)
+              marks.set(formatDateKey(day), "return-to-duty");
+            } else {
+              marks.set(formatDateKey(day), "duty");
+            }
+          } else {
+            if (i === 0) {
+              // First day of vacation week (Sunday)
+              marks.set(formatDateKey(day), "starting-vacation");
+            } else if (i === 6) {
+              // Last day of vacation week (Saturday)
+              marks.set(formatDateKey(day), "vacation");
+            } else {
+              marks.set(formatDateKey(day), "vacation");
+            }
+          }
         }
       }
 
-      // Mark return to duty day (Friday)
-      if (vacationEnd >= startOfVisible && vacationEnd <= endOfVisible) {
-        marks.set(formatDateKey(vacationEnd), "return-to-duty");
-      }
-
-      // Mark duty days (14 days after vacation end)
-      for (let i = 1; i <= 14; i++) {
-        const dutyDay = new Date(vacationEnd);
-        dutyDay.setDate(vacationEnd.getDate() + i);
-        if (dutyDay >= startOfVisible && dutyDay <= endOfVisible) {
-          marks.set(formatDateKey(dutyDay), "duty");
-        }
-      }
-
-      // Move to next vacation period
-      vacationStart = new Date(vacationEnd);
-      vacationStart.setDate(vacationEnd.getDate() + 15); // 14 duty days + 1 day to next Saturday
+      // Move to next week and toggle between duty and vacation
+      cycleStart.setDate(cycleStart.getDate() + 7);
+      isDutyWeek = !isDutyWeek;
     }
 
     // Override with explicitly defined vacationPeriods
@@ -388,7 +383,7 @@ const MilitaryServiceCalendar = ({
         </div>
         <div className="flex items-center gap-1">
           <div className="flex items-center justify-center h-3 w-3">
-            <span className="text-xs font-bold">X</span>
+            <span className="text-xs font-bold text-text">X</span>
           </div>
           <span className="text-xs md:text-sm text-text">Past day</span>
         </div>
@@ -405,7 +400,7 @@ const MilitaryServiceCalendar = ({
             }
             className={`px-4 py-2 text-sm font-medium ${
               selectedRange === range
-                ? "bg-blue-500 text-white"
+                ? "bg-primary text-white"
                 : "bg-white text-gray-900 hover:bg-gray-100 "
             } ${range === "1month" ? "rounded-l-lg" : ""} ${
               range === "fullrange" ? "rounded-r-lg" : ""

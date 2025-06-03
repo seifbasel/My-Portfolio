@@ -8,15 +8,16 @@ type VacationPeriod = {
 
 export const ServiceScheduleSection = () => {
   // Set your actual service dates
-  const serviceStartDate = new Date("2025-03-15"); // Start date March 2
-  const serviceEndDate = new Date("2026-03-01"); // End date March 1 next year
+  const serviceStartDate = new Date("2025-03-1"); // Start date March 15
+  const serviceEndDate = new Date("2026-02-22"); // End date March 1 next year
 
-  // Make sure to set the exact dates for your vacation
+  // Optional: Define specific vacation periods that override the pattern
   const vacationPeriods: VacationPeriod[] = [
-    {
-      startDate: new Date("2026-02-21"),
-      endDate: new Date("2026-02-27"),
-    },
+    // Add any special vacation periods here if needed
+    // {
+    //   startDate: new Date("2026-02-21"),
+    //   endDate: new Date("2026-02-27"),
+    // },
   ];
 
   return (
@@ -35,8 +36,8 @@ export const ServiceScheduleSection = () => {
             serviceStartDate={serviceStartDate}
             serviceEndDate={serviceEndDate}
             vacationPeriods={vacationPeriods}
-            cycleLength={21} // 21 day cycle (14 duty days + 7 vacation days)
-            workDays={14} // 14 work days, 7 vacation days
+            cycleLength={14} // 14 day cycle (7 duty days + 7 vacation days)
+            workDays={7} // 7 work days, 7 vacation days
           />
         </div>
       </div>
