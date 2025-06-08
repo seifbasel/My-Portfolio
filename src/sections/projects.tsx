@@ -59,6 +59,13 @@ const Projects = () => {
       info_link: "https://github.com/seifbasel/Diabetes-Classification-Website",
     },
     {
+      title: "Hay2a-IT - Military Fault Management System",
+      description:
+        "A full-stack web application tailored for military IT departments to log, assign, and monitor system faults in real time. Officers can manage soldiers, track fault statuses, and ensure operational efficiency, while soldiers can report and update service issues seamlessly.",
+      thumbnail: "/images/hay2a-it.png",
+      link: "https://hay2a-it.vercel.app/",
+    },
+    {
       title: "COSMOS - Space Exploration Website",
       description:
         "An immersive, responsive website showcasing our solar system, Features modern UI elements, smooth animations, and an engaging user experience.",
