@@ -60,8 +60,7 @@ const Projects = () => {
     },
     {
       title: "Hay2a-IT - Military Fault Management System",
-      description:
-        "A full-stack web application tailored for military IT departments to log, assign, and monitor system faults in real time. Officers can manage soldiers, track fault statuses, and ensure operational efficiency, while soldiers can report and update service issues seamlessly.",
+      description:"A full-stack military IT system for logging, assigning, and tracking system faults and soldiers status and tasks assigned to them in real time.",
       thumbnail: "/images/hay2a-it.png",
       link: "https://hay2a-it.vercel.app/",
     },
