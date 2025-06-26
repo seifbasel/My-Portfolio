@@ -58,12 +58,12 @@ const Projects = () => {
       link: "https://github.com/seifbasel/Diabetes-Classification-Website/blob/main/project%20demo.mp4",
       info_link: "https://github.com/seifbasel/Diabetes-Classification-Website",
     },
-    {
-      title: "Hay2a-IT - Military Fault Management System",
-      description:"A full-stack military IT system for logging, assigning, and tracking system faults and soldiers status and tasks assigned to them in real time.",
-      thumbnail: "/images/hay2a-it.png",
-      link: "https://hay2a-it.vercel.app/",
-    },
+    // {
+    //   title: "Hay2a-IT - Military Fault Management System",
+    //   description:"A full-stack military IT system for logging, assigning, and tracking system faults and soldiers status and tasks assigned to them in real time.",
+    //   thumbnail: "/images/hay2a-it.png",
+    //   link: "https://hay2a-it.vercel.app/",
+    // },
     {
       title: "COSMOS - Space Exploration Website",
       description:

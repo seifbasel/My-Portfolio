@@ -27,69 +27,45 @@ const CardWrapper = ({
 const Services = () => {
   const cardData = [
     {
-      title: "Frontend Development",
-      steps: [
-        "builds attractive website interfaces",
-        "customizes according to users' vision",
-        "provides a seamless user experience",
-        "optimizes website for search engines",
-        "ensures responsiveness on all devices",
-      ],
-      description:
-        "Delivering responsive, and user-friendly interfaces that captivate users and provide a smooth experience.",
-    },
-    {
-      title: "Backend Development",
-      steps: [
-        "builds robust and scalable backends",
-        "designs and manages efficient databases",
-        "integrates APIs and external services",
-        "ensures high performance and scalability",
-        "handles user system security",
-      ],
-      description:
-        "Delivering reliable backend solutions for a seamless, secure, and scalable experience.",
-    },
-    {
       title: "Fullstack Development",
       steps: [
-        "develops both client-side and server-side apps",
-        "writes clean and maintainable code",
-        "provides integration between frontend and backend",
-        "optimizes the application for speed and performance",
-        "deploys applications to a cloud service",
+        "responsive web interfaces",
+        "scalable backend systems",
+        "secure database management",
+        "performance and SEO",
+        "cloud deployment services",
       ],
       description:
-        "Bringing full-stack expertise to create comprehensive solutions that meet all your needs.",
+        "Delivering comprehensive fullstack solutions with attractive interfaces and robust backend systems that provide secure and scalable experiences",
     },
     {
       title: "Photography",
       steps: [
-        "captures high-quality photos",
-        "provides professional editing ",
-        "specializes in portraits and landscape ",
-        "ensures proper lighting and composition ",
-        "delivers custom photo solutions ",
+        "professional portrait photography",
+        "outdoor photo shoots",
+        "artistic composition lighting",
+        "creative direction concepts",
+        "fast quality results",
       ],
       description:
-        "Creating stunning visuals that tell your story through the lens, capturing moments that last a lifetime.",
+        "Creating stunning visuals that tell your story through professional photography, capturing moments with artistic excellence",
     },
     {
       title: "Photo & Video Editing",
       steps: [
-        "enhances and retouch photos using  Photoshop",
-        "edits video with precision in Premiere Pro",
-        "adds cinematic effects and animations",
-        "delivers seamless transitions and audio",
-        "optimizes media for all platforms",
+        "advanced photoshop techniques",
+        "premiere pro editing",
+        "cinematic effects graphics",
+        "color grading audio",
+        "multi platform optimization",
       ],
       description:
-        "Bringing your vision to life through talented editing, whether it's enhancing photos or editing videos.",
+        "Transforming raw content into polished masterpieces through expert editing, bringing creative visions to life with professional results",
     },
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-7xl mx-auto">
+    <div className="grid grid-cols-1 gap-5 mx-auto md:grid-cols-2 lg:grid-cols-3 max-w-7xl">
       {cardData.map((card, index) => (
         <CardWrapper key={index} index={index}>
           <CardSpotlightDemo

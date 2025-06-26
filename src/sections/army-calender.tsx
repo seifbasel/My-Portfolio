@@ -8,12 +8,11 @@ type VacationPeriod = {
 
 export const ServiceScheduleSection = () => {
   // Set service dates
-  const serviceStartDate = new Date("2025-03-08");
+  const serviceStartDate = new Date("2025-03-14");
   const serviceEndDate = new Date("2026-02-22");
 
   // Define specific vacation periods
-  const vacationPeriods: VacationPeriod[] = [
-  ];
+  const vacationPeriods: VacationPeriod[] = [];
 
   return (
     <div className="bg-background w-full py-12 md:py-20 relative z-40">

@@ -16,24 +16,24 @@ import DownloadCVButton from "@/components/cv-button";
 
 export default function Home() {
   return (
-    <div className="max-h-full max-w-full w-full">
+    <div className="w-full max-w-full max-h-full">
       <NavBar />
 
       {/* Header Section */}
-      <section className="w-full max-w-full mx-auto flex flex-col items-center justify-center">
+      <section className="flex flex-col items-center justify-center w-full max-w-full mx-auto">
         <Header />
         <DownloadCVButton />
       </section>
 
       {/* Countdown Section */}
-      <section id="countdown" className="w-full max-w-full mx-auto p-10 py-20">
+      <section id="countdown" className="w-full max-w-full p-10 py-20 mx-auto">
         <MilitaryCountdownSection />
       </section>
 
       {/* Service Schedule Section */}
       <section
         id="service-schedule"
-        className=" md:block w-full max-w-full mx-auto py-20"
+        className="w-full max-w-full py-20 mx-auto md:block"
       >
         <ServiceScheduleSection />
       </section>
@@ -41,7 +41,7 @@ export default function Home() {
       {/* Timeline Section */}
       <section
         id="timeline"
-        className="bg-background flex justify-center w-full h-full max-w-full mx-auto p-10 py-40"
+        className="flex justify-center w-full h-full max-w-full p-10 py-40 mx-auto bg-background"
       >
         <TimeLine />
       </section>
@@ -49,10 +49,10 @@ export default function Home() {
       {/* Services Section */}
       <section
         id="services"
-        className=" max-w-full flex justify-center py-20 px-4 sm:px-6 lg:px-8"
+        className="flex justify-center max-w-full px-4 py-20 sm:px-6 lg:px-8"
       >
         <div className="text-start">
-          <h2 className="text-center text-4xl sm:text-7xl text-text mb-10">
+          <h2 className="mb-10 text-4xl text-center font-rubik sm:text-7xl text-text">
             Services
           </h2>
           <div className="flex justify-center">
@@ -62,13 +62,13 @@ export default function Home() {
       </section>
 
       {/* Tech Stack Section */}
-      <section id="TechStack" className="w-full max-w-full mx-auto p-5 md:p-20">
+      <section id="TechStack" className="w-full max-w-full p-5 mx-auto md:p-20">
         <TechStack />
       </section>
 
       {/* Projects Section */}
       <section id="projects" className="w-full h-full max-w-full py-10">
-        <h2 className="text-center text-4xl sm:text-5xl font-semibold text-text">
+        <h2 className="text-4xl font-semibold text-center sm:text-5xl text-text">
           Projects
         </h2>
         <Projects />
@@ -77,9 +77,9 @@ export default function Home() {
       {/* Photography Section */}
       <section
         id="Photography"
-        className=" w-full h-full max-w-full mx-auto py-20 md:py-40"
+        className="w-full h-full max-w-full py-20 mx-auto md:py-40"
       >
-        <h2 className="text-center text-4xl sm:text-5xl font-semibold text-text mb-10">
+        <h2 className="mb-10 text-4xl font-semibold text-center sm:text-5xl text-text">
           Photography
         </h2>
         <PhotoCards />
@@ -88,16 +88,16 @@ export default function Home() {
       {/* Videography Section */}
       <section
         id="videography"
-        className=" w-full h-full max-w-full mx-auto p-20 md:py-40"
+        className="w-full h-full max-w-full p-20 mx-auto md:py-40"
       >
-        <h2 className="text-center text-4xl sm:text-5xl font-semibold text-text mb-10">
+        <h2 className="mb-10 text-4xl font-semibold text-center sm:text-5xl text-text">
           Videography
         </h2>
         <ReelsVideosContainer />
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className=" w-full h-full max-w-full mx-auto py-5">
+      <section id="contact" className="w-full h-full max-w-full py-5 mx-auto ">
         <Footer />
       </section>
 
