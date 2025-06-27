@@ -35,7 +35,7 @@ export function CardSpotlightDemo({
         <div className="relative z-10 flex-1 flex flex-col">
           {/* Title with better typography */}
           <div className="mb-8">
-            <h3 className="text-2xl font-semibold text-white mb-2 tracking-tight">
+            <h3 className="text-2xl font-semibold text-text mb-2 tracking-tight">
               {title}
             </h3>
             <div className="h-0.5 w-12 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
@@ -43,7 +43,7 @@ export function CardSpotlightDemo({
 
           {/* Steps with improved spacing and visual hierarchy */}
           <div className="flex-1 mb-8">
-            <h4 className="text-sm font-medium text-white/80 mb-4 uppercase tracking-wide">
+            <h4 className="text-sm font-medium text-text/80 mb-4 uppercase tracking-wide">
               What I Deliver
             </h4>
             <ul className="space-y-4">
@@ -54,8 +54,8 @@ export function CardSpotlightDemo({
           </div>
 
           {/* Description with better contrast and spacing */}
-          <div className="pt-6 border-t border-white/10">
-            <p className="text-white/90 leading-relaxed text-sm font-medium">
+          <div className="pt-6 border-t border-text/10">
+            <p className="text-text/90 leading-relaxed text-sm font-medium">
               {description}
             </p>
           </div>
@@ -86,7 +86,7 @@ const Step = ({ title, index }: { title: string; index: number }) => {
           <CheckIcon />
         </div>
       </div>
-      <span className="text-white/85 text-sm leading-relaxed capitalize font-medium group-hover:text-white transition-colors duration-200">
+      <span className="text-text/85 text-sm leading-relaxed capitalize font-medium group-hover:text-primary transition-colors duration-200">
         {title}
       </span>
     </motion.li>
