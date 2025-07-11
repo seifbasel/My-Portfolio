@@ -37,13 +37,13 @@ const getMonthsUntil = (end: Date): Date[] => {
   return months;
 };
 
-// Helper to find the next Sunday
-const getNextSunday = (date: Date): Date => {
+// Helper to find the next monday
+const getNextMonday = (date: Date): Date => {
   const result = new Date(date);
   const dayOfWeek = result.getDay();
   // If not Sunday (0), add days until we reach Sunday
   if (dayOfWeek !== 0) {
-    result.setDate(result.getDate() + (7 - dayOfWeek));
+    result.setDate(result.getDate() + (8 - dayOfWeek));
   }
   return result;
 };
@@ -124,7 +124,7 @@ const MilitaryServiceCalendar = ({
 
     // Start with the service start date
     let current = new Date(serviceStartDate);
-    let vacationStart = getNextSunday(current);
+    let vacationStart = getNextMonday(current);
 
     // Mark vacations and duty periods
     while (vacationStart <= endOfVisible) {
