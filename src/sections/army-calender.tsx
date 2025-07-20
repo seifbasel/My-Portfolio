@@ -9,7 +9,7 @@ type VacationPeriod = {
 export const ServiceScheduleSection = () => {
   // Set service dates
   const serviceStartDate = new Date("2025-03-7");
-  const serviceEndDate = new Date("2026-02-15");
+  const serviceEndDate = new Date("2026-02-22");
 
   // Define specific vacation periods
   const vacationPeriods: VacationPeriod[] = [];
