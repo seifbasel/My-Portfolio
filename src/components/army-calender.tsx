@@ -17,13 +17,8 @@ type MilitaryCalendarProps = {
   workDays?: number;
 };
 
-// Safari-safe date formatting helper
-const formatDateKey = (date: Date): string => {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-};
+// Helpers
+const formatDateKey = (date: Date): string => date.toLocaleDateString("en-CA"); // YYYY-MM-DD format, Safari-safe
 
 const isSameDay = (d1: Date, d2: Date) =>
   d1.getFullYear() === d2.getFullYear() &&
@@ -297,31 +292,15 @@ const MilitaryServiceCalendar = ({
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.2, delay: 0.01 * idx }}
-          className={`
-            text-center text-sm 
-            h-8 w-8 min-h-[2rem] min-w-[2rem]
-            flex items-center justify-center 
-            rounded-full 
-            relative 
-            transition-all duration-200 
-            select-none
-            ${!date ? "opacity-0 pointer-events-none" : ""} 
-            ${colorClass}
-          `}
-          style={{
-            WebkitTapHighlightColor: 'transparent',
-            WebkitTouchCallout: 'none',
-            WebkitUserSelect: 'none',
-            userSelect: 'none'
-          }}
+          className={`text-center text-sm h-8 w-8 flex items-center justify-center rounded-full relative ${
+            !date ? "opacity-0" : ""
+          } ${colorClass}`}
           aria-label={date ? `${status.replace("-past", "")} on ${formatDateKey(date)}` : ""}
         >
-          <span className="relative z-10 font-medium">
-            {date?.getDate()}
-          </span>
+          {date?.getDate()}
           {showX && (
-            <div className="absolute inset-0 flex items-center justify-center font-bold z-20">
-              <X className="h-5 w-5 text-text opacity-60" strokeWidth={3} />
+            <div className="absolute inset-0 flex items-center justify-center font-bold">
+              <X className="h-6 w-6 text-text opacity-60" />
             </div>
           )}
         </motion.div>
@@ -373,91 +352,71 @@ const MilitaryServiceCalendar = ({
         )}
       </div>
 
-      {/* Legend */}
-      <div className="flex flex-wrap justify-center gap-3 mb-6 px-4">
-        <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-sm">
-          <div className="h-3 w-3 rounded-full bg-blue-500 flex-shrink-0"></div>
-          <span className="text-sm md:text-base text-darktext">Duty</span>
+      <div className="flex flex-wrap justify-center gap-2 mb-4">
+        <div className="flex items-center gap-1">
+          <div className="h-3 w-3 rounded-full bg-blue-500"></div>
+          <span className="text-sm md:text-base text-text">Duty</span>
         </div>
-        <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-sm">
-          <div className="h-3 w-3 rounded-full bg-green-500 flex-shrink-0"></div>
-          <span className="text-sm md:text-base text-darktext">Vacation</span>
+        <div className="flex items-center gap-1">
+          <div className="h-3 w-3 rounded-full bg-green-500"></div>
+          <span className="text-sm md:text-base text-text">Vacation</span>
         </div>
-        <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-sm">
-          <div className="h-3 w-3 rounded-full bg-gray-500 flex-shrink-0"></div>
-          <span className="text-sm md:text-base text-darktext">Start vacation</span>
+        <div className="flex items-center gap-1">
+          <div className="h-3 w-3 rounded-full bg-gray-500"></div>
+          <span className="text-sm md:text-base text-text">Start vacation</span>
         </div>
-        <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-sm">
-          <div className="h-3 w-3 rounded-full bg-red-500 flex-shrink-0"></div>
-          <span className="text-sm md:text-base text-darktext">Return to duty</span>
+        <div className="flex items-center gap-1">
+          <div className="h-3 w-3 rounded-full bg-red-500"></div>
+          <span className="text-sm md:text-base text-text">Return to duty</span>
         </div>
-        <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-sm">
-          <div className="h-3 w-3 rounded-full bg-yellow-500 flex-shrink-0"></div>
-          <span className="text-sm md:text-base text-darktext">Today</span>
+        <div className="flex items-center gap-1">
+          <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
+          <span className="text-sm md:text-base text-text">Today</span>
         </div>
-        <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-sm">
-          <div className="flex items-center justify-center h-3 w-3 flex-shrink-0">
-            <span className="text-xs font-bold text-darktext">X</span>
+        <div className="flex items-center gap-1">
+          <div className="flex items-center justify-center h-3 w-3">
+            <span className="text-xs font-bold text-text">X</span>
           </div>
-          <span className="text-sm md:text-base text-darktext">Past day</span>
+          <span className="text-sm md:text-base text-text">Past day</span>
         </div>
       </div>
 
-      {/* Range selector */}
-      <div className="flex justify-center mb-6">
-        <div className="inline-flex rounded-lg border border-gray-200 bg-white p-1 shadow-sm">
-          {["1month", "3months", "6months", "fullrange"].map((range) => (
-            <button
-              key={range}
-              onClick={() =>
-                setSelectedRange(range as "1month" | "3months" | "6months" | "fullrange")
-              }
-              aria-label={`Show ${range.replace("month", " month").replace("s", "")} view`}
-              className={`
-                px-4 py-2 text-sm font-medium rounded-md transition-all duration-200
-                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1
-                ${selectedRange === range
-                  ? "bg-primary text-white shadow-sm"
-                  : "text-gray-900 hover:bg-gray-100 active:bg-gray-100"
-                }
-              `}
-              style={{
-                WebkitTapHighlightColor: 'transparent',
-              }}
-            >
-              {range.replace("month", " Month").replace("s", "").replace("fullrange", "Full Range")}
-            </button>
-          ))}
-        </div>
-      </div>
+      <div className="flex justify-center gap-2 mb-4">
+        {["1month", "3months", "6months", "fullrange"].map((range) => (
+          <button
+            key={range}
+            onClick={() =>
+              setSelectedRange(range as "1month" | "3months" | "6months" | "fullrange")
+            }
+            aria-label={`Show ${range.replace("month", " month").replace("s", "")} view`}
+            className={`px-4 py-2 text-sm font-medium ${
+              selectedRange === range
+                ? "bg-primary text-white"
+                : "bg-white text-gray-900 hover:bg-gray-100"
+            } ${range === "1month" ? "rounded-l-lg" : ""} ${
+              range === "fullrange" ? "rounded-r-lg" : ""
+      }`}
+    >
+      {range.replace("month", " Month").replace("s", "")}
+    </button>
+  ))}
+</div>
 
-      {/* Calendar grid */}
-      <div className="flex flex-wrap justify-center gap-4 px-2 pb-8">
+      <div className="flex flex-wrap justify-center gap-4 p-10">
         {filteredMonths.map((month, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: idx * 0.1 }}
-            className="w-full max-w-xs sm:w-auto bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow duration-300"
-            style={{
-              minWidth: '280px',
-            }}
-          >
-            <h4 className="text-center text-lg font-semibold mb-3 text-darktext">
-              {month.toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+          <div key={idx} className="w-full md:w-72 bg-white rounded-xl p-3 shadow-primary hover:shadow-xl transition-shadow duration-300">
+            <h4 className="text-center text-base font-medium mb-2">
+              {month.toLocaleDateString("en-US", { month: "short", year: "numeric" })}
             </h4>
-            <div className="grid grid-cols-7 gap-1 mb-2">
-              {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d, i) => (
-                <div key={i} className="text-center text-xs font-medium text-dark py-1">
+            <div className="grid grid-cols-7 gap-1">
+              {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
+                <div key={i} className="text-center text-sm text-dark">
                   {d}
                 </div>
               ))}
-            </div>
-            <div className="grid grid-cols-7 gap-1">
               {renderCalendarDays(month)}
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </motion.div>
