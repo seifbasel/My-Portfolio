@@ -42,14 +42,13 @@ const getMonthsUntil = (end: Date): Date[] => {
   return months;
 };
 
-// Helper to find the next monday
-const getNextMonday = (date: Date): Date => {
+// Helper to find the next Wednesday (or same day if already Wednesday)
+const getNextWednesday = (date: Date): Date => {
   const result = new Date(date);
-  const dayOfWeek = result.getDay();
-  // If not Sunday (0), add days until we reach Sunday
-  if (dayOfWeek !== 0) {
-    result.setDate(result.getDate() + (8 - dayOfWeek));
-  }
+  const dayOfWeek = result.getDay(); // 0=Sun ... 3=Wed
+  const target = 3; // Wednesday
+  const offset = (target - dayOfWeek + 7) % 7; // 0..6
+  result.setDate(result.getDate() + offset);
   return result;
 };
 
@@ -114,7 +113,7 @@ const MilitaryServiceCalendar = ({
     return () => clearInterval(timer);
   }, []);
 
-  // Calculate and mark days with Sunday-to-Saturday vacation pattern, Sunday as return-to-duty
+  // Calculate and mark days with Wednesday-to-Tuesday vacation pattern, Wednesday as vacation start
   useEffect(() => {
     if (!visibleMonths.length) return;
 
@@ -125,21 +124,21 @@ const MilitaryServiceCalendar = ({
       0
     );
     const marks = new Map<string, string>();
-    const vacationDays = cycleLength - workDays; // 7 days (Sunday to Saturday)
+    const vacationDays = cycleLength - workDays; // 7 days (Wednesday to Tuesday)
 
     // Start with the service start date
     let current = new Date(serviceStartDate);
-    let vacationStart = getNextMonday(current);
+    let vacationStart = getNextWednesday(current);
 
     // Mark vacations and duty periods
     while (vacationStart <= endOfVisible) {
-      // Calculate vacation end (Saturday, 6 days after Sunday start)
+      // Calculate vacation end (Tuesday, vacationDays - 1 after starting Wednesday)
       const vacationEnd = new Date(vacationStart);
-      vacationEnd.setDate(vacationStart.getDate() + vacationDays - 1); // Sunday to Saturday
+      vacationEnd.setDate(vacationStart.getDate() + vacationDays - 1); // Wednesday to Tuesday
 
-      // Mark return-to-duty day (Sunday after vacation end)
+      // Mark return-to-duty day (Wednesday after vacation end)
       const returnToDuty = new Date(vacationEnd);
-      returnToDuty.setDate(vacationEnd.getDate() + 1); // Next Sunday
+      returnToDuty.setDate(vacationEnd.getDate() + 1); // Next Wednesday
 
       // Mark vacation period
       const currentVacationDay = new Date(vacationStart);
@@ -147,7 +146,7 @@ const MilitaryServiceCalendar = ({
         marks.set(formatDateKey(currentVacationDay), "starting-vacation");
       }
 
-      // Mark vacation days (Monday to Saturday)
+      // Mark vacation days (Thursday to Tuesday when starting on Wednesday)
       for (let i = 1; i < vacationDays; i++) {
         const vacDay = new Date(vacationStart);
         vacDay.setDate(vacationStart.getDate() + i);
@@ -156,12 +155,12 @@ const MilitaryServiceCalendar = ({
         }
       }
 
-      // Mark return-to-duty day (Sunday)
+      // Mark return-to-duty day (Wednesday)
       if (returnToDuty >= startOfVisible && returnToDuty <= endOfVisible) {
         marks.set(formatDateKey(returnToDuty), "return-to-duty");
       }
 
-      // Mark duty days (starting Monday after return-to-duty Sunday)
+      // Mark duty days (starting the day after returnToDuty)
       for (let i = 1; i <= workDays; i++) {
         const dutyDay = new Date(returnToDuty);
         dutyDay.setDate(returnToDuty.getDate() + i);
@@ -172,7 +171,7 @@ const MilitaryServiceCalendar = ({
 
       // Move to next vacation period
       vacationStart = new Date(returnToDuty);
-      vacationStart.setDate(returnToDuty.getDate() + workDays); // Move to next Sunday
+      vacationStart.setDate(returnToDuty.getDate() + workDays); // Move to next Wednesday start after workDays
     }
 
     // Override with explicitly defined vacationPeriods

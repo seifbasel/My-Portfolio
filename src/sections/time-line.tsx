@@ -221,6 +221,15 @@ export function TimeLine() {
               />
             </Link>
           </div>
+          <div className="text-text text-xs md:text-base font-normal mt-4">
+            <CheckIcon className="inline-block mr-2" /> Gained experience in IT
+            infrastructure and support within a military context.
+          </div>
+          <div className="text-text text-xs md:text-base font-normal mt-2">
+            <CheckIcon className="inline-block mr-2" /> Developed skills in
+            cybersecurity and network management.
+          </div>
+      [,]
         </div>
       ),
     },
