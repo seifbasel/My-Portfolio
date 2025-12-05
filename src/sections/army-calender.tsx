@@ -14,7 +14,7 @@ export const ServiceScheduleSection = () => {
   // Define specific vacation periods
   const vacationPeriods: VacationPeriod[] = [
     {
-      startDate: new Date("2026-02-09"),
+      startDate: new Date("2026-02-11"),
       endDate: new Date("2026-02-28"),
     }
   ];

@@ -320,7 +320,7 @@ const MilitaryServiceCalendar = ({
           </span>
           {showX && (
             <div className="absolute inset-0 flex items-center justify-center font-bold z-20">
-              <X className="h-5 w-5 text-text opacity-60" strokeWidth={3} />
+              <X className="h-8 w-8 text-darktext opacity-60" strokeWidth={3} />
             </div>
           )}
         </motion.div>
@@ -396,7 +396,7 @@ const MilitaryServiceCalendar = ({
         </div>
         <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-sm">
           <div className="flex items-center justify-center h-3 w-3 flex-shrink-0">
-            <span className="text-xs font-bold text-darktext">X</span>
+            <span className="text-sm font-bold text-darktext">X</span>
           </div>
           <span className="text-sm md:text-base text-darktext">Past day</span>
         </div>
