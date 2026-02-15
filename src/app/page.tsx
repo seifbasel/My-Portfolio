@@ -9,8 +9,6 @@ import Footer from "@/sections/footer";
 import Projects from "@/sections/projects";
 import { BackgroundBeams } from "@/components/background-beams";
 import Footer2 from "@/components/ui/footer";
-import { MilitaryCountdownSection } from "@/sections/count-down";
-import { ServiceScheduleSection } from "@/sections/army-calender";
 import ReelsVideosContainer from "@/sections/videos-section";
 import DownloadCVButton from "@/components/cv-button";
 
@@ -23,19 +21,6 @@ export default function Home() {
       <section className="flex flex-col items-center justify-center w-full max-w-full mx-auto">
         <Header />
         <DownloadCVButton />
-      </section>
-
-      {/* Countdown Section */}
-      <section id="countdown" className="w-full max-w-full p-10 py-20 mx-auto">
-        <MilitaryCountdownSection />
-      </section>
-
-      {/* Service Schedule Section */}
-      <section
-        id="service-schedule"
-        className="w-full max-w-full py-20 mx-auto md:block"
-      >
-        <ServiceScheduleSection />
       </section>
 
       {/* Timeline Section */}
