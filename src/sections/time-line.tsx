@@ -229,7 +229,6 @@ export function TimeLine() {
             <CheckIcon className="inline-block mr-2" /> Developed skills in
             cybersecurity and network management.
           </div>
-      [,]
         </div>
       ),
     },
