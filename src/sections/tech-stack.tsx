@@ -9,7 +9,7 @@ export function TechStack() {
       <div className="max-w-6xl mx-auto">
 
         {/* Heading — identical pattern to Services */}
-        <div className="mb-16 max-w-2xl">
+        <div className="mb-16 p-5 max-w-2xl">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -29,16 +29,6 @@ export function TechStack() {
           >
             Tech Stack
           </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.14 }}
-            className="text-sm md:text-base text-subtext leading-relaxed"
-          >
-            Technologies I work with across frontend, backend, frameworks and tooling.
-          </motion.p>
 
           <motion.div
             initial={{ scaleX: 0 }}

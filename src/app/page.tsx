@@ -32,21 +32,18 @@ export default function Home() {
       {/* Services Section */}
       <section
         id="services"
-        className="flex justify-center max-w-full px-4 sm:px-6 lg:px-8"
+        className="flex justify-center max-w-full p-5 sm:p-6 lg:p-8"
       >
-          <Services />
+        <Services />
       </section>
 
       {/* Tech Stack Section */}
-      <section id="TechStack" className="w-full max-w-full p-5 mx-auto md:p-20">
+      <section id="TechStack" className="w-full max-w-full mx-auto md:p-20">
         <TechStack />
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="w-full h-full max-w-full py-10">
-        <h2 className="text-4xl font-semibold text-center sm:text-5xl text-text">
-          Projects
-        </h2>
+      <section id="projects" className="w-full h-full max-w-full p-5">
         <Projects />
       </section>
 

@@ -5,7 +5,7 @@ import {
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
-} from "motion/react";
+} from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -24,84 +24,174 @@ export const FloatingNav = ({
   const [visible, setVisible] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Initialize dark mode based on localStorage on mount
   useEffect(() => {
     const darkModeEnabled = localStorage.getItem("theme") === "dark";
     setIsDarkMode(darkModeEnabled);
-    if (darkModeEnabled) {
-      document.documentElement.classList.add("dark");
-    }
+    if (darkModeEnabled) document.documentElement.classList.add("dark");
   }, []);
 
-  // Toggle dark mode and store the preference
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => {
-      const newMode = !prev;
-      document.documentElement.classList.toggle("dark", newMode);
-      localStorage.setItem("theme", newMode ? "dark" : "light");
-      return newMode;
+      const next = !prev;
+      document.documentElement.classList.toggle("dark", next);
+      localStorage.setItem("theme", next ? "dark" : "light");
+      return next;
     });
   };
 
-  // Handle visibility of nav bar based on scroll
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     if (typeof current === "number") {
-      const previous = scrollYProgress.getPrevious() ?? 0; // fallback to 0 if undefined
-      const direction = current - previous;
-      setVisible(scrollYProgress.get() >= 0.05 && direction < 0);
+      const prev = scrollYProgress.getPrevious() ?? 0;
+      setVisible(current >= 0.05 && current - prev < 0);
     }
   });
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
-        initial={{ opacity: 1, y: -100 }}
-        animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
+      <motion.nav
+        initial={{ opacity: 0, y: -80 }}
+        animate={{ y: visible ? 0 : -80, opacity: visible ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
-          "flex max-w-fit bg-background border-text fixed top-10 inset-x-0 mx-auto border rounded-full shadow-lg z-[5000] px-4 py-3 sm:px-6 sm:py-4 items-center justify-center space-x-3 sm:space-x-6",
+          "fixed top-6 inset-x-0 mx-auto z-[5000] flex w-fit items-center",
           className
         )}
       >
-        {navItems.map((navItem, idx) => (
-          <Link
-            key={`link=${idx}`}
-            href={navItem.link}
-            className="relative flex items-center space-x-2 text-text hover:text-primary transition-all duration-300 group font-semibold text-base sm:text-lg tracking-wide font-poppins"
+        {/* ── Container ── */}
+        <div className="
+          relative flex items-center gap-1 px-2 py-2 rounded-2xl
+          bg-background/80 backdrop-blur-xl
+          border border-text/10
+          shadow-[0_8px_32px_theme(colors.text/8%),0_2px_8px_theme(colors.text/5%)]
+        ">
+
+          {/* Top accent line */}
+          <div
+            className="absolute top-0 left-6 right-6 h-px rounded-full"
+            style={{
+              background: "linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 60%, transparent), transparent)",
+            }}
+          />
+
+          {/* ── Nav links ── */}
+          {navItems.map((navItem, idx) => (
+            <Link
+              key={idx}
+              href={navItem.link}
+              className="
+                group relative flex items-center gap-2
+                px-3 py-2 rounded-xl
+                text-subtext
+                transition-colors duration-200
+                touch-manipulation
+              "
+            >
+              {/* Hover bg */}
+              <span className="
+                absolute inset-0 rounded-xl
+                bg-text/[0.06] opacity-0
+                group-hover:opacity-100
+                transition-opacity duration-200
+              " />
+
+              {/* Icon — mobile */}
+              <motion.span
+                className="relative sm:hidden flex items-center justify-center w-6 h-6 text-subtext group-hover:text-primary transition-colors duration-200"
+                whileTap={{ scale: 0.88 }}
+              >
+                {navItem.icon &&
+                  React.cloneElement(navItem.icon, {
+                    className: "w-5 h-5",
+                  } as React.HTMLAttributes<SVGElement>)}
+              </motion.span>
+
+              {/* Label — desktop */}
+              <span className="
+                relative hidden sm:block
+                font-mono text-[11px] uppercase tracking-[0.18em]
+                transition-colors duration-200
+                group-hover:text-text
+                whitespace-nowrap
+              ">
+                {navItem.name}
+              </span>
+
+              {/* Hover dot */}
+              <span className="
+                relative hidden sm:block
+                w-1 h-1 rounded-full bg-primary
+                opacity-0 group-hover:opacity-100
+                transition-opacity duration-200
+              " />
+            </Link>
+          ))}
+
+          {/* ── Divider ── */}
+          <div className="w-px self-stretch mx-1 rounded-full bg-text/10" />
+
+          {/* ── Dark mode toggle ── */}
+          <motion.button
+            onClick={toggleDarkMode}
+            whileTap={{ scale: 0.92 }}
+            aria-label="Toggle Dark Mode"
+            aria-pressed={isDarkMode}
+            className="
+              relative flex items-center gap-2
+              px-3 py-2 rounded-xl
+              font-mono text-[11px] uppercase tracking-[0.18em]
+              text-primary
+              transition-all duration-200
+              touch-manipulation cursor-pointer
+              min-h-[36px]
+            "
           >
-            <motion.span
-              className="block sm:hidden p-2 rounded-full hover:bg-primary/20 transition-colors duration-200"
-              whileHover={{ scale: 1.3, rotate: 8 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 500, damping: 10 }}
-            >
-              {React.cloneElement(navItem.icon!, { className: "h-6 w-6 sm:h-5 sm:w-5" })}
-            </motion.span>
-            <motion.span
-              className="hidden font-rubik-italic sm:block text-base sm:text-lg drop-shadow-xl shadow-primary group-hover:drop-shadow-md"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 500, damping: 15 }}
-            >
-              {navItem.name}
-            </motion.span>
-          </Link>
-        ))}
-        {/* Dark Mode Toggle Button */}
-        <motion.button
-          onClick={toggleDarkMode}
-          className="border text-sm sm:text-base font-semibold relative border-primary text-text px-3 sm:px-5 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-300"
-          aria-label="Toggle Dark Mode"
-          aria-pressed={isDarkMode ? "true" : "false"}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        >
-          <span className="font-poppins tracking-wide drop-shadow-sm">
-            {isDarkMode ? "Light" : "Dark"}
-          </span>
-          <span className="absolute inset-x-0 w-2/3 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent h-0.5" />
-        </motion.button>
-      </motion.div>
+            {/* Button bg */}
+            <span className="
+              absolute inset-0 rounded-xl
+              bg-primary/10 border border-primary/20
+            " />
+
+            {/* Sun / Moon icon */}
+            <span className="relative flex items-center justify-center w-4 h-4">
+              <AnimatePresence mode="wait">
+                {isDarkMode ? (
+                  <motion.svg
+                    key="sun"
+                    initial={{ opacity: 0, rotate: -45, scale: 0.7 }}
+                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                    exit={{ opacity: 0, rotate: 45, scale: 0.7 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-4 h-4"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                  </motion.svg>
+                ) : (
+                  <motion.svg
+                    key="moon"
+                    initial={{ opacity: 0, rotate: 45, scale: 0.7 }}
+                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                    exit={{ opacity: 0, rotate: -45, scale: 0.7 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-4 h-4"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                  >
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                  </motion.svg>
+                )}
+              </AnimatePresence>
+            </span>
+
+            {/* Label — desktop only */}
+            <span className="relative hidden sm:block">
+              {isDarkMode ? "Light" : "Dark"}
+            </span>
+          </motion.button>
+        </div>
+      </motion.nav>
     </AnimatePresence>
   );
 };

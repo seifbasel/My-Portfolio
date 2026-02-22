@@ -186,7 +186,7 @@ export function TimeLine() {
             src="/svgs/transfective.svg"
             alt="Transfective"
             href="https://transfective.com"
-            w={350}
+            w={300}
             h={50}
           />
         </div>
