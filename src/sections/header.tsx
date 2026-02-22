@@ -188,7 +188,7 @@ const Header = () => {
         className="relative z-10 flex flex-col items-center text-center px-5 max-w-5xl mx-auto"
       >
         {/* Status badge */}
-        <motion.div variants={item} className="mb-8">
+        <motion.div variants={item} className="my-8">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs tracking-widest uppercase text-primary bg-primary/10 border border-primary/25">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" style={{ boxShadow: "0 0 6px #34d399" }} />
             Open to opportunities
