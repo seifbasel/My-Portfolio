@@ -10,7 +10,6 @@ import Projects from "@/sections/projects";
 import { BackgroundBeams } from "@/components/background-beams";
 import Footer2 from "@/components/ui/footer";
 import ReelsVideosContainer from "@/sections/videos-section";
-import DownloadCVButton from "@/components/cv-button";
 
 export default function Home() {
   return (
@@ -20,13 +19,12 @@ export default function Home() {
       {/* Header Section */}
       <section className="flex flex-col items-center justify-center w-full max-w-full mx-auto">
         <Header />
-        <DownloadCVButton />
       </section>
 
       {/* Timeline Section */}
       <section
         id="timeline"
-        className="flex justify-center w-full h-full max-w-full p-10 py-40 mx-auto bg-background"
+        className="flex justify-center w-full h-full max-w-full p-4 md:p-10 mx-auto"
       >
         <TimeLine />
       </section>
@@ -34,16 +32,9 @@ export default function Home() {
       {/* Services Section */}
       <section
         id="services"
-        className="flex justify-center max-w-full px-4 py-20 sm:px-6 lg:px-8"
+        className="flex justify-center max-w-full px-4 sm:px-6 lg:px-8"
       >
-        <div className="text-start">
-          <h2 className="mb-10 text-4xl text-center font-rubik sm:text-7xl text-text">
-            Services
-          </h2>
-          <div className="flex justify-center">
-            <Services />
-          </div>
-        </div>
+          <Services />
       </section>
 
       {/* Tech Stack Section */}

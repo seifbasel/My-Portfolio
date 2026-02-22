@@ -86,7 +86,7 @@ const Step = ({ title, index }: { title: string; index: number }) => {
           <CheckIcon />
         </div>
       </div>
-      <span className="text-text/85 text-sm leading-relaxed capitalize font-medium group-hover:text-primary transition-colors duration-200">
+      <span className="text-text text-sm leading-relaxed capitalize font-medium group-hover:text-primary transition-colors duration-200">
         {title}
       </span>
     </motion.li>
