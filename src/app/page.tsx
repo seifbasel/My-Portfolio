@@ -16,22 +16,22 @@ export default function Home() {
       <NavBar />
 
       {/* Header */}
-      <section className="flex flex-col items-center justify-center w-full max-w-full mx-auto">
+      <section className="w-full h-full max-w-full">
         <Header />
       </section>
 
       {/* Timeline */}
-      <section id="timeline" className="flex justify-center w-full h-full max-w-full p-4 md:p-10 mx-auto">
+      <section id="timeline" className="w-full h-full max-w-full p-5 mt-5">
         <TimeLine />
       </section>
 
       {/* Services */}
-      <section id="services" className="flex justify-center max-w-full p-5 sm:p-6 lg:p-8">
+      <section id="services" className="w-full h-full max-w-full p-5">
         <Services />
       </section>
 
       {/* Tech Stack */}
-      <section id="TechStack" className="w-full max-w-full mx-auto md:p-20">
+      <section id="TechStack" className="w-full h-full max-w-full p-5">
         <TechStack />
       </section>
 
@@ -41,12 +41,12 @@ export default function Home() {
       </section>
 
       {/* Photography */}
-      <section id="Photography" className="w-full h-full max-w-full mx-auto p-5">
+      <section id="Photography" className="w-full h-full max-w-full p-5">
         <PhotoCards />
       </section>
 
       {/* Videography */}
-      <section id="videography" className="w-full h-full max-w-full mx-auto p-5">
+      <section id="videography" className="w-full h-full max-w-full p-5">
         <ReelsVideosContainer />
       </section>
 
