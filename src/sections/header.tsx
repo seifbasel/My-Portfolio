@@ -263,7 +263,7 @@ const Header = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6, duration: 0.8 }}
       >
-        <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-subtext">
+        <span className="font-mono text-xs sm:text-sm tracking-[0.3em] uppercase text-subtext">
           scroll
         </span>
         <motion.div
@@ -442,7 +442,7 @@ export default Header;
 //     >
 //       {value}
 //     </span>
-//     <span className="text-[9px] sm:text-xs tracking-widest uppercase font-mono text-subtext">
+//     <span className="text-[11px] sm:text-xs sm:text-xs tracking-widest uppercase font-mono text-subtext">
 //       {label}
 //     </span>
 //   </motion.div>
@@ -483,7 +483,7 @@ export default Header;
 //       >
 //         {/* Status badge */}
 //         <motion.div variants={item} className="mt-6 mb-6 md:my-8">
-//           <span className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full font-mono text-[10px] sm:text-xs tracking-widest uppercase text-primary bg-primary/10 border border-primary/25">
+//           <span className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full font-mono text-xs sm:text-sm sm:text-xs tracking-widest uppercase text-primary bg-primary/10 border border-primary/25">
 //             <span
 //               className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0"
 //               style={{ boxShadow: "0 0 6px #34d399" }}
@@ -560,7 +560,7 @@ export default Header;
 //         animate={{ opacity: 1 }}
 //         transition={{ delay: 1.6, duration: 0.8 }}
 //       >
-//         <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-subtext">
+//         <span className="font-mono text-[11px] sm:text-xs sm:text-xs sm:text-sm tracking-[0.3em] uppercase text-subtext">
 //           scroll
 //         </span>
 //         <motion.div

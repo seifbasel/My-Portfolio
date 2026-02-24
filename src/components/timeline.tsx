@@ -141,11 +141,11 @@ const TimelineCard = ({
         {/* Header row */}
         <div className="flex items-center justify-between px-5 pt-4">
           <span
-            className="font-mono text-[11px] uppercase tracking-[0.2em] font-semibold text-primary"
+            className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] font-semibold text-primary"
           >
             {entry.title}
           </span>
-          <span className="font-mono text-[11px] font-bold tabular-nums text-subtext">
+          <span className="font-mono text-xs sm:text-sm font-bold tabular-nums text-subtext">
             {String(index + 1).padStart(2, "0")}
           </span>
         </div>
@@ -193,7 +193,7 @@ export function Timeline({ data }: { data: TimelineEntry[] }) {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-[10px] font-mono uppercase tracking-[0.35em] mb-3 text-subtext"
+          className="text-xs sm:text-sm font-mono uppercase tracking-[0.35em] mb-3 text-subtext"
         >
           — career timeline
         </motion.p>
@@ -203,7 +203,7 @@ export function Timeline({ data }: { data: TimelineEntry[] }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="font-rubik text-5xl md:text-7xl font-bold leading-none mb-5 tracking-tight text-text"
+          className="font-rubik text-4xl sm:text-5xl md:text-7xl font-bold leading-none mb-5 tracking-tight text-text"
           style={{ letterSpacing: "-0.03em" }}
         >
           My Journey

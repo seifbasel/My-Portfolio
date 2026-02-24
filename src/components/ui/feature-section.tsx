@@ -176,7 +176,7 @@ const TechIcon = ({
         className="
           absolute -top-9 left-1/2 -translate-x-1/2
           px-2.5 py-1 rounded-lg pointer-events-none z-50
-          font-mono text-[10px] uppercase tracking-[0.15em] whitespace-nowrap
+          font-mono text-xs sm:text-sm uppercase tracking-[0.15em] whitespace-nowrap
           text-primary border border-primary/30 bg-primary/10
         "
       >
@@ -204,6 +204,7 @@ const TechRowCard = ({
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const rowDelay = rowIndex * 0.12;
   const [active, setActive] = useState(false);
+  const [activePill, setActivePill] = useState<number | null>(null);
 
   return (
     <motion.div
@@ -257,7 +258,7 @@ const TechRowCard = ({
           {/* Ghost number */}
           <span
             className={`
-              font-mono text-6xl font-bold leading-none select-none
+              font-mono text-5xl sm:text-6xl font-bold leading-none select-none
               transition-colors duration-300
               ${active ? "text-primary" : "text-text/[0.07]"}
             `}
@@ -267,7 +268,7 @@ const TechRowCard = ({
           </span>
 
           {/* Tag pill */}
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full flex-shrink-0 text-primary border border-primary/20 bg-primary/10">
+          <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] px-3 py-1.5 rounded-full flex-shrink-0 text-primary border border-primary/20 bg-primary/10">
             {row.label}
           </span>
         </div>
@@ -305,29 +306,25 @@ const TechRowCard = ({
 
         {/* Skill name pills — hover: text-subtext → text-text */}
         <div className="flex flex-wrap gap-2 mt-1">
-          {row.items.map((item, i) => {
-            const [pillTouched, setPillTouched] = useState(false);
-            return (
-              <span
-                key={i}
-                className={`
-                  font-mono text-[10px] uppercase tracking-[0.12em]
-                  px-2.5 py-1 rounded-full cursor-default touch-manipulation
-                  transition-colors duration-300
-                  hover:text-text
-                  ${pillTouched ? "text-text" : "text-subtext"}
-                `}
-                style={{
-                  background: "color-mix(in srgb, var(--color-text) 5%, transparent)",
-                  border: "1px solid color-mix(in srgb, var(--color-text) 8%, transparent)",
-                }}
-                onTouchStart={() => setPillTouched(true)}
-                onTouchEnd={() => setTimeout(() => setPillTouched(false), 500)}
-              >
-                {item.name}
-              </span>
-            );
-          })}
+          {row.items.map((item, i) => (
+            <span
+              key={i}
+              className={`
+                font-mono text-xs sm:text-sm uppercase tracking-[0.12em]
+                px-2.5 py-1 rounded-full cursor-default touch-manipulation
+                transition-colors duration-300 hover:text-text
+                ${activePill === i ? "text-text" : "text-subtext"}
+              `}
+              style={{
+                background: "color-mix(in srgb, var(--color-text) 5%, transparent)",
+                border: "1px solid color-mix(in srgb, var(--color-text) 8%, transparent)",
+              }}
+              onTouchStart={() => setActivePill(i)}
+              onTouchEnd={() => setTimeout(() => setActivePill(null), 500)}
+            >
+              {item.name}
+            </span>
+          ))}
         </div>
       </div>
     </motion.div>

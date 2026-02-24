@@ -41,12 +41,12 @@ export default function Home() {
       </section>
 
       {/* Photography */}
-      <section id="Photography" className="w-full h-full max-w-full mx-auto">
+      <section id="Photography" className="w-full h-full max-w-full mx-auto p-5">
         <PhotoCards />
       </section>
 
       {/* Videography */}
-      <section id="videography" className="w-full h-full max-w-full mx-auto">
+      <section id="videography" className="w-full h-full max-w-full mx-auto p-5">
         <ReelsVideosContainer />
       </section>
 

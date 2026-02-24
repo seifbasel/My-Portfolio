@@ -25,9 +25,14 @@ export const FloatingNav = ({
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const darkModeEnabled = localStorage.getItem("theme") === "dark";
+    const savedTheme = localStorage.getItem("theme");
+    const darkModeEnabled =
+      savedTheme
+        ? savedTheme === "dark"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches;
+
     setIsDarkMode(darkModeEnabled);
-    if (darkModeEnabled) document.documentElement.classList.add("dark");
+    document.documentElement.classList.toggle("dark", darkModeEnabled);
   }, []);
 
   const toggleDarkMode = () => {
@@ -108,7 +113,7 @@ export const FloatingNav = ({
               {/* Label — desktop */}
               <span className="
                 relative hidden sm:block
-                font-mono text-[11px] uppercase tracking-[0.18em]
+                font-mono text-xs sm:text-sm uppercase tracking-[0.18em]
                 transition-colors duration-200
                 group-hover:text-text
                 whitespace-nowrap
@@ -138,7 +143,7 @@ export const FloatingNav = ({
             className="
               relative flex items-center gap-2
               px-3 py-2 rounded-xl
-              font-mono text-[11px] uppercase tracking-[0.18em]
+              font-mono text-xs sm:text-sm uppercase tracking-[0.18em]
               text-primary
               transition-all duration-200
               touch-manipulation cursor-pointer
@@ -195,3 +200,5 @@ export const FloatingNav = ({
     </AnimatePresence>
   );
 };
+
+

@@ -77,7 +77,7 @@ export function TimeLine() {
       title: "2020",
       content: (
         <div className="flex flex-col gap-4">
-          <p className="text-md leading-relaxed text-text">
+          <p className="text-base md:text-lg leading-relaxed text-text">
             Enrolled in the Faculty of Computer and Artificial Intelligence at
             Damietta University — the start of my tech journey.
           </p>
@@ -106,7 +106,7 @@ export function TimeLine() {
       title: "September 2023",
       content: (
         <div className="flex flex-col gap-4">
-          <p className="text-md leading-relaxed text-text">
+          <p className="text-base md:text-lg leading-relaxed text-text">
             Completed a 150-hour Web Development (Python) course at the
             Information Technology Institute (ITI).
           </p>
@@ -123,7 +123,7 @@ export function TimeLine() {
       title: "March 2024",
       content: (
         <div className="flex flex-col gap-4">
-          <p className="text-md leading-relaxed text-text">
+          <p className="text-base md:text-lg leading-relaxed text-text">
             Completed Meta&apos;s &ldquo;Introduction to Back-End
             Development&rdquo; on Coursera — practical server-side programming
             concepts.
@@ -138,7 +138,7 @@ export function TimeLine() {
       title: "April 2024",
       content: (
         <div className="flex flex-col gap-4">
-          <p className="text-md leading-relaxed text-text">
+          <p className="text-base md:text-lg leading-relaxed text-text">
             Completed Meta&apos;s &ldquo;Django Web Framework&rdquo; on Coursera
             — building scalable Python-based web applications.
           </p>
@@ -152,7 +152,7 @@ export function TimeLine() {
       title: "June 2024",
       content: (
         <div className="flex flex-col gap-4">
-          <p className="text-md leading-relaxed text-text">
+          <p className="text-base md:text-lg leading-relaxed text-text">
             Earned a B.Sc. degree in Computer Science &amp; AI <br />
             from Damietta University.
           </p>
@@ -173,7 +173,7 @@ export function TimeLine() {
       title: "July 2024",
       content: (
         <div className="flex flex-col gap-4">
-          <p className="text-md leading-relaxed text-text">
+          <p className="text-base md:text-lg leading-relaxed text-text">
             Joined Transfective as a full-time Software Developer, building an
             enterprise localization platform that automated end-to-end
             workflows.
@@ -198,7 +198,7 @@ export function TimeLine() {
       title: "September 2024",
       content: (
         <div className="flex flex-col gap-4">
-          <p className="text-md leading-relaxed text-text">
+          <p className="text-base md:text-lg leading-relaxed text-text">
             Completed Meta&apos;s &ldquo;APIs&rdquo; course on Coursera <br />
             building robust and scalable web service interfaces.
           </p>
@@ -212,7 +212,7 @@ export function TimeLine() {
       title: "January 2025",
       content: (
         <div className="flex flex-col gap-4">
-          <p className="text-md leading-relaxed text-text">
+          <p className="text-base md:text-lg leading-relaxed text-text">
             Began mandatory military service in the Egyptian Armed Forces,
             serving as an IT specialist supporting digital operations.
           </p>
@@ -241,3 +241,4 @@ export function TimeLine() {
     </div>
   );
 }
+

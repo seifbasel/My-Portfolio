@@ -85,13 +85,13 @@ export default function ReelsVideos({ videos }: { videos: Video[] }) {
                 </div>
 
                 {/* Counter badge */}
-                <div className="absolute top-3 right-3 font-mono text-[9px] tabular-nums text-white/70 bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded-full border border-white/10">
+                <div className="absolute top-3 right-3 font-mono text-[11px] sm:text-xs tabular-nums text-white/70 bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded-full border border-white/10">
                   {String(current + 1).padStart(2, "0")} / {String(videos.length).padStart(2, "0")}
                 </div>
 
                 {/* Title block */}
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-primary mb-1">
+                  <p className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-primary mb-1">
                     — Videography
                   </p>
                   <h3 className="font-rubik text-lg font-bold text-white leading-tight" style={{ letterSpacing: "-0.02em" }}>
@@ -109,7 +109,7 @@ export default function ReelsVideos({ videos }: { videos: Video[] }) {
           <motion.button
             onClick={() => go(-1)}
             whileTap={{ scale: 0.92 }}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl font-mono text-[10px] uppercase tracking-[0.15em] text-subtext hover:text-text bg-text/[0.06] border border-text/10 transition-colors duration-200 touch-manipulation"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl font-mono text-xs sm:text-sm uppercase tracking-[0.15em] text-subtext hover:text-text bg-text/[0.06] border border-text/10 transition-colors duration-200 touch-manipulation"
           >
             <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 18l-6-6 6-6" />
@@ -132,7 +132,7 @@ export default function ReelsVideos({ videos }: { videos: Video[] }) {
           <motion.button
             onClick={() => go(1)}
             whileTap={{ scale: 0.92 }}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl font-mono text-[10px] uppercase tracking-[0.15em] text-primary hover:text-text bg-primary/10 border border-primary/20 transition-colors duration-200 touch-manipulation"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl font-mono text-xs sm:text-sm uppercase tracking-[0.15em] text-primary hover:text-text bg-primary/10 border border-primary/20 transition-colors duration-200 touch-manipulation"
           >
             Next
             <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -164,7 +164,7 @@ export default function ReelsVideos({ videos }: { videos: Video[] }) {
 
             {/* Title */}
             <div className="absolute bottom-0 left-0 right-0 bg-black/60 px-1.5 py-1">
-              <p className="font-mono text-[7px] uppercase tracking-[0.08em] text-white/80 truncate leading-tight">
+              <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.08em] text-white/80 truncate leading-tight">
                 {video.title}
               </p>
             </div>

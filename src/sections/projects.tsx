@@ -208,7 +208,7 @@ const ProjectCard = ({
           {project.tags.map((tag, i) => (
             <span
               key={i}
-              className="font-mono text-[9px] uppercase tracking-[0.15em] px-2 py-0.5 rounded-full text-primary bg-background/80 border border-primary/30 backdrop-blur-sm"
+              className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.15em] px-2 py-0.5 rounded-full text-primary bg-background/80 border border-primary/30 backdrop-blur-sm"
             >
               {tag}
             </span>
@@ -230,7 +230,7 @@ const ProjectCard = ({
           >
             {project.title}
           </h3>
-          <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-primary mt-0.5 truncate">
+          <p className="font-mono text-xs sm:text-sm uppercase tracking-[0.15em] text-primary mt-0.5 truncate">
             {project.subtitle}
           </p>
         </div>
@@ -258,7 +258,7 @@ const ProjectCard = ({
               rel="noreferrer"
               className="
                 flex items-center gap-1.5
-                font-mono text-[10px] uppercase tracking-[0.15em]
+                font-mono text-xs sm:text-sm uppercase tracking-[0.15em]
                 px-3 py-2 rounded-xl
                 text-primary hover:text-text
                 transition-colors duration-200
@@ -279,7 +279,7 @@ const ProjectCard = ({
               rel="noreferrer"
               className="
                 flex items-center gap-1.5
-                font-mono text-[10px] uppercase tracking-[0.15em]
+                font-mono text-xs sm:text-sm uppercase tracking-[0.15em]
                 px-3 py-2 rounded-xl
                 text-subtext hover:text-text
                 transition-colors duration-200
@@ -326,7 +326,7 @@ const TabBar = ({
             whileTap={{ scale: 0.94 }}
             className="
               relative flex items-center gap-2 flex-shrink-0 snap-start
-              font-mono text-[11px] uppercase tracking-[0.2em]
+              font-mono text-xs sm:text-sm uppercase tracking-[0.2em]
               px-4 py-3 rounded-xl
               transition-colors duration-300
               cursor-pointer touch-manipulation
@@ -353,7 +353,7 @@ const TabBar = ({
             )}
             {tab.label}
             <span
-              className="text-[9px] px-1.5 py-0.5 rounded-full font-bold tabular-nums"
+              className="text-[11px] sm:text-xs px-1.5 py-0.5 rounded-full font-bold tabular-nums"
               style={{
                 background: isActive
                   ? "color-mix(in srgb, var(--color-primary) 20%, transparent)"
@@ -394,7 +394,7 @@ const Projects = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="font-mono text-[10px] uppercase tracking-[0.35em] mb-3 text-subtext"
+            className="font-mono text-xs sm:text-sm uppercase tracking-[0.35em] mb-3 text-subtext"
           >
             — selected work
           </motion.p>
@@ -404,7 +404,7 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="font-rubik text-5xl md:text-7xl font-bold leading-none text-text mb-5"
+            className="font-rubik text-4xl sm:text-5xl md:text-7xl font-bold leading-none text-text mb-5"
             style={{ letterSpacing: "-0.03em" }}
           >
             Projects

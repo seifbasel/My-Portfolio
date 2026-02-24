@@ -14,7 +14,7 @@ export function TechStack() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="font-mono text-[10px] uppercase tracking-[0.35em] mb-3 text-subtext"
+            className="font-mono text-xs sm:text-sm uppercase tracking-[0.35em] mb-3 text-subtext"
           >
             — tools of the trade
           </motion.p>
@@ -24,7 +24,7 @@ export function TechStack() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="font-rubik text-5xl md:text-7xl font-bold leading-none text-text mb-5"
+            className="font-rubik text-4xl sm:text-5xl md:text-7xl font-bold leading-none text-text mb-5"
             style={{ letterSpacing: "-0.03em" }}
           >
             Tech Stack

@@ -105,7 +105,7 @@ const PhotoCard = ({
         `}
       >
         <p className={`
-          font-mono text-[9px] uppercase tracking-[0.2em] mb-1
+          font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] mb-1
           transition-opacity duration-300
           ${isActive ? "opacity-100" : "opacity-0"}
           text-primary
@@ -178,7 +178,7 @@ const MobileGallery = ({ cards }: { cards: Card[] }) => {
             </span>
             {/* Title */}
             <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
-              <p className="font-mono text-[9px] uppercase tracking-[0.2em] mb-1 text-primary">
+              <p className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] mb-1 text-primary">
                 — Photography
               </p>
               <h3 className="font-rubik text-lg font-bold text-lighttext leading-tight">

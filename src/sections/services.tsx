@@ -172,7 +172,7 @@ const ServiceCard = ({
           {/* Ghost number — text-text/[0.07] idle → text-primary on active */}
           <span
             className={`
-              font-mono text-6xl font-bold leading-none select-none
+              font-mono text-5xl sm:text-6xl font-bold leading-none select-none
               transition-colors duration-300
               ${active ? "text-primary" : "text-text/[0.07]"}
             `}
@@ -183,7 +183,7 @@ const ServiceCard = ({
 
           {/* Tag pill — color-mix bg+border stays inline, color is Tailwind */}
           <span
-            className="font-mono text-[10px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full flex-shrink-0 text-primary border border-primary/20 bg-primary/10"
+            className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] px-3 py-1.5 rounded-full flex-shrink-0 text-primary border border-primary/20 bg-primary/10"
           >
             {service.tag}
           </span>
@@ -248,7 +248,7 @@ const Services = () => (
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="font-mono text-[10px] uppercase tracking-[0.35em] mb-3 text-subtext"
+          className="font-mono text-xs sm:text-sm uppercase tracking-[0.35em] mb-3 text-subtext"
         >
           — what i do
         </motion.p>
@@ -258,7 +258,7 @@ const Services = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.08 }}
-          className="font-rubik text-5xl md:text-7xl font-bold leading-none text-text mb-5"
+          className="font-rubik text-4xl sm:text-5xl md:text-7xl font-bold leading-none text-text mb-5"
           style={{ letterSpacing: "-0.03em" }}
         >
           Services

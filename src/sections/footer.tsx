@@ -80,7 +80,7 @@ export function Footer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="font-mono text-[10px] uppercase tracking-[0.35em] text-subtext z-10 relative"
+          className="font-mono text-xs sm:text-sm uppercase tracking-[0.35em] text-subtext z-10 relative"
         >
           — let&apos;s work together
         </motion.p>
@@ -102,7 +102,7 @@ export function Footer() {
             href="mailto:seifbasel950@gmail.com"
             className="
               flex items-center gap-2 px-6 py-3 rounded-xl
-              font-mono text-[11px] uppercase tracking-[0.18em]
+              font-mono text-xs sm:text-sm uppercase tracking-[0.18em]
               text-primary hover:text-text
               bg-primary/10 border border-primary/20
               hover:bg-primary/20 hover:border-primary/40
@@ -121,7 +121,7 @@ export function Footer() {
             whileTap={{ scale: 0.95 }}
             className="
               flex items-center gap-2 px-6 py-3 rounded-xl
-              font-mono text-[11px] uppercase tracking-[0.18em]
+              font-mono text-xs sm:text-sm uppercase tracking-[0.18em]
               text-subtext hover:text-text
               bg-text/[0.06] border border-text/10
               hover:bg-text/10
@@ -161,7 +161,7 @@ export function Footer() {
             <span className="font-rubik text-2xl font-bold text-text tracking-tight">
               Seif Basel
             </span>
-            <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-subtext">
+            <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-subtext">
               © {new Date().getFullYear()} — Full Stack Developer
             </span>
           </div>
@@ -172,7 +172,7 @@ export function Footer() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="font-mono text-[9px] uppercase tracking-[0.15em] text-subtext hover:text-primary transition-colors duration-200"
+                className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.15em] text-subtext hover:text-primary transition-colors duration-200"
               >
                 {link.name}
               </Link>
