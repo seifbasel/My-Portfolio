@@ -1,8 +1,7 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-/* ── Service data ── */
 const SERVICES = [
   {
     number: "01",
@@ -48,7 +47,9 @@ const SERVICES = [
   },
 ];
 
-/* ── Single skill row — hover text via Tailwind group ── */
+/* ─────────────────────────────────────────────
+   SKILL ITEM
+───────────────────────────────────────────── */
 const SkillItem = ({
   skill,
   delay,
@@ -57,39 +58,46 @@ const SkillItem = ({
   skill: string;
   delay: number;
   inView: boolean;
-}) => (
-  <motion.li
-    initial={{ opacity: 0, x: -12 }}
-    animate={inView ? { opacity: 1, x: 0 } : {}}
-    transition={{ duration: 0.4, delay, ease: [0.22, 1, 0.36, 1] }}
-    /* Each skill row is its own group so hover is isolated */
-    className="group/skill flex items-center gap-3 cursor-default"
-  >
-    {/* Animated dot — scales up + glows on row hover */}
-    <span
-      className="
-        w-1.5 h-1.5 rounded-full flex-shrink-0
-        bg-primary
-        transition-all duration-300
-        group-hover/skill:scale-150
-        group-hover/skill:shadow-[0_0_6px_var(--color-primary)]
-      "
-    />
-    {/* Text — changes from subtext to text on row hover */}
-    <span
-      className="
-        text-sm
-        text-subtext
-        transition-colors duration-300
-        group-hover/skill:text-text
-      "
-    >
-      {skill}
-    </span>
-  </motion.li>
-);
+}) => {
+  const [touched, setTouched] = useState(false);
 
-/* ── Single card ── */
+  return (
+    <motion.li
+      initial={{ opacity: 0, x: -12 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.4, delay, ease: [0.22, 1, 0.36, 1] }}
+      className="group/skill flex items-center gap-3 cursor-default touch-manipulation select-none"
+      onTouchStart={() => setTouched(true)}
+      onTouchEnd={() => setTimeout(() => setTouched(false), 400)}
+    >
+      {/* Dot — desktop: group-hover scales+glows | mobile: touched state */}
+      <span
+        className={`
+          w-1.5 h-1.5 rounded-full flex-shrink-0 bg-primary
+          transition-all duration-300
+          group-hover/skill:scale-150
+          group-hover/skill:shadow-[0_0_6px_var(--color-primary)]
+          ${touched ? "scale-150 shadow-[0_0_6px_var(--color-primary)]" : ""}
+        `}
+      />
+
+      {/* Text — desktop: group-hover text-text | mobile: touched state */}
+      <span
+        className={`
+          text-sm transition-colors duration-300
+          group-hover/skill:text-text
+          ${touched ? "text-text" : "text-subtext"}
+        `}
+      >
+        {skill}
+      </span>
+    </motion.li>
+  );
+};
+
+/* ─────────────────────────────────────────────
+   SERVICE CARD
+───────────────────────────────────────────── */
 const ServiceCard = ({
   service,
   index,
@@ -99,6 +107,7 @@ const ServiceCard = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  const [active, setActive] = useState(false);
 
   return (
     <motion.div
@@ -106,111 +115,102 @@ const ServiceCard = ({
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
-      /* Card is the group — child classes use group-hover: */
-      className="
-        group relative flex flex-col rounded-2xl overflow-hidden cursor-default
-        transition-shadow duration-300
-        hover:shadow-[0_0_40px_color-mix(in_srgb,var(--color-primary)_15%,transparent)]
-      "
-      style={{
-        background: "color-mix(in srgb, var(--color-background) 80%, var(--color-text) 6%)",
-        borderWidth: "1px",
-        borderStyle: "solid",
-        borderColor: "color-mix(in srgb, var(--color-text) 10%, transparent)",
-        transition: "border-color 0.3s, box-shadow 0.3s",
-      }}
-      whileHover={{
-        borderColor: "color-mix(in srgb, var(--color-primary) 50%, transparent)",
-      } as never}
+      onHoverStart={() => setActive(true)}
+      onHoverEnd={() => setActive(false)}
+      onTouchStart={() => setActive(true)}
+      onTouchEnd={() => setTimeout(() => setActive(false), 400)}
+      /* Border & shadow driven by `active` via Tailwind conditional classes */
+      className={`
+        group relative flex flex-col rounded-2xl overflow-hidden
+        cursor-default touch-manipulation
+        border transition-[border-color,box-shadow] duration-300
+        ${active
+          ? "border-primary/50 shadow-[0_0_40px_color-mix(in_srgb,var(--color-primary)_15%,transparent)]"
+          : "border-text/10 shadow-none"
+        }
+      `}
+      /* Only color-mix bg stays inline — no Tailwind equivalent */
+      style={{ background: "color-mix(in srgb, var(--color-background) 80%, var(--color-text) 6%)" }}
     >
 
-      {/* ── Top accent bar — slides in from left on hover ── */}
+      {/* Top accent bar */}
       <div
-        className="
-          h-0.5 w-full flex-shrink-0 origin-left
-          transition-transform duration-500 ease-out
-          scale-x-[0.25] group-hover:scale-x-100
-        "
-        style={{
-          background: "linear-gradient(90deg, var(--color-primary), var(--color-secondary))",
-        }}
+        className={`
+          h-0.5 w-full flex-shrink-0 origin-left transition-transform duration-500 ease-out
+          ${active ? "scale-x-100" : "scale-x-[0.25]"}
+        `}
+        /* gradient must stay inline */
+        style={{ background: "linear-gradient(90deg, var(--color-primary), var(--color-secondary))" }}
       />
 
-      {/* ── Shimmer sweep on hover ── */}
+      {/* Shimmer sweep */}
       <div
-        className="
+        className={`
           absolute inset-0 pointer-events-none z-10
-          -translate-x-full group-hover:translate-x-full
-          transition-transform duration-700 ease-in-out
           bg-gradient-to-r from-transparent via-white/5 to-transparent
-        "
+          transition-transform duration-700 ease-in-out
+          ${active ? "translate-x-full" : "-translate-x-full"}
+        `}
       />
 
-      {/* ── Top glow that fades in on hover ── */}
+      {/* Top glow */}
       <div
-        className="
+        className={`
           absolute inset-0 rounded-2xl pointer-events-none
-          opacity-0 group-hover:opacity-100
           transition-opacity duration-500
-        "
-        style={{
-          background:
-            "radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 65%)",
-        }}
+          ${active ? "opacity-100" : "opacity-0"}
+        `}
+        /* radial-gradient with color-mix must stay inline */
+        style={{ background: "radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 65%)" }}
       />
 
       <div className="relative z-20 p-7 flex flex-col gap-5 flex-1">
 
-        {/* ── Header: big number + tag pill ── */}
+        {/* Header: number + tag */}
         <div className="flex items-start justify-between gap-4">
-          {/* Ghost number — fades to primary on card hover */}
+
+          {/* Ghost number — text-text/[0.07] idle → text-primary on active */}
           <span
-            className="
+            className={`
               font-mono text-6xl font-bold leading-none select-none
-              transition-all duration-300
-              text-text/[0.07] group-hover:text-primary
-            "
+              transition-colors duration-300
+              ${active ? "text-primary" : "text-text/[0.07]"}
+            `}
             style={{ letterSpacing: "-0.04em" }}
           >
             {service.number}
           </span>
 
-          {/* Tag pill */}
+          {/* Tag pill — color-mix bg+border stays inline, color is Tailwind */}
           <span
-            className="
-              font-mono text-[10px] uppercase tracking-[0.2em]
-              px-3 py-1.5 rounded-full flex-shrink-0
-              text-primary
-              transition-colors duration-300
-            "
-            style={{
-              background: "color-mix(in srgb, var(--color-primary) 10%, transparent)",
-              border: "1px solid color-mix(in srgb, var(--color-primary) 22%, transparent)",
-            }}
+            className="font-mono text-[10px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full flex-shrink-0 text-primary border border-primary/20 bg-primary/10"
           >
             {service.tag}
           </span>
         </div>
 
-        {/* ── Title — slides up slightly on card hover ── */}
+        {/* Title — micro-lift on active */}
         <h3
-          className="
+          className={`
             font-rubik text-2xl font-bold leading-tight text-text
             transition-transform duration-300
-            group-hover:-translate-y-0.5
-          "
+            ${active ? "-translate-y-0.5" : "translate-y-0"}
+          `}
           style={{ letterSpacing: "-0.02em" }}
         >
           {service.title}
         </h3>
 
-        {/* ── Divider ── */}
+        {/* Divider */}
         <div
-          className="h-px w-full transition-opacity duration-300 group-hover:opacity-60"
-          style={{ background: "color-mix(in srgb, var(--color-text) 10%, transparent)" }}
+          className={`
+            h-px w-full bg-text/10
+            transition-opacity duration-300
+            ${active ? "opacity-60" : "opacity-100"}
+          `}
         />
 
-        {/* ── Skills — staggered on-scroll reveal, individual hover per row ── */}
+        {/* Skills */}
         <ul className="flex flex-col gap-2">
           {service.skills.map((skill, i) => (
             <SkillItem
@@ -222,13 +222,13 @@ const ServiceCard = ({
           ))}
         </ul>
 
-        {/* ── Description — subtle opacity lift on hover ── */}
+        {/* Description — text-subtext idle → text-text/70 on active */}
         <p
-          className="
-            text-sm leading-relaxed text-subtext mt-auto pt-3
+          className={`
+            text-sm leading-relaxed mt-auto pt-3
             transition-colors duration-300
-            group-hover:text-text/70
-          "
+            ${active ? "text-text/70" : "text-subtext"}
+          `}
         >
           {service.description}
         </p>
@@ -243,7 +243,6 @@ const Services = () => (
   <section className="w-full py-24 px-4">
     <div className="max-w-6xl mx-auto">
 
-      {/* Heading */}
       <div className="mb-16 max-w-2xl">
         <motion.p
           initial={{ opacity: 0 }}
@@ -274,7 +273,6 @@ const Services = () => (
         />
       </div>
 
-      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {SERVICES.map((service, index) => (
           <ServiceCard key={index} service={service} index={index} />

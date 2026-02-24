@@ -8,7 +8,6 @@ import { TimeLine } from "@/sections/time-line";
 import Footer from "@/sections/footer";
 import Projects from "@/sections/projects";
 import { BackgroundBeams } from "@/components/background-beams";
-import Footer2 from "@/components/ui/footer";
 import ReelsVideosContainer from "@/sections/videos-section";
 
 export default function Home() {
@@ -16,68 +15,44 @@ export default function Home() {
     <div className="w-full max-w-full max-h-full">
       <NavBar />
 
-      {/* Header Section */}
+      {/* Header */}
       <section className="flex flex-col items-center justify-center w-full max-w-full mx-auto">
         <Header />
       </section>
 
-      {/* Timeline Section */}
-      <section
-        id="timeline"
-        className="flex justify-center w-full h-full max-w-full p-4 md:p-10 mx-auto"
-      >
+      {/* Timeline */}
+      <section id="timeline" className="flex justify-center w-full h-full max-w-full p-4 md:p-10 mx-auto">
         <TimeLine />
       </section>
 
-      {/* Services Section */}
-      <section
-        id="services"
-        className="flex justify-center max-w-full p-5 sm:p-6 lg:p-8"
-      >
+      {/* Services */}
+      <section id="services" className="flex justify-center max-w-full p-5 sm:p-6 lg:p-8">
         <Services />
       </section>
 
-      {/* Tech Stack Section */}
+      {/* Tech Stack */}
       <section id="TechStack" className="w-full max-w-full mx-auto md:p-20">
         <TechStack />
       </section>
 
-      {/* Projects Section */}
+      {/* Projects */}
       <section id="projects" className="w-full h-full max-w-full p-5">
         <Projects />
       </section>
 
-      {/* Photography Section */}
-      <section
-        id="Photography"
-        className="w-full h-full max-w-full py-20 mx-auto md:py-40"
-      >
-        <h2 className="mb-10 text-4xl font-semibold text-center sm:text-5xl text-text">
-          Photography
-        </h2>
+      {/* Photography */}
+      <section id="Photography" className="w-full h-full max-w-full mx-auto">
         <PhotoCards />
       </section>
 
-      {/* Videography Section */}
-      <section
-        id="videography"
-        className="w-full h-full max-w-full p-20 mx-auto md:py-40"
-      >
-        <h2 className="mb-10 text-4xl font-semibold text-center sm:text-5xl text-text">
-          Videography
-        </h2>
+      {/* Videography */}
+      <section id="videography" className="w-full h-full max-w-full mx-auto">
         <ReelsVideosContainer />
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="w-full h-full max-w-full py-5 mx-auto ">
-        <Footer />
-      </section>
+      {/* Footer / Contact — has id="contact" built in */}
+      <Footer />
 
-      {/* Footer2 Section */}
-      <Footer2 />
-
-      {/* Background Beams */}
       <BackgroundBeams />
     </div>
   );
