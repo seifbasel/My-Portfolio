@@ -15,7 +15,17 @@ const PROJECTS = [
     link: "https://coinat.vercel.app/",
     info_link: "https://github.com/seifbasel/Coinat-Website",
     category: "fullstack",
-    tags: ["Next.js", "E-Commerce"],
+    tags: ["Next.js", "Tailwind"],
+  },
+  {
+    title: "Ma7fazty",
+    subtitle: "Personal Finance & Wallet Tracker",
+    description:
+      "Personal asset tracker which supports gold, silver, USD, cash, rent, and interest with live EGP prices, portfolio analytics, 12-month forecasting, managing balances, and organizing personal money flow in one clean dashboard.",
+    thumbnail: "/images/ma7fazty.png",
+    link: "https://ma7fazty.vercel.app/",
+    category: "fullstack",
+    tags: ["Next.js", "Tailwind"],
   },
   {
     title: "TransHub",
@@ -25,7 +35,7 @@ const PROJECTS = [
     thumbnail: "/images/transhub.png",
     link: "https://transhub.vercel.app/",
     category: "fullstack",
-    tags: ["React", "Django", "PostgreSQL"],
+    tags: ["React", "Django", "PostgreSQL", "Express"],
   },
   {
     title: "Transfective HR",
@@ -35,7 +45,7 @@ const PROJECTS = [
     thumbnail: "/images/transfective-hr.png",
     link: "https://transfective-hr.vercel.app/",
     category: "fullstack",
-    tags: ["React", "Django"],
+    tags: ["React", "Django", "PostgreSQL", "Express"],
   },
   {
     title: "Nike Clone",
@@ -57,7 +67,7 @@ const PROJECTS = [
     link: "https://prova-3d.vercel.app/",
     info_link: "https://github.com/seifbasel/Prova-3d-Website",
     category: "frontend",
-    tags: ["React", "AR", "3D"],
+    tags: ["React", "Snap AR", "camera kit"],
   },
   {
     title: "LMS",
@@ -67,7 +77,7 @@ const PROJECTS = [
     thumbnail: "/images/lms_website.png",
     info_link: "https://github.com/seifbasel/Library-Management-System-Website",
     category: "fullstack",
-    tags: ["Django", "Python", "SQL"],
+    tags: ["Django", "Python"],
   },
   {
     title: "Diabetes AI",
@@ -78,7 +88,7 @@ const PROJECTS = [
     link: "https://github.com/seifbasel/Diabetes-Classification-Website/blob/main/project%20demo.mp4",
     info_link: "https://github.com/seifbasel/Diabetes-Classification-Website",
     category: "fullstack",
-    tags: ["Python", "ML", "Django"],
+    tags: ["Python", "ML", "FastAPI"],
   },
   {
     title: "COSMOS",
