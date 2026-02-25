@@ -325,8 +325,8 @@ const Header = () => {
           className="flex flex-wrap gap-4 justify-center mb-24"
         >
           <StatPill value="2+" label="Years exp." delay={0.8} />
-          <StatPill value="9+" label="Projects" delay={0.92} />
-          <StatPill value="3+" label="Certifications" delay={1.04} />
+          <StatPill value="10+" label="Projects" delay={0.92} />
+          <StatPill value="4+" label="Certifications" delay={1.04} />
         </motion.div>
       </motion.div>
 
