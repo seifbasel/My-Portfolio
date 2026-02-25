@@ -72,7 +72,7 @@ export const BackgroundBeamsWithCollision = ({
       className={cn(
         "h-96 md:h-[40rem] bg-background relative flex items-center w-full justify-center overflow-hidden",
         // h-screen if you want bigger
-        className
+        className,
       )}
     >
       {beams.map((beam) => (
@@ -103,8 +103,12 @@ const CollisionMechanism = ({
   parentRef,
   beamOptions = {},
 }: {
-  containerRef: React.RefObject<HTMLDivElement | null> | React.RefObject<HTMLDivElement>;
-  parentRef: React.RefObject<HTMLDivElement | null> | React.RefObject<HTMLDivElement>;
+  containerRef:
+    | React.RefObject<HTMLDivElement | null>
+    | React.RefObject<HTMLDivElement>;
+  parentRef:
+    | React.RefObject<HTMLDivElement | null>
+    | React.RefObject<HTMLDivElement>;
   beamOptions?: {
     initialX?: number;
     translateX?: number;
@@ -203,7 +207,7 @@ const CollisionMechanism = ({
         }}
         className={cn(
           "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-indigo-500 via-cyan-500 to-transparent",
-          beamOptions.className
+          beamOptions.className,
         )}
       />
       <AnimatePresence>

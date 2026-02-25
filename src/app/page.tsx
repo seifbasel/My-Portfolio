@@ -16,7 +16,7 @@ export default function Home() {
       <NavBar />
 
       {/* Header */}
-      <section className="w-full h-full max-w-full">
+      <section id="header" className="w-full h-full max-w-full">
         <Header />
       </section>
 

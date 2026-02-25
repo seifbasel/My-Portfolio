@@ -7,7 +7,6 @@ export function TechStack() {
   return (
     <section className="w-full py-24 px-4">
       <div className="max-w-6xl mx-auto">
-
         {/* Heading — identical pattern to Services */}
         <div className="mb-16 p-5 max-w-2xl">
           <motion.p
@@ -41,7 +40,6 @@ export function TechStack() {
 
         {/* Grid */}
         <GridStack />
-
       </div>
     </section>
   );

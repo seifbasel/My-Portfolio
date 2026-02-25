@@ -36,22 +36,34 @@ const PhotoCard = ({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-      onHoverStart={() => { onEnter(); }}
-      onHoverEnd={() => { onLeave(); }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.06,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      onHoverStart={() => {
+        onEnter();
+      }}
+      onHoverEnd={() => {
+        onLeave();
+      }}
       onTouchStart={() => setActive(true)}
       onTouchEnd={() => setTimeout(() => setActive(false), 500)}
       onTouchCancel={() => setActive(false)}
       className={`
         relative overflow-hidden rounded-2xl aspect-[3/4] cursor-default touch-manipulation
         border transition-all duration-400
-        ${isActive
-          ? "border-primary/50 shadow-[0_0_30px_color-mix(in_srgb,var(--color-primary)_15%,transparent)] scale-[1.02]"
-          : "border-text/10"
+        ${
+          isActive
+            ? "border-primary/50 shadow-[0_0_30px_color-mix(in_srgb,var(--color-primary)_15%,transparent)] scale-[1.02]"
+            : "border-text/10"
         }
         ${isDimmed ? "opacity-50 scale-[0.97] blur-[1px]" : "opacity-100"}
       `}
-      style={{ background: "color-mix(in srgb, var(--color-background) 60%, var(--color-text) 6%)" }}
+      style={{
+        background:
+          "color-mix(in srgb, var(--color-background) 60%, var(--color-text) 6%)",
+      }}
     >
       {/* Photo */}
       <Image
@@ -104,29 +116,35 @@ const PhotoCard = ({
           ${isActive ? "translate-y-0" : "translate-y-2"}
         `}
       >
-        <p className={`
+        <p
+          className={`
           font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] mb-1
           transition-opacity duration-300
           ${isActive ? "opacity-100" : "opacity-0"}
           text-primary
-        `}>
+        `}
+        >
           — Photography
         </p>
-        <h3 className={`
+        <h3
+          className={`
           font-rubik text-base font-bold leading-tight
           transition-all duration-300
           ${isActive ? "opacity-100 text-lighttext" : "opacity-70 text-lighttext"}
-        `}>
+        `}
+        >
           {card.title}
         </h3>
 
         {/* Bottom accent line */}
-        <div className={`
+        <div
+          className={`
           h-px mt-2 origin-left
           bg-gradient-to-r from-primary to-transparent
           transition-transform duration-500
           ${isActive ? "scale-x-100" : "scale-x-0"}
-        `} />
+        `}
+        />
       </div>
     </motion.div>
   );
@@ -148,8 +166,12 @@ const MobileGallery = ({ cards }: { cards: Card[] }) => {
   return (
     <div className="flex flex-col gap-4">
       {/* Main card */}
-      <div className="relative overflow-hidden rounded-2xl aspect-[3/4] w-full max-w-sm mx-auto border border-text/10"
-        style={{ background: "color-mix(in srgb, var(--color-background) 60%, var(--color-text) 6%)" }}
+      <div
+        className="relative overflow-hidden rounded-2xl aspect-[3/4] w-full max-w-sm mx-auto border border-text/10"
+        style={{
+          background:
+            "color-mix(in srgb, var(--color-background) 60%, var(--color-text) 6%)",
+        }}
       >
         {/* Top accent bar */}
         <div className="absolute top-0 left-0 right-0 h-0.5 z-20 bg-gradient-to-r from-primary to-secondary" />
@@ -174,7 +196,8 @@ const MobileGallery = ({ cards }: { cards: Card[] }) => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
             {/* Index */}
             <span className="absolute top-3 right-3 font-mono text-xs font-bold tabular-nums opacity-40 text-lighttext z-10">
-              {String(current + 1).padStart(2, "0")}/{String(cards.length).padStart(2, "0")}
+              {String(current + 1).padStart(2, "0")}/
+              {String(cards.length).padStart(2, "0")}
             </span>
             {/* Title */}
             <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
@@ -196,7 +219,15 @@ const MobileGallery = ({ cards }: { cards: Card[] }) => {
           aria-label="Previous"
         >
           <div className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center border border-white/10">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              className="w-4 h-4 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </div>
@@ -207,7 +238,15 @@ const MobileGallery = ({ cards }: { cards: Card[] }) => {
           aria-label="Next"
         >
           <div className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center border border-white/10">
-            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              className="w-4 h-4 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <path d="M9 18l6-6-6-6" />
             </svg>
           </div>
@@ -219,7 +258,10 @@ const MobileGallery = ({ cards }: { cards: Card[] }) => {
         {cards.map((_, i) => (
           <button
             key={i}
-            onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+            onClick={() => {
+              setDirection(i > current ? 1 : -1);
+              setCurrent(i);
+            }}
             className={`
               h-1 rounded-full transition-all duration-300 touch-manipulation
               ${i === current ? "w-6 bg-primary" : "w-1.5 bg-text/20"}
@@ -234,18 +276,27 @@ const MobileGallery = ({ cards }: { cards: Card[] }) => {
         {cards.map((card, i) => (
           <button
             key={i}
-            onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+            onClick={() => {
+              setDirection(i > current ? 1 : -1);
+              setCurrent(i);
+            }}
             className={`
               relative flex-shrink-0 w-14 h-20 rounded-lg overflow-hidden
               border transition-all duration-200 touch-manipulation
-              ${i === current
-                ? "border-primary/60 scale-105 shadow-[0_0_12px_color-mix(in_srgb,var(--color-primary)_20%,transparent)]"
-                : "border-text/10 opacity-60 hover:opacity-100"
+              ${
+                i === current
+                  ? "border-primary/60 scale-105 shadow-[0_0_12px_color-mix(in_srgb,var(--color-primary)_20%,transparent)]"
+                  : "border-text/10 opacity-60 hover:opacity-100"
               }
             `}
             aria-label={card.title}
           >
-            <Image src={card.src} alt={card.title} fill className="object-fill" />
+            <Image
+              src={card.src}
+              alt={card.title}
+              fill
+              className="object-fill"
+            />
           </button>
         ))}
       </div>

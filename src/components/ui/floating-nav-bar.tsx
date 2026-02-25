@@ -26,10 +26,9 @@ export const FloatingNav = ({
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    const darkModeEnabled =
-      savedTheme
-        ? savedTheme === "dark"
-        : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const darkModeEnabled = savedTheme
+      ? savedTheme === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
 
     setIsDarkMode(darkModeEnabled);
     document.documentElement.classList.toggle("dark", darkModeEnabled);
@@ -59,22 +58,24 @@ export const FloatingNav = ({
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
           "fixed top-6 inset-x-0 mx-auto z-[5000] flex w-fit items-center",
-          className
+          className,
         )}
       >
         {/* ── Container ── */}
-        <div className="
+        <div
+          className="
           relative flex items-center gap-1 px-2 py-2 rounded-2xl
           bg-background/80 backdrop-blur-xl
           border border-text/10
           shadow-[0_8px_32px_theme(colors.text/8%),0_2px_8px_theme(colors.text/5%)]
-        ">
-
+        "
+        >
           {/* Top accent line */}
           <div
             className="absolute top-0 left-6 right-6 h-px rounded-full"
             style={{
-              background: "linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 60%, transparent), transparent)",
+              background:
+                "linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 60%, transparent), transparent)",
             }}
           />
 
@@ -92,12 +93,14 @@ export const FloatingNav = ({
               "
             >
               {/* Hover bg */}
-              <span className="
+              <span
+                className="
                 absolute inset-0 rounded-xl
                 bg-text/[0.06] opacity-0
                 group-hover:opacity-100
                 transition-opacity duration-200
-              " />
+              "
+              />
 
               {/* Icon — mobile */}
               <motion.span
@@ -111,23 +114,27 @@ export const FloatingNav = ({
               </motion.span>
 
               {/* Label — desktop */}
-              <span className="
+              <span
+                className="
                 relative hidden sm:block
                 font-mono text-xs sm:text-sm uppercase tracking-[0.18em]
                 transition-colors duration-200
                 group-hover:text-text
                 whitespace-nowrap
-              ">
+              "
+              >
                 {navItem.name}
               </span>
 
               {/* Hover dot */}
-              <span className="
+              <span
+                className="
                 relative hidden sm:block
                 w-1 h-1 rounded-full bg-primary
                 opacity-0 group-hover:opacity-100
                 transition-opacity duration-200
-              " />
+              "
+              />
             </Link>
           ))}
 
@@ -151,10 +158,12 @@ export const FloatingNav = ({
             "
           >
             {/* Button bg */}
-            <span className="
+            <span
+              className="
               absolute inset-0 rounded-xl
               bg-primary/10 border border-primary/20
-            " />
+            "
+            />
 
             {/* Sun / Moon icon */}
             <span className="relative flex items-center justify-center w-4 h-4">
@@ -167,8 +176,12 @@ export const FloatingNav = ({
                     exit={{ opacity: 0, rotate: 45, scale: 0.7 }}
                     transition={{ duration: 0.2 }}
                     className="w-4 h-4"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <circle cx="12" cy="12" r="4" />
                     <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
@@ -181,8 +194,12 @@ export const FloatingNav = ({
                     exit={{ opacity: 0, rotate: -45, scale: 0.7 }}
                     transition={{ duration: 0.2 }}
                     className="w-4 h-4"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                   </motion.svg>
@@ -200,5 +217,3 @@ export const FloatingNav = ({
     </AnimatePresence>
   );
 };
-
-

@@ -33,7 +33,6 @@ export default function ReelsVideosContainer() {
   return (
     <section className="w-full py-24 px-4">
       <div className="max-w-6xl mx-auto">
-
         {/* Heading — same pattern as all other sections */}
         <div className="mb-16 max-w-2xl">
           <motion.p
@@ -75,7 +74,6 @@ export default function ReelsVideosContainer() {
         >
           <ReelsVideos videos={videos} />
         </motion.div>
-
       </div>
     </section>
   );

@@ -109,8 +109,12 @@ const TechIcon = ({
       transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.5, 1] }}
       whileHover={{ scale: 1.5, rotate: 0, y: -8, zIndex: 50 }}
       whileTap={{ scale: 1.3, rotate: 0 }}
-      onHoverStart={() => { setTip(true); }}
-      onHoverEnd={() => { setTip(false); }}
+      onHoverStart={() => {
+        setTip(true);
+      }}
+      onHoverEnd={() => {
+        setTip(false);
+      }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       className="relative flex-shrink-0 cursor-pointer touch-manipulation"
@@ -121,13 +125,15 @@ const TechIcon = ({
         className={`
           relative p-2 md:p-3 rounded-xl overflow-hidden
           transition-all duration-300
-          ${touched
-            ? "shadow-[0_0_20px_color-mix(in_srgb,var(--color-primary)_25%,transparent)]"
-            : "hover:shadow-[0_0_20px_color-mix(in_srgb,var(--color-primary)_25%,transparent)]"
+          ${
+            touched
+              ? "shadow-[0_0_20px_color-mix(in_srgb,var(--color-primary)_25%,transparent)]"
+              : "hover:shadow-[0_0_20px_color-mix(in_srgb,var(--color-primary)_25%,transparent)]"
           }
         `}
         style={{
-          background: "color-mix(in srgb, var(--color-background) 80%, var(--color-text) 8%)",
+          background:
+            "color-mix(in srgb, var(--color-background) 80%, var(--color-text) 8%)",
           borderWidth: "1px",
           borderStyle: "solid",
           borderColor: touched
@@ -150,7 +156,8 @@ const TechIcon = ({
         <div
           className="absolute top-0 left-0 right-0 h-0.5 origin-left transition-transform duration-500"
           style={{
-            background: "linear-gradient(90deg, var(--color-primary), var(--color-secondary))",
+            background:
+              "linear-gradient(90deg, var(--color-primary), var(--color-secondary))",
             transform: touched ? "scaleX(1)" : "scaleX(0)",
           }}
         />
@@ -220,18 +227,23 @@ const TechRowCard = ({
         group relative flex flex-col rounded-2xl overflow-hidden
         cursor-default touch-manipulation
         border transition-[border-color,box-shadow] duration-300
-        ${active
-          ? "border-primary/50 shadow-[0_0_40px_color-mix(in_srgb,var(--color-primary)_12%,transparent)]"
-          : "border-text/10 shadow-none"
+        ${
+          active
+            ? "border-primary/50 shadow-[0_0_40px_color-mix(in_srgb,var(--color-primary)_12%,transparent)]"
+            : "border-text/10 shadow-none"
         }
       `}
-      style={{ background: "color-mix(in srgb, var(--color-background) 80%, var(--color-text) 6%)" }}
+      style={{
+        background:
+          "color-mix(in srgb, var(--color-background) 80%, var(--color-text) 6%)",
+      }}
     >
       {/* Top accent bar */}
       <div
         className="h-0.5 w-full flex-shrink-0 origin-left transition-transform duration-500 ease-out"
         style={{
-          background: "linear-gradient(90deg, var(--color-primary), var(--color-secondary))",
+          background:
+            "linear-gradient(90deg, var(--color-primary), var(--color-secondary))",
           transform: active ? "scaleX(1)" : "scaleX(0.25)",
         }}
       />
@@ -247,12 +259,12 @@ const TechRowCard = ({
         className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-500"
         style={{
           opacity: active ? 1 : 0,
-          background: "radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 65%)",
+          background:
+            "radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 65%)",
         }}
       />
 
       <div className="relative z-20 p-6 md:p-7 flex flex-col gap-5">
-
         {/* Header: ghost number + label tag */}
         <div className="flex items-start justify-between gap-4">
           {/* Ghost number */}
@@ -316,8 +328,10 @@ const TechRowCard = ({
                 ${activePill === i ? "text-text" : "text-subtext"}
               `}
               style={{
-                background: "color-mix(in srgb, var(--color-text) 5%, transparent)",
-                border: "1px solid color-mix(in srgb, var(--color-text) 8%, transparent)",
+                background:
+                  "color-mix(in srgb, var(--color-text) 5%, transparent)",
+                border:
+                  "1px solid color-mix(in srgb, var(--color-text) 8%, transparent)",
               }}
               onTouchStart={() => setActivePill(i)}
               onTouchEnd={() => setTimeout(() => setActivePill(null), 500)}
@@ -336,7 +350,9 @@ export const GridStack = () => {
   const [rotations, setRotations] = useState<number[][]>([]);
 
   useEffect(() => {
-    setRotations(ROWS.map((row) => row.items.map(() => Math.random() * 12 - 6)));
+    setRotations(
+      ROWS.map((row) => row.items.map(() => Math.random() * 12 - 6)),
+    );
   }, []);
 
   if (rotations.length === 0) return null;

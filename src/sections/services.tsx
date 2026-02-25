@@ -114,7 +114,11 @@ const ServiceCard = ({
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.15,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       onHoverStart={() => setActive(true)}
       onHoverEnd={() => setActive(false)}
       onTouchStart={() => setActive(true)}
@@ -124,15 +128,18 @@ const ServiceCard = ({
         group relative flex flex-col rounded-2xl overflow-hidden
         cursor-default touch-manipulation
         border transition-[border-color,box-shadow] duration-300
-        ${active
-          ? "border-primary/50 shadow-[0_0_40px_color-mix(in_srgb,var(--color-primary)_15%,transparent)]"
-          : "border-text/10 shadow-none"
+        ${
+          active
+            ? "border-primary/50 shadow-[0_0_40px_color-mix(in_srgb,var(--color-primary)_15%,transparent)]"
+            : "border-text/10 shadow-none"
         }
       `}
       /* Only color-mix bg stays inline — no Tailwind equivalent */
-      style={{ background: "color-mix(in srgb, var(--color-background) 80%, var(--color-text) 6%)" }}
+      style={{
+        background:
+          "color-mix(in srgb, var(--color-background) 80%, var(--color-text) 6%)",
+      }}
     >
-
       {/* Top accent bar */}
       <div
         className={`
@@ -140,7 +147,10 @@ const ServiceCard = ({
           ${active ? "scale-x-100" : "scale-x-[0.25]"}
         `}
         /* gradient must stay inline */
-        style={{ background: "linear-gradient(90deg, var(--color-primary), var(--color-secondary))" }}
+        style={{
+          background:
+            "linear-gradient(90deg, var(--color-primary), var(--color-secondary))",
+        }}
       />
 
       {/* Shimmer sweep */}
@@ -161,14 +171,15 @@ const ServiceCard = ({
           ${active ? "opacity-100" : "opacity-0"}
         `}
         /* radial-gradient with color-mix must stay inline */
-        style={{ background: "radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 65%)" }}
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 65%)",
+        }}
       />
 
       <div className="relative z-20 p-7 flex flex-col gap-5 flex-1">
-
         {/* Header: number + tag */}
         <div className="flex items-start justify-between gap-4">
-
           {/* Ghost number — text-text/[0.07] idle → text-primary on active */}
           <span
             className={`
@@ -182,9 +193,7 @@ const ServiceCard = ({
           </span>
 
           {/* Tag pill — color-mix bg+border stays inline, color is Tailwind */}
-          <span
-            className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] px-3 py-1.5 rounded-full flex-shrink-0 text-primary border border-primary/20 bg-primary/10"
-          >
+          <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] px-3 py-1.5 rounded-full flex-shrink-0 text-primary border border-primary/20 bg-primary/10">
             {service.tag}
           </span>
         </div>
@@ -232,7 +241,6 @@ const ServiceCard = ({
         >
           {service.description}
         </p>
-
       </div>
     </motion.div>
   );
@@ -242,7 +250,6 @@ const ServiceCard = ({
 const Services = () => (
   <section className="w-full py-24 px-4">
     <div className="max-w-6xl mx-auto">
-
       <div className="mb-16 max-w-2xl">
         <motion.p
           initial={{ opacity: 0 }}
@@ -278,7 +285,6 @@ const Services = () => (
           <ServiceCard key={index} service={service} index={index} />
         ))}
       </div>
-
     </div>
   </section>
 );

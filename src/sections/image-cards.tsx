@@ -4,24 +4,23 @@ import { motion } from "framer-motion";
 import React from "react";
 
 const cards = [
-  { title: "Cairo Train Station",    src: "/cam_images/1.jpg"  },
-  { title: "Random Bird in a Tree",  src: "/cam_images/2.jpg"  },
-  { title: "Karnak Temple",          src: "/cam_images/3.jpg"  },
-  { title: "Random Bird in a Tree",  src: "/cam_images/4.jpg"  },
-  { title: "Aswan Nile River",       src: "/cam_images/5.jpg"  },
-  { title: "My Setup",               src: "/cam_images/6.jpg"  },
-  { title: "Luxor Nile River",       src: "/cam_images/7.jpg"  },
-  { title: "Ras Elbar Sunset",       src: "/cam_images/8.jpg"  },
-  { title: "Ras Elbar Streets",      src: "/cam_images/9.jpg"  },
-  { title: "Sharm El-Sheikh Red Sea",src: "/cam_images/10.jpg" },
-  { title: "Cairo Tower",            src: "/cam_images/11.jpg" },
-  { title: "Ras Elbar Sea",          src: "/cam_images/12.jpg" },
+  { title: "Cairo Train Station", src: "/cam_images/1.jpg" },
+  { title: "Random Bird in a Tree", src: "/cam_images/2.jpg" },
+  { title: "Karnak Temple", src: "/cam_images/3.jpg" },
+  { title: "Random Bird in a Tree", src: "/cam_images/4.jpg" },
+  { title: "Aswan Nile River", src: "/cam_images/5.jpg" },
+  { title: "My Setup", src: "/cam_images/6.jpg" },
+  { title: "Luxor Nile River", src: "/cam_images/7.jpg" },
+  { title: "Ras Elbar Sunset", src: "/cam_images/8.jpg" },
+  { title: "Ras Elbar Streets", src: "/cam_images/9.jpg" },
+  { title: "Sharm El-Sheikh Red Sea", src: "/cam_images/10.jpg" },
+  { title: "Cairo Tower", src: "/cam_images/11.jpg" },
+  { title: "Ras Elbar Sea", src: "/cam_images/12.jpg" },
 ];
 
 const PhotoCards = () => (
   <section className="w-full py-24 px-4">
     <div className="max-w-6xl mx-auto">
-
       {/* Heading — same pattern as Services / Tech Stack / Projects */}
       <div className="mb-16 max-w-2xl">
         <motion.p

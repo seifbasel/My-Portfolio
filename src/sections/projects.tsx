@@ -7,6 +7,26 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 /* ── Project data ── */
 const PROJECTS = [
   {
+    title: "TransHub",
+    subtitle: "Localization & Translation Platform",
+    description:
+      "A comprehensive platform that automates the localization and translation process for Transfective, tracking project progress from initiation to delivery and payment.",
+    thumbnail: "/images/transhub.png",
+    link: "https://transhub.vercel.app/",
+    category: "fullstack",
+    tags: ["React", "Django", "PostgreSQL", "Express"],
+  },
+  {
+    title: "Transfective HR",
+    subtitle: "Internal Employee Management System",
+    description:
+      "An internal HR system for handling employee tasks, leave requests, interviews, and personnel management, streamlining human resources operations.",
+    thumbnail: "/images/transfective-hr.png",
+    link: "https://transfective-hr.vercel.app/",
+    category: "fullstack",
+    tags: ["React", "Django", "PostgreSQL", "Express"],
+  },
+  {
     title: "Coinat",
     subtitle: "Coin & Currency Exchange Online Store",
     description:
@@ -26,26 +46,6 @@ const PROJECTS = [
     link: "https://ma7fazty.vercel.app/",
     category: "fullstack",
     tags: ["Next.js", "Tailwind"],
-  },
-  {
-    title: "TransHub",
-    subtitle: "Localization & Translation Platform",
-    description:
-      "A comprehensive platform that automates the localization and translation process for Transfective, tracking project progress from initiation to delivery and payment.",
-    thumbnail: "/images/transhub.png",
-    link: "https://transhub.vercel.app/",
-    category: "fullstack",
-    tags: ["React", "Django", "PostgreSQL", "Express"],
-  },
-  {
-    title: "Transfective HR",
-    subtitle: "Internal Employee Management System",
-    description:
-      "An internal HR system for handling employee tasks, leave requests, interviews, and personnel management, streamlining human resources operations.",
-    thumbnail: "/images/transfective-hr.png",
-    link: "https://transfective-hr.vercel.app/",
-    category: "fullstack",
-    tags: ["React", "Django", "PostgreSQL", "Express"],
   },
   {
     title: "Nike Clone",
@@ -115,10 +115,10 @@ const PROJECTS = [
 ];
 
 const TABS = [
-  { key: "all",       label: "All" },
+  { key: "all", label: "All" },
   { key: "fullstack", label: "Fullstack" },
-  { key: "frontend",  label: "Frontend" },
-  { key: "games",     label: "Games" },
+  { key: "frontend", label: "Frontend" },
+  { key: "games", label: "Games" },
 ] as const;
 
 type TabKey = (typeof TABS)[number]["key"];
@@ -147,7 +147,11 @@ const ProjectCard = ({
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.5, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.07,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       onHoverStart={() => setActive(true)}
       onHoverEnd={() => setActive(false)}
       onTouchStart={() => setActive(true)}
@@ -157,18 +161,23 @@ const ProjectCard = ({
         group relative flex flex-col rounded-2xl overflow-hidden
         cursor-default touch-manipulation
         border transition-[border-color,box-shadow] duration-300
-        ${active
-          ? "border-primary/50 shadow-[0_0_40px_color-mix(in_srgb,var(--color-primary)_15%,transparent)]"
-          : "border-text/10 shadow-none"
+        ${
+          active
+            ? "border-primary/50 shadow-[0_0_40px_color-mix(in_srgb,var(--color-primary)_15%,transparent)]"
+            : "border-text/10 shadow-none"
         }
       `}
-      style={{ background: "color-mix(in srgb, var(--color-background) 80%, var(--color-text) 6%)" }}
+      style={{
+        background:
+          "color-mix(in srgb, var(--color-background) 80%, var(--color-text) 6%)",
+      }}
     >
       {/* Top accent bar */}
       <div
         className="h-0.5 w-full flex-shrink-0 origin-left transition-transform duration-500 ease-out"
         style={{
-          background: "linear-gradient(90deg, var(--color-primary), var(--color-secondary))",
+          background:
+            "linear-gradient(90deg, var(--color-primary), var(--color-secondary))",
           transform: active ? "scaleX(1)" : "scaleX(0.2)",
         }}
       />
@@ -184,7 +193,8 @@ const ProjectCard = ({
         className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-500"
         style={{
           opacity: active ? 1 : 0,
-          background: "radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 65%)",
+          background:
+            "radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 65%)",
         }}
       />
 
@@ -193,7 +203,8 @@ const ProjectCard = ({
         className="relative w-full overflow-hidden flex-shrink-0 flex items-center justify-center"
         style={{
           minHeight: 100,
-          background: "color-mix(in srgb, var(--color-background) 60%, var(--color-text) 4%)",
+          background:
+            "color-mix(in srgb, var(--color-background) 60%, var(--color-text) 4%)",
         }}
       >
         <Image
@@ -209,7 +220,8 @@ const ProjectCard = ({
           className="absolute inset-0 transition-opacity duration-300"
           style={{
             opacity: active ? 0.3 : 0.6,
-            background: "linear-gradient(to top, var(--color-background), transparent)",
+            background:
+              "linear-gradient(to top, var(--color-background), transparent)",
           }}
         />
 
@@ -228,7 +240,6 @@ const ProjectCard = ({
 
       {/* Content */}
       <div className="relative z-20 p-5 flex flex-col gap-3 flex-1">
-
         {/* Title */}
         <div>
           <h3
@@ -254,7 +265,9 @@ const ProjectCard = ({
         {/* Description — brightens on active */}
         <p
           className="text-xs leading-relaxed flex-1 transition-colors duration-300"
-          style={{ color: active ? "var(--color-text)" : "var(--color-subtext)" }}
+          style={{
+            color: active ? "var(--color-text)" : "var(--color-subtext)",
+          }}
         >
           {project.description}
         </p>
@@ -276,8 +289,17 @@ const ProjectCard = ({
                 bg-primary/10 border border-primary/20
               "
             >
-              <svg className="w-3 h-3 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 7h10v10" /><path d="M7 17 17 7" />
+              <svg
+                className="w-3 h-3 flex-shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M7 7h10v10" />
+                <path d="M7 17 17 7" />
               </svg>
               Live
             </Link>
@@ -297,8 +319,18 @@ const ProjectCard = ({
                 bg-text/[0.06] border border-text/10
               "
             >
-              <svg className="w-3 h-3 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />
+              <svg
+                className="w-3 h-3 flex-shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 16v-4" />
+                <path d="M12 8h.01" />
               </svg>
               GitHub
             </Link>
@@ -368,7 +400,9 @@ const TabBar = ({
                 background: isActive
                   ? "color-mix(in srgb, var(--color-primary) 20%, transparent)"
                   : "color-mix(in srgb, var(--color-text) 8%, transparent)",
-                color: isActive ? "var(--color-primary)" : "var(--color-subtext)",
+                color: isActive
+                  ? "var(--color-primary)"
+                  : "var(--color-subtext)",
               }}
             >
               {count}
@@ -397,7 +431,6 @@ const Projects = () => {
   return (
     <section className="w-full py-24 px-4">
       <div className="max-w-6xl mx-auto">
-
         {/* Heading */}
         <div className="mb-12 max-w-2xl">
           <motion.p
@@ -443,7 +476,6 @@ const Projects = () => {
             ))}
           </AnimatePresence>
         </motion.div>
-
       </div>
     </section>
   );

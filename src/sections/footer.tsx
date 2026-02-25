@@ -72,10 +72,8 @@ export function Footer() {
 
   return (
     <footer className="w-full relative overflow-hidden" id="contact">
-
       {/* ── CTA hero with beams ── */}
       <BackgroundBeamsWithCollision className="min-h-[28rem] md:min-h-[36rem] flex flex-col items-center justify-center gap-6 px-4 py-20">
-
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -109,7 +107,15 @@ export function Footer() {
               transition-all duration-200 touch-manipulation
             "
           >
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              className="w-4 h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <rect width="20" height="16" x="2" y="4" rx="2" />
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
@@ -130,14 +136,30 @@ export function Footer() {
           >
             {copied ? (
               <>
-                <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  className="w-4 h-4 text-primary"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
                 <span className="text-primary">Copied!</span>
               </>
             ) : (
               <>
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
                   <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
                 </svg>
@@ -146,16 +168,17 @@ export function Footer() {
             )}
           </motion.button>
         </motion.div>
-
       </BackgroundBeamsWithCollision>
 
       {/* ── Bottom bar ── */}
       <div
         className="relative w-full px-4 py-10 border-t border-text/10"
-        style={{ background: "color-mix(in srgb, var(--color-background) 60%, var(--color-text) 4%)" }}
+        style={{
+          background:
+            "color-mix(in srgb, var(--color-background) 60%, var(--color-text) 4%)",
+        }}
       >
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-
           {/* Name + copyright */}
           <div className="flex flex-col items-center md:items-start gap-1">
             <span className="font-rubik text-2xl font-bold text-text tracking-tight">
@@ -201,7 +224,6 @@ export function Footer() {
               </motion.a>
             ))}
           </div>
-
         </div>
       </div>
 

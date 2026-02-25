@@ -17,10 +17,13 @@ This portfolio highlights my development journey, key services I offer, tech sta
 ## 🚀 What You’ll Find Here
 
 ### 📌 **My Journey**
+
 A timeline of my academic and professional experience — from university studies in computer science to real-world developer roles and tech certifications.
 
 ### 💼 **Services**
+
 I provide:
+
 - ➤ Full Stack Development
 - ➤ Responsive & Scalable Web Interfaces
 - ➤ Backend & API Development
@@ -38,7 +41,7 @@ My development stack includes (but is not limited to):
 - Databases & Storage: (Add your own: PostgreSQL, MongoDB, etc.)
 - Cloud & Deployment: Vercel, (your other platforms)
 
-*(Customize this list to match your exact tech stack in your portfolio)*
+_(Customize this list to match your exact tech stack in your portfolio)_
 
 ---
 
@@ -46,16 +49,16 @@ My development stack includes (but is not limited to):
 
 Here are some highlighted works displayed on the live site:
 
-| Project | Description |
-|---------|-------------|
-| **Coinat** | A ecommerce marketplace for coins and currency. |
-| **TransHub** | Localization & translation workflow platform. |
-| **Transfective HR** | Internal HR management system. |
-| **Nike Website Clone** | Frontend clone of Nike e-commerce experience. |
-| **Prova 3D Virtual Try-On** | AR-powered clothing try-on experience. |
-| **Library Management System** | Full system UI & backend for managing library operations. |
-| **Diabetes Classification App** | Predictive web app using ML model. |
-| **Cosmos – Space Exploration UI** | Interactive website with modern UI design. |
+| Project                           | Description                                               |
+| --------------------------------- | --------------------------------------------------------- |
+| **Coinat**                        | A ecommerce marketplace for coins and currency.           |
+| **TransHub**                      | Localization & translation workflow platform.             |
+| **Transfective HR**               | Internal HR management system.                            |
+| **Nike Website Clone**            | Frontend clone of Nike e-commerce experience.             |
+| **Prova 3D Virtual Try-On**       | AR-powered clothing try-on experience.                    |
+| **Library Management System**     | Full system UI & backend for managing library operations. |
+| **Diabetes Classification App**   | Predictive web app using ML model.                        |
+| **Cosmos – Space Exploration UI** | Interactive website with modern UI design.                |
 
 > Live demos and GitHub links for each project are available on the portfolio site.
 
@@ -71,7 +74,7 @@ You can directly download my CV from the website header.
 
 Feel free to reach out to me for collaborations or job opportunities!
 
-📧 Email: *(Add your email here if different)*  
+📧 Email: _(Add your email here if different)_  
 🌐 Portfolio: https://seifbasel.vercel.app/
 
 ---
@@ -79,6 +82,7 @@ Feel free to reach out to me for collaborations or job opportunities!
 ## 🏁 Final Notes
 
 This portfolio was built to demonstrate:
+
 - Clear presentation of developer journey and skills
 - A modern and responsive UI
 - A curated list of projects that reflect both frontend and backend capabilities

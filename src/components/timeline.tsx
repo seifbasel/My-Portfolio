@@ -1,5 +1,11 @@
 "use client";
-import { motion, useScroll, useTransform, useInView, MotionValue } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+  MotionValue,
+} from "framer-motion";
 import React, { useRef } from "react";
 
 export interface TimelineEntry {
@@ -38,12 +44,16 @@ const Connector = ({
   segEnd: number;
 }) => {
   const pathLength = useTransform(scrollYProgress, [segStart, segEnd], [0, 1]);
-  const opacity    = useTransform(scrollYProgress, [segStart, segStart + 0.01], [0, 1]);
+  const opacity = useTransform(
+    scrollYProgress,
+    [segStart, segStart + 0.01],
+    [0, 1],
+  );
 
-  const x1     = toRight ? 27.5 : 72.5;
-  const x2     = toRight ? 72.5 : 27.5;
+  const x1 = toRight ? 27.5 : 72.5;
+  const x2 = toRight ? 72.5 : 27.5;
   const gradId = `cg-${toRight ? "lr" : "rl"}-${segStart.toFixed(3)}`;
-  const path   = `M ${x1} 0 L ${x2} 100`;
+  const path = `M ${x1} 0 L ${x2} 100`;
 
   return (
     <div className="hidden md:block w-full relative h-20">
@@ -56,11 +66,13 @@ const Connector = ({
         <defs>
           <linearGradient
             id={gradId}
-            x1={toRight ? "0%" : "100%"} y1="0%"
-            x2={toRight ? "100%" : "0%"} y2="100%"
+            x1={toRight ? "0%" : "100%"}
+            y1="0%"
+            x2={toRight ? "100%" : "0%"}
+            y2="100%"
           >
-            <stop offset="0%"   stopColor={accentFrom} />
-            <stop offset="100%" stopColor={accentTo}   />
+            <stop offset="0%" stopColor={accentFrom} />
+            <stop offset="100%" stopColor={accentTo} />
           </linearGradient>
         </defs>
 
@@ -120,12 +132,14 @@ const TimelineCard = ({
   index: number;
   side: "left" | "right";
 }) => {
-  const ref    = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const accent = ACCENTS[index % ACCENTS.length];
 
   return (
-    <div className={`w-full md:w-[55%] ${side === "right" ? "md:ml-auto" : ""}`}>
+    <div
+      className={`w-full md:w-[55%] ${side === "right" ? "md:ml-auto" : ""}`}
+    >
       <motion.div
         ref={ref}
         initial={{ opacity: 0, x: side === "left" ? -30 : 30 }}
@@ -136,13 +150,14 @@ const TimelineCard = ({
         style={{ border: `1px solid ${accent}28` }}
       >
         {/* Top accent bar */}
-        <div className="h-0.5 w-full flex-shrink-0" style={{ background: accent }} />
+        <div
+          className="h-0.5 w-full flex-shrink-0"
+          style={{ background: accent }}
+        />
 
         {/* Header row */}
         <div className="flex items-center justify-between px-5 pt-4">
-          <span
-            className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] font-semibold text-primary"
-          >
+          <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] font-semibold text-primary">
             {entry.title}
           </span>
           <span className="font-mono text-xs sm:text-sm font-bold tabular-nums text-subtext">
@@ -163,7 +178,9 @@ const TimelineCard = ({
         {/* Subtle top glow */}
         <div
           className="absolute inset-0 rounded-2xl pointer-events-none"
-          style={{ background: `radial-gradient(ellipse at 50% 0%, ${accent}09 0%, transparent 60%)` }}
+          style={{
+            background: `radial-gradient(ellipse at 50% 0%, ${accent}09 0%, transparent 60%)`,
+          }}
         />
       </motion.div>
     </div>
@@ -186,7 +203,6 @@ export function Timeline({ data }: { data: TimelineEntry[] }) {
 
   return (
     <div className="w-full">
-
       {/* ── Heading ── */}
       <div className="max-w-4xl mx-auto px-4 md:px-10 mb-16">
         <motion.p
@@ -220,16 +236,15 @@ export function Timeline({ data }: { data: TimelineEntry[] }) {
 
       {/* ── Zigzag body ── */}
       <div className="max-w-4xl mx-auto px-4 md:px-10 pb-24" ref={containerRef}>
-
         {/* Desktop zigzag */}
         <div className="hidden md:block">
           {data.map((entry, i) => {
-            const side       = i % 2 === 0 ? "left" : "right";
-            const isLast     = i === N - 1;
-            const accentFrom = ACCENTS[i       % ACCENTS.length];
-            const accentTo   = ACCENTS[(i + 1) % ACCENTS.length];
-            const segStart   = i / C;
-            const segEnd     = (i + 1) / C;
+            const side = i % 2 === 0 ? "left" : "right";
+            const isLast = i === N - 1;
+            const accentFrom = ACCENTS[i % ACCENTS.length];
+            const accentTo = ACCENTS[(i + 1) % ACCENTS.length];
+            const segStart = i / C;
+            const segEnd = (i + 1) / C;
 
             return (
               <div key={i}>
@@ -260,7 +275,8 @@ export function Timeline({ data }: { data: TimelineEntry[] }) {
             style={{
               scaleY: scrollYProgress,
               height: "100%",
-              background: "linear-gradient(to bottom, #38bdf8, #a78bfa, #34d399, #fb923c, #f472b6, #60a5fa, #facc15, #4ade80)",
+              background:
+                "linear-gradient(to bottom, #38bdf8, #a78bfa, #34d399, #fb923c, #f472b6, #60a5fa, #facc15, #4ade80)",
             }}
           />
 
@@ -283,7 +299,6 @@ export function Timeline({ data }: { data: TimelineEntry[] }) {
             })}
           </div>
         </div>
-
       </div>
     </div>
   );
