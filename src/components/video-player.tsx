@@ -44,7 +44,7 @@ export default function ReelsVideos({ videos }: { videos: Video[] }) {
           <video
             ref={videoRef}
             key={videos[current].id}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="w-full h-full object-contain bg-black"
             controls
             playsInline
             onPlay={() => setPlaying(true)}
@@ -185,7 +185,7 @@ export default function ReelsVideos({ videos }: { videos: Video[] }) {
                 src={video.coverImage}
                 alt={video.title}
                 fill
-                className="object-cover"
+                className="object-fill"
               />
             </div>
 

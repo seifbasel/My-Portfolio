@@ -174,13 +174,15 @@ export function TimeLine() {
       content: (
         <div className="flex flex-col gap-4">
           <p className="text-base md:text-lg leading-relaxed text-text">
-            Joined Transfective as a full-time Software Developer, building an
-            enterprise localization platform that automated end-to-end
-            workflows.
+            Joined Transfective as a Full-Time Software Developer, contributing
+            to the development of an enterprise-grade localization platform that
+            automated end-to-end translation workflows.
           </p>
           <div className="flex flex-col gap-4">
-            <Bullet text="Scalable frontend translation interfaces" />
-            <Bullet text="cut delivery time by 50%, and supported 1,000+ daily users" />
+            <Bullet text="Built scalable frontend interfaces using Next.js and Tailwind CSS for translation and project management workflows" />
+            <Bullet text="Reduced delivery time by 50% through workflow automation and system improvements" />
+            <Bullet text="Supported 1,000+ daily active users with reliable, production-ready features" />
+            <Bullet text="Collaborated in an agile environment, contributing to feature planning and system architecture decisions" />
           </div>
           <CardLogo
             src="/svgs/transfective.svg"
@@ -209,17 +211,18 @@ export function TimeLine() {
 
     /* 08 */
     {
-      title: "January 2025",
+      title: "January 2025 - February 2026",
       content: (
         <div className="flex flex-col gap-4">
           <p className="text-base md:text-lg leading-relaxed text-text">
-            Began mandatory military service in the Egyptian Armed Forces,
-            serving as an IT specialist supporting digital operations.
+            Completed mandatory military service in the Egyptian Armed Forces,
+            serving as an IT Specialist supporting digital operations.
           </p>
           <div className="flex flex-col md:flex-row gap-10">
             <div className="flex flex-col gap-4 pt-4">
-              <Bullet text="IT infrastructure & support" />
-              <Bullet text="Developed a system to track faults and malfunctions." />
+              <Bullet text="Maintained and supported IT infrastructure across multiple departments" />
+              <Bullet text="Designed and developed an internal fault-tracking system to monitor technical issues and equipment malfunctions" />
+              <Bullet text="Improved issue reporting workflow and reduced resolution time through structured tracking" />
             </div>
 
             <CardLogo
@@ -232,6 +235,11 @@ export function TimeLine() {
           </div>
         </div>
       ),
+    },
+    /* 08 */
+    {
+      title: "Coming Soon",
+      content: <div className="flex flex-col gap-4"></div>,
     },
   ];
 

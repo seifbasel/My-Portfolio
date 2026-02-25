@@ -322,7 +322,7 @@ const Header = () => {
         {/* Stats */}
         <motion.div
           variants={item}
-          className="flex flex-wrap gap-4 justify-center mb-20"
+          className="flex flex-wrap gap-4 justify-center mb-24"
         >
           <StatPill value="2+" label="Years exp." delay={0.8} />
           <StatPill value="9+" label="Projects" delay={0.92} />
@@ -332,7 +332,7 @@ const Header = () => {
 
       {/* Scroll cue */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6, duration: 0.8 }}
