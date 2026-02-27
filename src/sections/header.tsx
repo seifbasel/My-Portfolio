@@ -301,7 +301,7 @@ const Header = () => {
             </svg>
             View Projects
           </MagneticButton>
-          <MagneticButton href="/seif-new-cv.pdf" download="seif-new-cv.pdf">
+          <MagneticButton href="/seif-basel-abutaleb-cv.pdf" download="seif-new-cv.pdf">
             <svg
               className="w-4 h-4"
               viewBox="0 0 24 24"
